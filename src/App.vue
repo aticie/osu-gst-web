@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <p>osu! GST will be here!</p>
+  <p class="text-center text-xl">osu! GST will be here!</p>
 </template>
