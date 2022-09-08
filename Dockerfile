@@ -1,8 +1,8 @@
 FROM node as builder
 
-WORKDIR /app/
+WORKDIR /app
 
-COPY . /app/
+COPY ./frontend /app
 
 RUN npm ci
 RUN npm run build
