@@ -12,5 +12,3 @@ FROM python:3.10-slim
 WORKDIR /app
 
 COPY --from=builder /app/dist /app/dist
-
-CMD ["python3", "-m", "http.server", "-d", "/app/dist", "--port", "${PORT}"]
