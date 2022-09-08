@@ -14,6 +14,10 @@ FROM rust:slim
 WORKDIR /app
 
 COPY --from=builder /app/dist /app/dist
-COPY ./server/* /app/
+COPY ./server /app/server
 
-CMD ["cargo", "run", "--release"]
+WORKDIR /app/server
+
+RUN cargo build --release
+
+CMD ["./target/release/server"]
