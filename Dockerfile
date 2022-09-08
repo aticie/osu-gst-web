@@ -2,7 +2,9 @@ FROM node as builder
 
 WORKDIR /app
 
-COPY ./frontend /app
+COPY ./frontend /app/frontend
+
+WORKDIR /app/frontend
 
 RUN npm ci
 RUN npm run build
