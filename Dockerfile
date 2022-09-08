@@ -20,4 +20,4 @@ WORKDIR /app/server
 
 RUN cargo build --release
 
-CMD ["./target/release/server"]
+CMD ["cargo", "run", "--release"]
