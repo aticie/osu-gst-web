@@ -1,8 +1,10 @@
 FROM node as builder
 
-WORKDIR /app/
+WORKDIR /app
 
-COPY . /app/
+COPY ./frontend /app/frontend
+
+WORKDIR /app/frontend
 
 RUN npm ci
 RUN npm run build
@@ -12,6 +14,10 @@ FROM rust:slim
 WORKDIR /app
 
 COPY --from=builder /app/dist /app/dist
-COPY ./server/* /app/
+COPY ./server /app/server
+
+WORKDIR /app/server
+
+RUN cargo build --release
 
 CMD ["cargo", "run", "--release"]
