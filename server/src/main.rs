@@ -1,7 +1,7 @@
 use std::net::SocketAddr;
 
-use tower::make::Shared;
-use tower_http::services::ServeDir;
+use axum::Router;
+use axum_extra::routing::SpaRouter;
 
 #[tokio::main]
 async fn main() {
@@ -10,11 +10,15 @@ async fn main() {
         .parse()
         .expect("Can't parse port to u16");
 
-    let service = ServeDir::new("../dist");
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
+    let spa = SpaRouter::new("/assets", "../dist/assets")
+        .index_file("../index.html");
 
+    let app = Router::new()
+        .merge(spa);
+
+    let addr = SocketAddr::from(([0, 0, 0, 0], port));
     axum::Server::bind(&addr)
-        .serve(Shared::new(service))
+        .serve(app.into_make_service())
         .await
         .expect("Server Error!");
 }
