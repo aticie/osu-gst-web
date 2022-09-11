@@ -24,7 +24,7 @@
     @apply hover:bg-white hover:text-black;
     @apply group-hover:bg-white group-hover:text-black;
     @apply transition-all;
-    @apply px-4 rounded-lg;
+    @apply px-4 rounded-full;
   }
 
   .nav-route-child {
