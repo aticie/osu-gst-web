@@ -1,29 +1,39 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
+import Shop from "../views/Shop.vue";
 import Home from "../views/Home.vue";
 import { AboutUs, Directions, StaffList } from "../views/Info";
 
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
+    name: "",
     component: Home
   },
   {
     path: "/info",
-    children: [
+    name: "INFO", children: [
       {
         path: "about",
+        name: "ABOUT US",
         component: AboutUs
       },
       {
         path: "directions",
+        name: "DIRECTIONS",
         component: Directions,
       },
       {
         path: "staff",
+        name: "STAFF LIST",
         component: StaffList
       }
     ]
+  },
+  {
+    path: "/shop",
+    name: "SHOP",
+    component: Shop
   }
 ];
 
