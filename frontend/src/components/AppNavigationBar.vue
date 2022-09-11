@@ -13,10 +13,11 @@ const routes = router.options.routes.filter(x => x.name);
 
     <template v-for="route in routes">
       <router-link class="nav-item nav-route" v-if="!route.children" :to="route.path">{{ route.name }}</router-link>
-      <div v-else class="group">
+      <div v-else class="group relative">
         <p class="nav-item nav-route group-hover:rounded-b-none">{{ route.name }}</p>
+        <div class="absolute group-visible bg-white w-full h-5"></div>
 
-        <div class="absolute group-visible group-opacity-transition flex flex-col rounded-without-tl py-1 bg-white">
+        <div class="absolute top-10 group-visible flex flex-col rounded-without-tl py-1 bg-white">
           <router-link v-for="childrenRoute in route.children" :key="childrenRoute.path"
             class="nav-item nav-route-child" :to="`${route.path}/${childrenRoute.path}`">
             {{ childrenRoute.name }}

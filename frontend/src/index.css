@@ -23,7 +23,7 @@
   .nav-route {
     @apply hover:bg-white hover:text-black;
     @apply group-hover:bg-white group-hover:text-black;
-    @apply transition-all;
+    /* @apply transition-all; */
     @apply px-4 rounded-full;
   }
 
@@ -40,9 +40,9 @@
     @apply rounded-tl-none;
   }
 
-  .group-opacity-transition {
+  /* .group-opacity-transition {
     @apply opacity-0 group-hover:opacity-100 transition-opacity;
-  }
+  } */
 
   .group-visible {
     @apply invisible group-hover:visible;
