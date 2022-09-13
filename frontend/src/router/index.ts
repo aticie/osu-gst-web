@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
-import Shop from "../views/Shop.vue";
+const Shop = () => import("../views/Shop.vue");
 import Home from "../views/Home.vue";
 import { AboutUs, Directions, StaffList } from "../views/Info";
 

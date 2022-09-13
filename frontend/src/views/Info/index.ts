@@ -1,5 +1,5 @@
-import AboutUs from "./AboutUs.vue";
-import Directions from "./Directions.vue";
-import StaffList from "./StaffList.vue";
+const AboutUs = () => import("./AboutUs.vue");
+const Directions = () => import("./Directions.vue");
+const StaffList = () => import("./StaffList.vue");
 
 export { AboutUs, Directions, StaffList };
