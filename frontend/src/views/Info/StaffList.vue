@@ -1,1 +1,3 @@
-<template>Staff List</template>
+<template>
+  <p>Staff list</p>
+</template>

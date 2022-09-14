@@ -1,1 +1,3 @@
-<template>Directions</template>
+<template>
+  <p>Directions</p>
+</template>
