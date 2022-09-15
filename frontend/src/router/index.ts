@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const Shop = () => import("../views/Shop.vue");
+const Mappool = () => import("../views/Mappool.vue");
+const Schedule = () => import("../views/Schedule.vue");
+const Teams = () => import("../views/Teams.vue");
 import Home from "../views/Home.vue";
 import { AboutUs, Directions, StaffList } from "../views/Info";
 
@@ -34,6 +37,21 @@ const routes: RouteRecordRaw[] = [
     path: "/shop",
     name: "SHOP",
     component: Shop
+  },
+  {
+    path: "/schedule",
+    name: "SCHEDULE",
+    component: Schedule 
+  },
+  {
+    path: "/teams",
+    name: "TEAMS",
+    component: Teams
+  },
+  {
+    path: "/pool",
+    name: "MAPPOOL",
+    component: Mappool
   }
 ];
 
