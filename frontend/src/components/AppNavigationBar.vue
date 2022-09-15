@@ -17,7 +17,7 @@ const routes = router.options.routes.filter(x => x.name);
         <p class="nav-item nav-route">{{ route.name }}</p>
         <div class="absolute group-visible w-full h-5"></div>
 
-        <div class="absolute top-10 group-visible flex flex-col rounded py-1 bg-white">
+        <div class="absolute top-10 group-visible flex flex-col rounded py-1 group-opacity-transition bg-white">
           <router-link v-for="childrenRoute in route.children" :key="childrenRoute.path"
             class="nav-item nav-route-child" :to="`${route.path}/${childrenRoute.path}`">
             {{ childrenRoute.name }}
