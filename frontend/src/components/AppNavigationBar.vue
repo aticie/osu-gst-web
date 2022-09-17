@@ -22,6 +22,8 @@ const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value;
     <div 
       class="flex flex-col lg:flex-row lg:max-h-96 gap-2 marker:lg:gap-8 text-center overflow-hidden lg:overflow-visible transition-all  max-h-0"
       :class="{ 'max-h-96': isMenuOpen }"
+      tabindex="0"
+      @focusout="toggleMenu"
     >
       <div class="mt-2"></div>  
 
