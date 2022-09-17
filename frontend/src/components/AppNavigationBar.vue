@@ -7,10 +7,11 @@ const router = useRouter();
 const routes = router.options.routes.filter(x => x.name);
 
 const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value;
+const closeMenu = () => isMenuOpen.value = false;
 </script>
 
 <template>
-  <div class="bg-black p-3 text-white flex flex-col lg:flex-row lg:justify-center lg:items-center">
+  <div v-click-outside="closeMenu" class="bg-black p-3 text-white flex flex-col lg:flex-row lg:justify-center lg:items-center">
     <div class="flex items-center justify-between">
       <router-link to="/">
         <img src="../assets/gstlive.png" alt="gstlive icon" class="lg:mr-10" />
@@ -22,8 +23,6 @@ const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value;
     <div 
       class="flex flex-col lg:flex-row lg:max-h-96 gap-2 marker:lg:gap-8 text-center overflow-hidden lg:overflow-visible transition-all  max-h-0"
       :class="{ 'max-h-96': isMenuOpen }"
-      tabindex="0"
-      @focusout="toggleMenu"
     >
       <div class="mt-2"></div>  
 
