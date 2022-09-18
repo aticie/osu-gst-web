@@ -31,7 +31,7 @@ const closeMenu = () => isMenuOpen.value = false;
         </router-link>
 
         <div v-if="route.children" 
-          class="flex flex-col mt-2 border-l-2 border-red-500 transition-colors lg:absolute lg:group-visible top-10 bg-black p-without-l"
+          class="flex flex-col mt-2 py-2 transition-colors lg:absolute lg:group-visible top-10 bg-black rounded"
         >
           <div class="absolute -top-5 h-6 w-20"></div>
 

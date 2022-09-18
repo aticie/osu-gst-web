@@ -29,9 +29,13 @@
   }
 
   .nav-route-child {
-    @apply text-base font-normal w-full;
-    @apply px-4 py-1;
-    @apply hover:bg-red-500 transition-colors;
+    @apply flex items-center;
+    @apply px-5 py-1;
+    @apply text-base font-normal;
+    @apply before:bg-red-500 before:rounded-full before:invisible before:hover:visible before:absolute;
+    @apply before:w-1 before:h-3 before:left-2;
+    @apply hover:bg-neutral-900;
+    @apply rounded lg:rounded-none;
   }
   
   .nav-large {
