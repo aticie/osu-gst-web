@@ -15,7 +15,9 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/info",
-    name: "INFO", children: [
+    name: "INFO", 
+    redirect: "/info/about",
+    children: [
       {
         path: "about",
         name: "ABOUT US",
