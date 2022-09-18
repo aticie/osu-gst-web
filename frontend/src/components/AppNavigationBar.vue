@@ -14,10 +14,10 @@ const closeMenu = () => isMenuOpen.value = false;
   <div v-click-outside="closeMenu" class="bg-black p-3 text-white flex flex-col lg:flex-row lg:justify-center lg:items-center">
     <div class="flex items-center justify-between">
       <router-link to="/">
-        <img src="../assets/gstlive.png" alt="gstlive icon" class="lg:mr-10 h-8" />
+        <img src="../assets/gstlive.png" alt="gstlive icon" class="lg:mr-10 h-6" />
       </router-link>
 
-      <img @click="toggleMenu" class="lg:hidden h-8" src="../assets/menu.svg" alt="menu button" />
+      <img @click="toggleMenu" class="lg:hidden h-7" src="../assets/menu.svg" alt="menu button" />
     </div>
 
     <div 
