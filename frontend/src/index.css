@@ -44,15 +44,6 @@
 }
 
 @layer utilities {
-  .rounded-without-tl {
-    @apply rounded-lg;
-    @apply rounded-tl-none;
-  }
-
-  .group-opacity-transition {
-    @apply opacity-0 group-hover:opacity-100 transition-opacity;
-  }
-
   .group-visible {
     @apply invisible group-hover:visible;
   }
