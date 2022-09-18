@@ -30,7 +30,11 @@ const closeMenu = () => isMenuOpen.value = false;
           {{ route.name }}
         </router-link>
 
-        <div v-if="route.children" class="flex flex-col mt-2 border-l-2 border-red-500 transition-colors">
+        <div v-if="route.children" 
+          class="flex flex-col mt-2 border-l-2 border-red-500 transition-colors lg:absolute lg:group-visible top-10 bg-black p-without-l"
+        >
+          <div class="absolute -top-5 h-6 w-20"></div>
+
           <router-link v-for="childRoute in route.children" :to="`${route.path}/${childRoute.path}`"
             class="nav-item nav-route-child">
             {{ childRoute.name }}
@@ -39,38 +43,4 @@ const closeMenu = () => isMenuOpen.value = false;
       </div>
     </div>
   </div>
-
-  <!-- <div v-click-outside="closeMenu" class="bg-black p-3 text-white flex flex-col lg:flex-row lg:justify-center lg:items-center">
-    <div class="flex items-center justify-between">
-      <router-link to="/">
-        <img src="../assets/gstlive.png" alt="gstlive icon" class="lg:mr-10 h-6" />
-      </router-link>
-
-      <img @click="toggleMenu" class="lg:hidden h-7" src="../assets/menu.svg" alt="menu button" />
-    </div>
-
-    <div 
-      class="flex flex-col lg:flex-row lg:max-h-96 gap-2 lg:gap-8 text-center overflow-hidden lg:overflow-visible transition-all "
-      :class="{ 'max-h-96': isMenuOpen }"
-    >
-      <div class="mt-2"></div>  
-
-      <div v-for="route in routes" class="relative group">
-        <router-link class="nav-item nav-route" :to="route.path">{{ route.name }}</router-link>
-
-        <template v-if="route.children">
-          <div class="absolute h-2 w-full group"></div>
-
-          <div class="overflow-hidden lg:visible max-h-0 group-hover:max-h-96 transition-all">
-            <div class="py-2 bg-white flex flex-wrap justify-center mt-1 lg:absolute group-visible rounded">
-              <router-link class="nav-item nav-route-child rounded lg:rounded-none lg:w-full" v-for="childRoute in route.children"
-                :to="`${route.path}/${childRoute.path}`">
-                {{ childRoute.name }}
-              </router-link>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-  </div> -->
 </template>
