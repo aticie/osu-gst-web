@@ -11,6 +11,7 @@
   html, body, #app {
     @apply h-full w-full;
     @apply relative;
+    @apply overflow-hidden;
   }
 }
 
@@ -23,14 +24,26 @@
   .nav-route {
     @apply hover:bg-white hover:text-black;
     @apply group-hover:bg-white group-hover:text-black;
-    @apply transition-all;
     @apply px-4 py-1 rounded-full;
+    @apply transition-all;
   }
 
   .nav-route-child {
-    @apply text-black;
-    @apply hover:bg-black hover:text-white;
-    @apply px-6;
+    @apply text-base font-normal;
+    @apply pl-2 py-1;
+    @apply hover:bg-red-500 transition-colors;
+    @apply rounded-r-lg
+
+    /* @apply transition-colors;
+    @apply hover:bg-red-500;
+    @apply pl-2 py-1; */
+  }
+  
+  .nav-large {
+    @apply flex-row gap-8;
+    @apply static;
+    @apply p-0;
+    @apply translate-x-0;
   }
 }
 
