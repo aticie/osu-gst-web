@@ -29,10 +29,9 @@
   }
 
   .nav-route-child {
-    @apply text-base font-normal;
+    @apply text-base font-normal w-full;
     @apply px-4 py-1;
     @apply hover:bg-red-500 transition-colors;
-    @apply rounded-r-lg
   }
   
   .nav-large {
@@ -46,10 +45,5 @@
 @layer utilities {
   .group-visible {
     @apply invisible group-hover:visible;
-  }
-
-  .p-without-l {
-    @apply p-2;
-    @apply pl-0;
   }
 }
