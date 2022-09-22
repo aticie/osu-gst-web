@@ -26,8 +26,9 @@ const closeMenu = () => isMenuOpen.value = false;
     <div
       class="
         flex flex-col gap-3 inset-y-0
-        lg:nav-large absolute bg-black border-l border-neutral-800 p-4 right-0
+        lg:nav-large absolute bg-black p-4 right-0
         translate-x-full transition-transform
+        border-l border-neutral-800 lg:border-none
       "
       :class="{'translate-x-0': isMenuOpen}"
     >
