@@ -17,10 +17,20 @@ const closeMenu = () => isMenuOpen.value = false;
       <img src="../assets/gstlive.png" alt="gstlive icon" class="h-6" />
     </router-link>
 
-    <img @click="toggleMenu" src="../assets/menu.svg" alt="menu button" class="lg:hidden h-7" />
+    <img 
+      @click="toggleMenu" 
+      src="../assets/menu.svg" alt="menu button" 
+      class="lg:hidden h-7"
+    />
+
     <div
-      class="flex flex-col lg:nav-large absolute inset-y-0 bg-black p-6 right-0 translate-x-full gap-3 transition-transform"
-      :class="{'translate-x-0': isMenuOpen}">
+      class="
+        flex flex-col gap-3 inset-y-0
+        lg:nav-large absolute bg-black border-l border-neutral-800 p-4 right-0
+        translate-x-full transition-transform
+      "
+      :class="{'translate-x-0': isMenuOpen}"
+    >
       <div v-for="route in routes" class="relative group">
         <router-link 
           class="nav-item nav-route"
