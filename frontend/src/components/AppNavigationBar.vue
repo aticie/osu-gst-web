@@ -36,6 +36,7 @@ const closeMenu = () => isMenuOpen.value = false;
         <router-link 
           class="nav-item nav-route"
           :to="route.path"
+          @click="closeMenu"
         >
           {{ route.name }}
         </router-link>
@@ -45,7 +46,7 @@ const closeMenu = () => isMenuOpen.value = false;
         >
           <div class="absolute -top-5 h-6 w-20"></div>
 
-          <router-link v-for="childRoute in route.children" :to="`${route.path}/${childRoute.path}`"
+          <router-link v-for="childRoute in route.children" :to="`${route.path}/${childRoute.path}`" @click="closeMenu"
             class="nav-item nav-route-child">
             {{ childRoute.name }}
           </router-link>
