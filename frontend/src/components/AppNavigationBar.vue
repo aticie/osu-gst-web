@@ -34,7 +34,6 @@ const closeMenu = () => isMenuOpen.value = false;
       <div v-for="route in routes" class="relative group">
         <router-link 
           class="nav-item nav-route"
-          :class="{ 'group-hover:bg-red-500 group-hover:text-white': route.children }" 
           :to="route.path"
         >
           {{ route.name }}
