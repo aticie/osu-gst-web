@@ -4,17 +4,19 @@
 
 @font-face {
   font-family: Gotham;
-  src: url("./assets/GothamMedium.ttf")
+  src: url("./assets/fonts/GothamMedium.ttf")
 }
 
 @font-face {
   font-family: Torus;
-  src: url("./assets/TorusProBold.ttf")
+  src: url("./assets/fonts/TorusProBold.ttf")
 }
 
 @layer base {
   html, body, #app {
-    
+    @apply overflow-hidden;
+    @apply h-full w-full;
+    @apply text-white;
   }
 }
 
@@ -34,6 +36,11 @@
 
     font-family: Torus;
     @apply text-2xl;
+  }
+
+  .spinning-square {
+    @apply bg-black opacity-40;
+    @apply absolute;
   }
 }
 
