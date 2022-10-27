@@ -1,25 +1,30 @@
 <script setup lang="ts">
-  import AppNavigationBar from './components/AppNavigationBar.vue';
+import { ref } from 'vue';
+import AppNavigationBar from './components/AppNavigationBar.vue';
+
+const isMenuOpen = ref(true);
 </script>
 
 <template>
-  <AppNavigationBar />
+  <AppNavigationBar v-model="isMenuOpen" />
 
-  <router-view v-slot="{ Component }">
-    <div class="overflow-y-auto h-full">
-      <img src="./assets/bg.jpg" class="h-full w-full absolute object-cover -z-20" />
-
-      <Suspense :timeout="0">
-        <template #default>
-          <main class="max-w-2xl mx-auto">
-            <component :is="Component"></component>
-          </main>
-        </template>
+  <div class="h-full w-full relative transition-transform" :class="{ 'translate-x-36 lg:translate-x-0': isMenuOpen }">
+    <router-view v-slot="{ Component }">
+      <div class="overflow-y-auto h-full">
+        <img src="./assets/bg.jpg" class="h-full w-full absolute object-cover -z-20" />
   
-        <template #fallback>
-          <img src="./assets/svgs/spinner.svg" class="animate-spin w-8 h-8" alt="loading spinner" />
-        </template>
-      </Suspense>
-    </div>
-  </router-view>
+        <Suspense :timeout="0">
+          <template #default>
+            <main class="max-w-2xl mx-auto">
+              <component :is="Component"></component>
+            </main>
+          </template>
+    
+          <template #fallback>
+            <img src="./assets/svgs/spinner.svg" class="animate-spin w-8 h-8" alt="loading spinner" />
+          </template>
+        </Suspense>
+      </div>
+    </router-view>
+  </div>
 </template>

@@ -1,49 +1,61 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
-const isMenuOpen = ref(false);
+const props = defineProps(["modelValue"]);
+const emit = defineEmits(["update:modelValue"]);
+
 const route = useRoute();
 const router = useRouter();
 const routes = router.options.routes.filter(route => route.path != "/");
 
-const openMenu = () => isMenuOpen.value = true;
-const closeMenu = () => isMenuOpen.value = false;
+const openMenu = () => emit("update:modelValue", true);
+const closeMenu = () => emit("update:modelValue", false);
+const toggleMenu = () => emit("update:modelValue", !props.modelValue);
 </script>
 
 <template>
-  <nav 
-    class="flex justify-between xl:gap-20 bg-black h-20 px-4 route-links text-lg lg:text-2xl font-bold"
+  <nav
+    class="
+      bg-black h-20
+      flex items-center justify-between px-2 xl:px-4
+      xl:grid xl:grid-cols-3 xl:justify-items-center
+
+      text-xl xl:text-2xl font-bold route-links
+    "
     v-click-outside="closeMenu"
   >
-    <div class="hidden xl:block flex-1" />
+    <button class="w-6 xl:hidden" @click="toggleMenu">
+      <img src="../assets/svgs/burger.svg" alt="burger icon" />
+    </button>
 
-    <div class="flex xl:flex-grow items-center justify-center gap-2">
-      <button class="xl:hidden w-6" @click="openMenu">
-        <img src="../assets/svgs/burger.svg" alt="burger menu" />
-      </button>
-  
-      <RouterLink to="/" class="h-8 flex items-center xl:mr-14" active-class="route-active">
-        <img src="../assets/svgs/gstlive.svg" class="h-4 lg:h-5" />
-      </RouterLink>
+    <RouterLink to="/" class="ml-2" active-class="route-active">
+      <img src="../assets/svgs/gstlive.svg" alt="gstlive icon" class="h-4 xl:h-5" />
+    </RouterLink>
 
-      <ul 
-        class="absolute xl:static flex flex-col xl:flex-row inset-y-0 left-0 bg-black p-4 -translate-x-full xl:translate-x-0 transition-transform gap-4 xl:gap-14"
-        :class="{ 'translate-x-0': isMenuOpen }"
+    <!-- This is the sidepanel -->
+    <div 
+      class="
+        absolute xl:static
+        bottom-0 left-0 top-20
+        bg-black w-36 xl:w-auto xl:z-0
+
+        flex flex-col xl:flex-row gap-4 xl:gap-14 xl:col-start-2
+      "
+      :class="{ '-z-20': !props.modelValue }"
+    >
+      <RouterLink
+        v-for="route in routes"
+        :to="route.path"
+        class="text-center py-2 transition-colors"
+        active-class="route-active bg-neutral-900 xl:bg-transparent"
       >
-        <RouterLink
-          v-for="route in routes"
-          :to="route.path"
-          class="flex items-center justify-center"
-          active-class="route-active"
-        >
-          <p>{{ route.name }}</p>
-        </RouterLink>
-      </ul>
+        {{ route.name }}
+      </RouterLink>
     </div>
+    <!-- Sidepanel end -->
 
-    <div class="flex flex-1 items-center justify-end gap-2">
-      <p class="mt-1 sm:mt-0 xl:hidden">{{ route.name }}</p>
+    <div class="flex items-center gap-2 ml-auto">
+      <p class="route-links xl:hidden">{{ route.name }}</p>
       <div class="bg-pink-accent w-1 h-4 xl:hidden" />
 
       <button class="osu-login px-2">LOGIN</button>

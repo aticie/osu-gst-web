@@ -14,7 +14,7 @@
 
 @layer base {
   html, body, #app {
-    @apply overflow-hidden;
+    @apply overflow-hidden relative;
     @apply h-full w-full;
     @apply text-white;
   }
