@@ -35,7 +35,6 @@
 
   .osu-login {
     font-family: Torus;
-    @apply text-2xl;
     @apply bg-pink-accent rounded-lg;
   }
 
