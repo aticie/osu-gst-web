@@ -1,3 +1,3 @@
 <template>
-  <p>About us</p>
+  <p>info page</p>
 </template>

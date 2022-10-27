@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
-  <p>Home</p>
+  <p>home page</p>
 </template>

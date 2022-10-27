@@ -7,47 +7,38 @@
   src: url("./assets/GothamMedium.ttf")
 }
 
+@font-face {
+  font-family: Torus;
+  src: url("./assets/TorusProBold.ttf")
+}
+
 @layer base {
   html, body, #app {
-    @apply h-full w-full;
-    @apply relative;
-    @apply overflow-hidden;
+    
   }
 }
 
 @layer components {
-  .nav-item {
-    font-family: Gotham;
-    @apply text-lg font-bold select-none;
+  .route-active {
+    @apply relative;
+    @apply before:absolute before:block;
+    @apply before:border-b-4 before:border-pink-accent;
+    @apply before:h-4 before:w-full;
+    @apply before:-bottom-2;
   }
 
-  .nav-route {
-    @apply hover:bg-white hover:text-black;
-    @apply group-hover:bg-white group-hover:text-black;
-    @apply px-4 py-1 rounded-full;
-    @apply transition-all;
-  }
+  .osu-login {
+    @apply absolute;
+    @apply right-6 inset-y-6;
+    @apply bg-pink-accent rounded-lg;
 
-  .nav-route-child {
-    @apply flex items-center;
-    @apply px-5 py-1;
-    @apply text-base font-normal;
-    @apply before:bg-red-500 before:rounded-full before:invisible before:hover:visible before:absolute;
-    @apply before:w-1 before:h-3 before:left-2;
-    @apply hover:bg-neutral-900;
-    @apply rounded lg:rounded-none;
-  }
-  
-  .nav-large {
-    @apply flex-row gap-8;
-    @apply static;
-    @apply p-0;
-    @apply translate-x-0;
+    font-family: Torus;
+    @apply text-2xl;
   }
 }
 
 @layer utilities {
-  .group-visible {
-    @apply invisible group-hover:visible;
+  .route-links {
+    font-family: Gotham;
   }
 }

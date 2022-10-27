@@ -1,3 +1,3 @@
 <template>
-  <p>Teams</p>
+  <p>teams page</p>
 </template>

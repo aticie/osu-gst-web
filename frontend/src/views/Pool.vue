@@ -1,3 +1,3 @@
 <template>
-  <p>Staff list</p>
+  <p>mappool page</p>
 </template>
