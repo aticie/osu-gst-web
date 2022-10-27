@@ -18,6 +18,10 @@
     @apply h-full w-full;
     @apply text-white;
   }
+
+  p {
+    /* @apply mt-2; */
+  }
 }
 
 @layer components {
@@ -30,12 +34,9 @@
   }
 
   .osu-login {
-    @apply absolute;
-    @apply right-6 inset-y-6;
-    @apply bg-pink-accent rounded-lg;
-
     font-family: Torus;
     @apply text-2xl;
+    @apply bg-pink-accent rounded-lg;
   }
 
   .spinning-square {

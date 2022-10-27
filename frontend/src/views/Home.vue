@@ -3,10 +3,10 @@
 
 <template>
   <div>
-    <div class="absolute inset-0 -z-10 flex items-center justify-center">
+    <div class="absolute p-6 inset-0 -z-10 flex items-center justify-center overflow-hidden">
       <div class="z-10">
         <img src="../assets/center-logo.png" alt="gstlive center page logo" />
-        <div class="flex justify-between mt-10">
+        <div class="mt-10 flex flex-col xl:flex-row justify-center items-center gap-6">
           <img src="../assets/center-signup.png" alt="gstlive center page logo" />
           <img src="../assets/center-discord.png" alt="gstlive center page logo" />
         </div>
