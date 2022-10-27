@@ -28,7 +28,7 @@ const toggleMenu = () => emit("update:modelValue", !props.modelValue);
       <img src="../assets/svgs/burger.svg" alt="burger icon" />
     </button>
 
-    <RouterLink to="/" class="ml-2" active-class="route-active">
+    <RouterLink to="/" class="ml-2 xl:hidden" active-class="route-active">
       <img src="../assets/svgs/gstlive.svg" alt="gstlive icon" class="h-4 xl:h-5" />
     </RouterLink>
 
@@ -43,10 +43,14 @@ const toggleMenu = () => emit("update:modelValue", !props.modelValue);
       "
       :class="{ '-z-20': !props.modelValue }"
     >
+      <RouterLink to="/" class="hidden xl:flex items-center" active-class="route-active">
+        <img src="../assets/svgs/gstlive.svg" alt="gstlive icon" class="h-4 xl:h-5" />
+      </RouterLink>
+
       <RouterLink
         v-for="route in routes"
         :to="route.path"
-        class="text-center py-2 transition-colors"
+        class="text-center transition-colors"
         active-class="route-active bg-neutral-900 xl:bg-transparent"
       >
         {{ route.name }}
