@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getRandomArbitrary } from "../utils";
 </script>
 
 <template>
@@ -13,11 +14,10 @@
     </div>
 
     <div 
-      v-for="num in 4"
-      class="spinning-square w-full aspect-square max-w-2xl"
-      :class="`animate-spin-${25 * num}`"
+      v-for="_ in 4"
+      class="spinning-square aspect-square animate-spin"
       :style="{
-        animationDelay: `-${15 + (num * 5)}s`
+        animationDuration: `${getRandomArbitrary(30, 50)}s`
       }"
     />
   </div>

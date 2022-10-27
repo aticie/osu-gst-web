@@ -18,10 +18,6 @@
     @apply h-full w-full;
     @apply text-white;
   }
-
-  p {
-    /* @apply mt-2; */
-  }
 }
 
 @layer components {
@@ -41,6 +37,7 @@
   .spinning-square {
     @apply bg-black opacity-40;
     @apply absolute;
+    @apply w-full max-w-2xl;
   }
 }
 
