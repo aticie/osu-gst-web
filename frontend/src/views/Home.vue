@@ -1,24 +1,38 @@
 <script setup lang="ts">
-import { getRandomArbitrary } from "../utils";
+import { useRouter } from "vue-router";
+import AppCard from "../components/AppCard.vue";
+import AppOsuLogin from "../components/AppOsuLogin.vue";
+
+const router = useRouter();
+const routes = router.options.routes.filter(route => (
+  route.path !== "/"
+))
 </script>
 
 <template>
-  <div class="absolute inset-0 -z-10 flex items-center justify-center overflow-hidden">
-    <div class="z-10 p-16 flex flex-col items-center">
-      <img src="../assets/svgs/gstlive-with-text.svg" alt="gstlive center page logo" />
+  <div class="flex flex-col justify-center h-full gap-4">
+    <div class="flex flex-col justify-center gap-4 p-4">
+      <img src="../assets/svgs/gstlive-with-text.svg" alt="gstlive banner" />
+      
+      <div class="flex flex-wrap">
+        <AppCard icon="triangle.svg" title="SIGN UP" description="YOUR TEAM!" />
+        <AppCard icon="discord.svg" title="DISCORD" description="FOR MORE INFO!" />
+      </div>
 
-    <div class="mt-10 px-10 flex flex-col xl:flex-row gap-6">
-        <img src="../assets/svgs/signup.svg" alt="gstlive center page logo" />
-        <img src="../assets/svgs/discord.svg" alt="gstlive center discord logo" />
+      <div class="flex flex-wrap justify-center gap-4">
+        <RouterLink
+          v-for="route in routes" 
+          :to="route.path"
+          class="route-link"
+        >
+          {{ route.name }}
+        </RouterLink>
       </div>
     </div>
 
-    <div 
-      v-for="_ in 4"
-      class="spinning-square aspect-square animate-spin"
-      :style="{
-        animationDuration: `${getRandomArbitrary(30, 50)}s`
-      }"
-    />
+    <div class="flex flex-col gap-2">
+      <img class="w-full aspect-video object-cover" src="../assets/artwork.jpg" alt="gstlive artwork" />
+      <AppOsuLogin />
+    </div>
   </div>
 </template>

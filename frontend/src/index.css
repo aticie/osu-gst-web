@@ -7,9 +7,8 @@
   src: url("./assets/fonts/GothamMedium.ttf")
 }
 
-@font-face {
-  font-family: Torus;
-  src: url("./assets/fonts/TorusProBold.ttf")
+@screen sm {
+  font-size: 1rem;
 }
 
 @layer base {
@@ -18,31 +17,23 @@
     @apply h-full w-full;
     @apply text-white;
   }
+
+  main {
+    font-family: Gotham;
+  }
 }
 
 @layer components {
-  .route-active {
-    @apply relative;
-    @apply before:absolute before:block;
-    @apply before:border-b-4 before:border-pink-accent;
-    @apply before:h-4 before:w-full;
-    @apply before:-bottom-2;
+  .route-link {
+    @apply p-1 px-4;
+    @apply rounded-full;
+
+    @apply bg-purple-p shadow shadow-black;
+    @apply transition-all;
   }
 
-  .osu-login {
-    font-family: Torus;
-    @apply bg-pink-accent rounded-lg;
-  }
-
-  .spinning-square {
-    @apply bg-black opacity-40;
-    @apply absolute;
-    @apply w-full max-w-2xl;
-  }
-}
-
-@layer utilities {
-  .route-links {
-    font-family: Gotham;
+  .route-link:hover {
+    @apply bg-purple-s;
+    @apply scale-110;
   }
 }
