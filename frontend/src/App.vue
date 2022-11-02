@@ -13,7 +13,7 @@ const isMenuOpen = ref(true);
   <router-view v-slot="{ Component }">
     <img src="./assets/bg.png" class="h-full w-full absolute object-cover -z-20" />
 
-    <main class="mx-auto h-full" :class="{ 'max-w-2xl': route.path !== '/' }">
+    <main class="mx-auto h-full overflow-y-auto" :class="{ 'max-w-2xl': route.path !== '/' }">
       <Suspense :timeout="0">
         <template #default>
           <component :is="Component"></component>

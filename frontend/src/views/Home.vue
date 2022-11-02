@@ -18,8 +18,8 @@ if (getCookie("user_hash")) {
 </script>
 
 <template>
-  <div class="flex flex-col md:flex-row justify-center items-center h-full gap-4">
-    <div class="flex flex-col md:grow justify-center gap-4 p-4">
+  <div class="flex flex-col lg:flex-row justify-center items-center  gap-4">
+    <div class="flex flex-col lg:grow justify-center gap-4 p-4">
       <img src="../assets/svgs/gstlive-with-text.svg" alt="gstlive banner" />
       
       <div class="flex flex-wrap">
@@ -38,7 +38,7 @@ if (getCookie("user_hash")) {
       </div>
     </div>
 
-    <div class="flex flex-col md:w-3/5 gap-2">
+    <div class="flex flex-col lg:w-3/5 gap-2">
       <img class="w-full aspect-video object-cover" src="../assets/artwork.jpg" alt="gstlive artwork" />
       <AppOsuLogin />
     </div>

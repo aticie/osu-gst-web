@@ -20,6 +20,7 @@
 
   main {
     font-family: Gotham;
+    @apply flex items-center;
   }
 }
 
