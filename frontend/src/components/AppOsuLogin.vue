@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const isLogged = true;
+const isLogged = false;
 
 const toOsuAuth = () => {
   const url = new URL("https://osu.ppy.sh/oauth/authorize");
@@ -17,7 +17,7 @@ const toOsuAuth = () => {
 </script>
 
 <template>
-  <div class="bg-pink-p text-black font-bold md:text-xl px-14 py-2 h-12 md:h-16 ml-auto">
+  <div class="bg-pink-p text-black font-bold md:text-xl px-14 py-2 h-12 md:h-16 ml-auto flex items-center">
     <button v-if="!isLogged" @click="toOsuAuth">LOGIN WITH <span class="text-white">OSU</span></button>
     <button v-else class="flex items-center justify-end h-full gap-3">
       <p>WELCOME BACK <span class="text-white">USER</span></p>
