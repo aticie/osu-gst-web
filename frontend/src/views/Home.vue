@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { getCookie } from "../cookie";
+import { useUserStore } from "../store";
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 
+const userStore = useUserStore();
 const router = useRouter();
 const routes = router.options.routes.filter(route => (
   route.path !== "/"
 ))
+
+// user is logged in before.
+if (getCookie("user_hash")) {
+  await userStore.refreshUser();
+}
 </script>
 
 <template>

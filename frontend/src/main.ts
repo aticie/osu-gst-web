@@ -1,23 +1,17 @@
+import { createPinia } from "pinia";
 import { createApp } from 'vue'
+import axios from "axios";
 import App from './App.vue'
 import './index.css'
 
 import Router from "./router";
 
-createApp(App)
-  .use(Router)
-  .directive("click-outside", {
-    created: (el, binding) => {
-      el.clickOutsideEvent = (event: MouseEvent) => {
-        if (!(el.contains(event.target))) {
-          binding.value();
-        }
-      }
+const pinia = createPinia();
+const app = createApp(App);
 
-      document.body.addEventListener("click", el.clickOutsideEvent);
-    },
-    unmounted: el => {
-      document.body.removeEventListener("click", el.clickOutsideEvent);
-    }
-  })
-  .mount('#app')
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.withCredentials = true;
+
+app.use(pinia);
+app.use(Router);
+app.mount("#app");
