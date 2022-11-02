@@ -6,9 +6,8 @@ const toOsuAuth = () => {
   const params = new URLSearchParams({
     response_type: "code",
     client_id: import.meta.env.VITE_OSU_CLIENT_ID,
-    redirect_uri: `${import.meta.env.VITE_REDIRECT_URI}/osu-identify`,
+    redirect_uri: import.meta.env.VITE_REDIRECT_URI,
     scope: "identify",
-    state: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWRpcmVjdF90byI6Imh0dHBzOi8vb3N1LWdzdC13ZWItc3RhZ2luZy51cC5yYWlsd2F5LmFwcC8ifQ.YRrbbq3eX2-01t1g0fRlmrv3F7YTHJ5jk_SBU2t5LBs"
   });
 
   url.search = params.toString();
