@@ -28,6 +28,7 @@
   .route-link {
     @apply p-1 px-4;
     @apply rounded-full;
+    @apply lg:text-xl font-bold;
 
     @apply bg-purple-p shadow shadow-black;
     @apply transition-all;
@@ -36,5 +37,11 @@
   .route-link:hover {
     @apply bg-purple-s;
     @apply scale-110;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
   }
 }

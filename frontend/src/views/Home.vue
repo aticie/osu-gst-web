@@ -18,29 +18,59 @@ if (getCookie("user_hash")) {
 </script>
 
 <template>
-  <div class="flex flex-col lg:flex-row justify-center items-center  gap-4">
-    <div class="flex flex-col lg:grow justify-center gap-4 p-4">
-      <img src="../assets/svgs/gstlive-with-text.svg" alt="gstlive banner" />
-      
-      <div class="flex flex-wrap">
-        <AppCard icon="triangle.svg" title="SIGN UP" description="YOUR TEAM!" />
-        <AppCard icon="discord.svg" title="DISCORD" description="FOR MORE INFO!" />
+  <div class="flex flex-col-reverse lg:flex-col grow items-end gap-4 lg:gap-10">
+    <AppOsuLogin />
+
+    <div class="flex flex-col lg:flex-row items-center w-full">
+      <div class="flex-center flex-col grow p-4 gap-6">
+        <img src="../assets/svgs/gstlive-with-text.svg" />
+
+        <div class="flex flex-wrap">
+          <AppCard icon="triangle.svg" title="SIGN UP" description="YOUR TEAM!" />
+          <AppCard icon="discord.svg" title="DISCORD" description="FOR MORE INFO!" />
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <RouterLink
+            v-for="route in routes" 
+            :to="route.path"
+            class="route-link"
+          >
+            {{ route.name }}
+          </RouterLink>
+        </div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-4">
-        <RouterLink
-          v-for="route in routes" 
-          :to="route.path"
-          class="route-link"
-        >
-          {{ route.name }}
-        </RouterLink>
+      <div>
+        <img src="../assets/artwork.jpg" class="aspect-video object-cover max-h-[600px]" />
       </div>
-    </div>
-
-    <div class="flex flex-col lg:w-3/5 gap-2">
-      <img class="w-full aspect-video object-cover" src="../assets/artwork.jpg" alt="gstlive artwork" />
-      <AppOsuLogin />
     </div>
   </div>
+
+  <!-- <div class="flex flex-col-reverse xl:flex-col items-end gap-14 w-full">
+    <AppOsuLogin />
+
+    <div class="flex flex-col xl:flex-row flex-wrap gap-10 w-full">
+      <div class="flex-1 flex-center flex-col gap-8">
+        <img src="../assets/svgs/gstlive-with-text.svg" />
+
+        <div class="flex">
+          <AppCard icon="triangle.svg" title="SIGN UP" description="YOUR TEAM!" />
+          <AppCard icon="discord.svg" title="DISCORD" description="FOR MORE INFO!" />
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <RouterLink
+            v-for="route in routes" 
+            :to="route.path"
+            class="route-link"
+          >
+            {{ route.name }}
+          </RouterLink>
+        </div>
+      </div>
+
+      <img class="max-w-[1050px] aspect-video object-cover" src="../assets/artwork.jpg" />
+    </div>
+  </div> -->
 </template>

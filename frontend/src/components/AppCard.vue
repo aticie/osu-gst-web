@@ -12,11 +12,11 @@ const getImageUrl = () => {
 </script>
 
 <template>
-  <div class="flex flex-grow items-center justify-center gap-2 font-bold p-2">
-    <img :src="getImageUrl()" />
+  <div class="flex flex-grow items-center justify-center gap-2 font-bold p-2 group select-none">
+    <img :src="getImageUrl()" class="" />
     <div>
-      <p class="text-2xl shadow shadow-black">{{ title }}</p>
-      <p class="text-xs ml-1 -mt-1 shadow shadow-black">{{ description }}</p>
+      <p class="text-2xl group-hover:text-pink-p transition-colors">{{ title }}</p>
+      <p class="text-xs ml-1 -mt-1 group-hover:text-pink-p transition-colors">{{ description }}</p>
     </div>
   </div>
 </template>

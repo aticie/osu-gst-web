@@ -5,8 +5,11 @@ import { useUserStore } from "../store";
 const userStore = useUserStore();
 </script>
 
+<!-- class="bg-pink-p text-black font-bold text-xl lg:text-3xl h-14 lg:h-[4.5rem] p-2 w-full max-w-xl flex-center" -->
 <template>
-  <div class="bg-pink-p text-black font-bold lg:text-xl px-14 py-2 h-12 lg:h-16 ml-auto flex items-center">
+  <div
+    class="bg-pink-p text-black text-center font-bold text-xl lg:text-4xl h-14 lg:h-[4.5rem] p-2 w-full lg:max-w-screen-md flex-center"
+  >
     <button v-if="!userStore.user" @click="toOsuAuth">LOGIN WITH <span class="text-white">OSU</span></button>
     <div v-else class="flex items-center justify-end h-full gap-3">
       <p>WELCOME BACK <span class="text-white">{{ userStore.user.osu_username }}</span></p>
