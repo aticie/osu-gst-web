@@ -32,7 +32,7 @@ const routes = router.options.routes.filter(route => (
           </RouterLink>
         </div>
 
-        <div class="flex-center font-bold w-full 2xl:max-w-screen-md">
+        <div class="font-bold w-full 2xl:max-w-screen-md">
           <AppSuspense>
             <AppOsuLogin />
           </AppSuspense>
