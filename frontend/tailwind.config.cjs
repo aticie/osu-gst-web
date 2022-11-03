@@ -7,9 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "pink-p": "#FB7D95",
+        "pink-p": "#E488C4",
         "purple-p": "#3A306C",
-        "purple-s": "#51497C"
+        "purple-s": "#51497C",
+        "dark": "#100E11"
       }
     }
   },
