@@ -5,6 +5,7 @@ import { useUserStore } from "../store";
 
 import Right from "./icons/arrows/Right.vue";
 import Left from "./icons/arrows/Left.vue";
+import Danger from "./icons/Danger.vue";
 
 const userStore = useUserStore();
 
@@ -15,7 +16,7 @@ if (getCookie("user_hash")) {
 
 <template>
   <div class="h-full w-full text-xl 2xl:text-2xl"> 
-    <div class="flex-center bg-dark h-full w-full p-2.5">
+    <div class="flex-center bg-dark h-14 2xl:h-16 w-full p-2.5">
       <button v-if="!userStore.user" @click="toOsuAuth" class="flex items-center gap-4">
         <Right />
         <p>LOGIN WITH <span class="text-pink-p">OSU!</span></p>
@@ -30,7 +31,8 @@ if (getCookie("user_hash")) {
     </div>
 
     <button v-if="!userStore.user?.discord_id" @click="toDiscordAuth"
-      class="flex-center w-full p-2 bg-dark bg-opacity-30 text-yellow-400 text-base">
+      class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-dark bg-opacity-30 text-yellow-400 text-base">
+      <Danger />
       <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
     </button>
   </div>
