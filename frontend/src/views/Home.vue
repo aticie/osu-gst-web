@@ -1,29 +1,28 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { getCookie } from "../cookie";
-import { useUserStore } from "../store";
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import TrianglesVue from "../components/icons/Triangles.vue";
 import DiscordVue from "../components/icons/Discord.vue";
 import GSTLive from "../components/icons/GstLive.vue";
+import AppSuspense from "../components/AppSuspense.vue";
 
-const userStore = useUserStore();
 const router = useRouter();
 const routes = router.options.routes.filter(route => (
   route.path !== "/"
 ))
-
-// user is logged in before.
-if (getCookie("user_hash")) {
-  await userStore.refreshUser();
-}
 </script>
 
 <template>
   <div class="grow flex flex-col justify-center">
     <div class="flex flex-col-reverse 2xl:flex-col items-end gap-4 2xl:gap-10">
-      <AppOsuLogin />
+      <div
+        class="bg-pink-p text-black relative text-center font-bold text-xl 2xl:text-4xl h-14 2xl:h-[4.5rem] p-2 w-full 2xl:max-w-screen-md flex-center"
+      >
+        <AppSuspense>
+          <AppOsuLogin />
+        </AppSuspense>
+      </div>
   
       <div class="flex flex-col 2xl:flex-row items-center w-full">
         <div class="flex-center flex-col grow p-4 gap-6">
