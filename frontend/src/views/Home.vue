@@ -49,7 +49,7 @@ if (getCookie("user_hash")) {
           </div>
         </div>
   
-        <img src="../assets/artwork.png" class="aspect-video object-cover max-h-[600px]" />
+        <img src="../assets/artwork.png" class="aspect-video object-cover max-h-[600px] w-full 2xl:w-auto" />
       </div>
     </div>
   </div>
