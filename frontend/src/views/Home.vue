@@ -2,10 +2,8 @@
 import { useRouter } from "vue-router";
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
-import TrianglesVue from "../components/icons/Triangles.vue";
-import DiscordVue from "../components/icons/Discord.vue";
-import GSTLive from "../components/icons/GstLive.vue";
 import AppSuspense from "../components/AppSuspense.vue";
+import { Triangles, Discord, GSTLive } from "../components/icons";
 
 const router = useRouter();
 const routes = router.options.routes.filter(route => (
@@ -21,10 +19,10 @@ const routes = router.options.routes.filter(route => (
 
         <div class="flex flex-wrap 2xl:gap-10">
           <AppCard title="SIGN UP" description="YOUR TEAM!">
-            <TrianglesVue />
+            <Triangles />
           </AppCard>
           <AppCard title="DISCORD" description="FOR MORE INFO!">
-            <DiscordVue />
+            <Discord />
           </AppCard>
         </div>
 

@@ -3,9 +3,7 @@ import { toDiscordAuth, toOsuAuth } from "../auth";
 import { getCookie } from "../cookie";
 import { useUserStore } from "../store";
 
-import Right from "./icons/arrows/Right.vue";
-import Left from "./icons/arrows/Left.vue";
-import Danger from "./icons/Danger.vue";
+import { Right, Left, Danger } from "./icons";
 
 const userStore = useUserStore();
 
