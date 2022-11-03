@@ -13,14 +13,14 @@
 
 @layer base {
   html, body, #app {
-    @apply overflow-hidden relative;
-    @apply h-full w-full;
     @apply text-white;
+    @apply min-h-screen w-full;
+    @apply flex;
   }
 
-  main {
+  #app {
     font-family: Gotham;
-    @apply flex items-center;
+    @apply relative;
   }
 }
 
@@ -28,7 +28,7 @@
   .route-link {
     @apply p-1 px-4;
     @apply rounded-full;
-    @apply lg:text-xl font-bold;
+    @apply 2xl:text-xl font-bold;
 
     @apply bg-purple-p shadow shadow-black;
     @apply transition-all;
@@ -37,6 +37,12 @@
   .route-link:hover {
     @apply bg-purple-s;
     @apply scale-110;
+  }
+
+  .artwork {
+    background-image: url("./assets/bg.png");
+    @apply bg-cover;
+    @apply -z-10;
   }
 }
 

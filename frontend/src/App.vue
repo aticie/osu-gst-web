@@ -9,20 +9,15 @@ const isMenuOpen = ref(true);
 
 <template>
   <AppNavigationBar v-if="route.path !== '/'" v-model="isMenuOpen" />
+  <div class="artwork absolute inset-0" />
 
-  <router-view v-slot="{ Component }">
-    <img src="./assets/bg.png" class="h-full w-full absolute object-cover -z-20" />
+  <RouterView v-slot="{ Component }">
+    <Suspense :timeout="0">
+      <component :is="Component" />
 
-    <main class="mx-auto h-full overflow-y-auto" :class="{ 'max-w-2xl': route.path !== '/' }">
-      <Suspense :timeout="0">
-        <template #default>
-          <component :is="Component"></component>
-        </template>
-        
-        <template #fallback>
-          <img src="./assets/svgs/spinner.svg" class="animate-spin w-8 h-8 absolute left-1/2 top-1/2" alt="loading spinner" />
-        </template>
-      </Suspense>
-    </main>
-  </router-view>
+      <template #fallback>
+        <p>Loading..</p>
+      </template>
+    </Suspense>
+  </RouterView>
 </template>
