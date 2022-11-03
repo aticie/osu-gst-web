@@ -34,8 +34,7 @@ const routes = router.options.routes.filter(route => (
           </RouterLink>
         </div>
 
-        <div
-          class="bg-dark relative text-center font-bold text-xl 2xl:text-2xl h-14 2xl:h-[4.5rem] p-2.5 w-full 2xl:max-w-screen-md flex-center">
+        <div class="flex-center font-bold h-14 w-full 2xl:max-w-screen-md 2xl:h-16">
           <AppSuspense>
             <AppOsuLogin />
           </AppSuspense>
