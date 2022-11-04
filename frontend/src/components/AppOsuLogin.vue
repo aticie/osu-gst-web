@@ -28,7 +28,7 @@ if (getCookie("user_hash")) {
       </div>
     </div>
 
-    <button v-if="!userStore.user?.discord_id" @click="toDiscordAuth"
+    <button v-if="!userStore.user?.discord_id && userStore.user?.osu_username" @click="toDiscordAuth"
       class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-dark bg-opacity-30 text-yellow-400 text-base">
       <Danger />
       <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
