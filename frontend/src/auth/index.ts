@@ -11,7 +11,7 @@ export const toOsuAuth = () => {
     "https://osu.ppy.sh/oauth/authorize",
     {
       response_type: "code",
-      client_id: import.meta.env.VITE_OSU_CLIENT_ID,
+      client_id: import.meta.env.VITE_OSU_CLIENT_ID.toString(),
       redirect_uri: `${import.meta.env.VITE_BASE_URL}/osu-identify`,
       scope: "identify"
     }
@@ -23,7 +23,7 @@ export const toDiscordAuth = () => {
     "https://discord.com/oauth2/authorize",
     {
       response_type: "code",
-      client_id: "1037103827729535087",
+      client_id: import.meta.env.VITE_DISCORD_CLIENT_ID.toString(),
       redirect_uri: `${import.meta.env.VITE_BASE_URL}/discord-identify`,
       scope: "identify"
     }
