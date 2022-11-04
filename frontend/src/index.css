@@ -7,10 +7,6 @@
   src: url("./assets/fonts/GothamMedium.ttf")
 }
 
-@screen sm {
-  font-size: 1rem;
-}
-
 @layer base {
   html, body, #app {
     @apply text-white;
