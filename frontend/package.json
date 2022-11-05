@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "node ./env_bind.js && vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "start": "npx http-server ./dist --port ${PORT}"
   },
