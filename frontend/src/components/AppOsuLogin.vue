@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { toDiscordAuth, toOsuAuth } from "../auth";
-import { getCookie } from "../cookie";
 import { useUserStore } from "../store";
 
 import { Right, Left, Danger } from "./icons";
 
 const userStore = useUserStore();
-
-if (getCookie("user_hash")) {
-  await userStore.refreshUser();
-}
+await userStore.refreshUser();
 </script>
 
 <template>
