@@ -28,8 +28,6 @@ COPY ./server /app/server
 
 WORKDIR /app/server
 
-RUN --mount=type=cache,id=1,target=/usr/local/cargo/registry \
-    --mount=type=cache,id=2,target=/home/root/app/target \
-    cargo build --release
+RUN cargo build --release
 
 CMD ["cargo", "run", "--release"]
