@@ -39,7 +39,7 @@ const routes = router.options.routes.filter(route => (
         </div>
       </div>
 
-      <img src="../assets/artwork.jpg" class="aspect-video object-cover max-h-[600px] w-full 2xl:w-auto" />
+      <img src="/artwork.jpg" class="aspect-video object-cover max-h-[600px] w-full 2xl:w-auto" />
     </div>
   </div>
 </template>

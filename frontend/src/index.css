@@ -36,7 +36,7 @@
   }
 
   .artwork {
-    background-image: url("./assets/bg.png");
+    background-image: url("./assets/background.png");
     @apply bg-cover;
     @apply -z-10;
   }
