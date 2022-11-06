@@ -10,8 +10,7 @@ async fn main() {
         .parse()
         .expect("Can't parse port to u16");
 
-    let spa = SpaRouter::new("/assets", "../dist/assets")
-        .index_file("../index.html");
+    let spa = SpaRouter::new("/", "../dist");
 
     let app = Router::new()
         .merge(spa);
