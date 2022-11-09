@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { Spinner } from "./components/icons";
+import AppNavigationBar from "./components/AppNavigationBar.vue";
 
 const route = useRoute();
 const isMainRoute = computed(() => route.path === "/");
@@ -9,7 +10,7 @@ const isMainRoute = computed(() => route.path === "/");
 </script>
 
 <template>
-  <!-- <AppNavigationBar v-if="route.path !== '/'" v-model="isMenuOpen" /> -->
+  <AppNavigationBar v-if="!isMainRoute" />
   <div class="artwork absolute inset-0" />
 
   <RouterView v-slot="{ Component }">

@@ -13,7 +13,7 @@ const props = defineProps<{
     <img :src="team.avatar_url" alt="team avatar" class="h-28 aspect-video object-cover rounded-lg" />
     
     <div class="p-1">
-      <p class="font-bold text-xl">{{ team.title }}</p>
+      <p class="">{{ team.title }}</p>
       <div>
         
       </div>
