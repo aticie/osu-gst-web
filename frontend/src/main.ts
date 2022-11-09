@@ -18,7 +18,6 @@ app.directive("press-outside", {
       let targetElement = event.target as HTMLElement;
       if (element.contains(targetElement)) return;
 
-      console.log(targetElement);
       binding.value();
     })
   }
