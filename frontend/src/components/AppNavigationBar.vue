@@ -45,14 +45,14 @@ router.afterEach(() => {
       -translate-x-full transition-transform
       max-w-sm w-full
     " :class="{ 'translate-x-0': isMenuOpen }">
-    <div class="flex flex-col">
+    <div class="flex flex-col row-start-2">
       <RouterLink v-for="route in routes" :to="route.path" class="text-2xl font-bold transition-colors"
         active-class="route-active">
         {{ route.name }}
       </RouterLink>
     </div>
 
-    <div v-if="userStore.user" class="flex flex-col gap-2 self-end">
+    <div v-if="userStore.user" class="flex flex-col gap-2 self-end row-start-3">
       <img :src="userStore.user.osu_avatar_url" class="w-8 aspect-square rounded-full" />
       <p class="font-bold text-xl text-pink-s">{{ userStore.user.osu_username }}</p>
     </div>
