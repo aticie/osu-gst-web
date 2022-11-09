@@ -53,8 +53,9 @@
   }
 
   .artwork {
-    background-image: url("./assets/background.png");
-    @apply bg-cover;
+    background-image: url("./assets/gstLoop.png");
+    @apply animate-horizontal-loop;
+    @apply  bg-repeat-x;
     @apply -z-10;
   }
 }
