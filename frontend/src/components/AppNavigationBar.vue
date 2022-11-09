@@ -14,10 +14,13 @@ const isMenuOpen = ref(false);
 
 const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value;
 
+router.afterEach(() => {
+  toggleMenu();
+})
 </script>
 
 <template>
-  <button class="absolute left-5 top-5 h-10 flex items-center gap-2 z-10" @click="toggleMenu">
+  <button class="absolute left-4 top-4 h-6 2xl:left-5 2xl:top-5 flex items-center gap-2 z-10" @click="toggleMenu">
     <Burger />
 
     <div class="relative h-full flex items-center">
