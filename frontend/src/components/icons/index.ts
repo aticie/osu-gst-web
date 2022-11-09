@@ -5,5 +5,6 @@ import GST from "./GST.vue";
 import Discord from "./Discord.vue";
 import Danger from "./Danger.vue";
 
+export { Tick, Close } from "./circle";
 export { Left, Right } from "./arrows";
 export { Spinner, Triangles, GSTLive, GST, Discord, Danger };

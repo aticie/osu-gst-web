@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { getInvites, joinTeam } from "../api";
+import { getInvites } from "../api";
 import { toDiscordAuth, toOsuAuth } from "../auth";
 import { Invite } from "../Models/Invite";
 import { useUserStore } from "../store";
 
-import { Right, Left, Danger } from "./icons";
+import { Right, Left, Danger, Tick, Close } from "./icons";
 
 const userStore = useUserStore();
 const invites = ref<Invite[]>([]);
@@ -44,7 +44,7 @@ try {
       <div
         v-for="invite in invites" 
         @click="() => {}"
-        class="flex gap-4 justify-center bg-dark bg-opacity-30"
+        class="flex-center gap-4 p-2 bg-dark bg-opacity-30"
       >
         <div class="flex gap-1">
           <span class="text-pink-p">{{ invite.inviter.osu_username }}</span>
@@ -52,9 +52,13 @@ try {
           <p class="text-purple-s truncate">{{ invite.team.title }}</p>
         </div>
 
-        <div class="flex gap-1">
-          <button class="accept-reject border-purple-p hover:bg-purple-p">Accept</button>
-          <button class="accept-reject border-red-500 hover:bg-red-500">Reject</button>
+        <div class="flex gap-2">
+          <button>
+            <Tick class="hover:fill-green-500 transition-colors" />
+          </button>
+          <button>
+            <Close class="hover:fill-red-500 transition-colors" />
+          </button>
         </div>
       </div>
     </div>

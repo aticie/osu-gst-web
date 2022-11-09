@@ -57,12 +57,6 @@
     @apply bg-cover;
     @apply -z-10;
   }
-
-  .accept-reject {
-    @apply font-inter font-normal;
-    @apply px-2 rounded border-2;
-    @apply transition-colors;
-  }
 }
 
 @layer utilities {
