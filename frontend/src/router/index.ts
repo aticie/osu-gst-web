@@ -18,11 +18,6 @@ const routes: RouteRecordRaw[] = [
     name: "TEAMS",
     component: () => import("../views/Teams.vue")
   },
-  {
-    path: "/pool",
-    name: "MAPPOOLS",
-    component: () => import("../views/Pool.vue")
-  },
 ];
 
 const router = createRouter({
