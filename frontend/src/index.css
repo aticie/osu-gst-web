@@ -16,7 +16,7 @@
 
   #app {
     font-family: Gotham;
-    @apply relative;
+    @apply relative flex-center;
   }
 }
 

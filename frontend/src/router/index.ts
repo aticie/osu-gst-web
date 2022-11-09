@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 import Home from "../views/Home.vue";
+import Teams from "../views/Teams.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,7 +17,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/teams",
     name: "TEAMS",
-    component: () => import("../views/Teams.vue")
+    component: Teams
   },
 ];
 
