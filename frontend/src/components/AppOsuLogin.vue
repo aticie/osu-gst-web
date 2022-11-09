@@ -34,22 +34,29 @@ try {
       </div>
     </div>
 
-    <div class="text-base flex flex-col gap-1">
+    <div v-if="userStore.user" class="text-base flex flex-col gap-1">
       <button v-if="!userStore.user?.discord_id && userStore.user?.osu_username" @click="toDiscordAuth"
         class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-dark bg-opacity-30 text-yellow-400">
         <Danger />
         <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
       </button>
 
-      <button 
+      <div
         v-for="invite in invites" 
         @click="() => {}"
-        class="flex gap-1 justify-center bg-dark bg-opacity-30"
+        class="flex gap-4 justify-center bg-dark bg-opacity-30"
       >
-        <span class="text-pink-p">{{ invite.inviter.osu_username }}</span>
-        <p>INVITED YOU TO JOIN</p>
-        <p class="text-purple-s truncate">{{ invite.team.title }}</p>
-      </button>
+        <div class="flex gap-1">
+          <span class="text-pink-p">{{ invite.inviter.osu_username }}</span>
+          <p>INVITED YOU TO JOIN</p>
+          <p class="text-purple-s truncate">{{ invite.team.title }}</p>
+        </div>
+
+        <div class="flex gap-1">
+          <button class="accept-reject border-purple-p hover:bg-purple-p">Accept</button>
+          <button class="accept-reject border-red-500 hover:bg-red-500">Reject</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

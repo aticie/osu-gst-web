@@ -7,6 +7,11 @@
   src: url("./assets/fonts/GothamMedium.ttf")
 }
 
+@font-face {
+  font-family: Inter;
+  src: url("./assets/fonts/InterMedium.ttf")
+}
+
 @layer base {
   html, body, #app {
     @apply text-white;
@@ -51,6 +56,12 @@
     background-image: url("./assets/background.png");
     @apply bg-cover;
     @apply -z-10;
+  }
+
+  .accept-reject {
+    @apply font-inter font-normal;
+    @apply px-2 rounded border-2;
+    @apply transition-colors;
   }
 }
 

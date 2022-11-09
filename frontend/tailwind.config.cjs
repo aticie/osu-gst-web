@@ -12,6 +12,9 @@ module.exports = {
         "purple-p": "#3A306C",
         "purple-s": "#51497C",
         "dark": "#100E11"
+      },
+      fontFamily: {
+        "inter": "inter"
       }
     }
   },
