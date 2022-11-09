@@ -23,12 +23,8 @@ export const useUserStore = defineStore("user", {
   }),
   actions: {
     async refreshUser() {
-      try {
-        const { data } = await axios.get("/users/me");
-        this.user = data;
-      } catch {
-
-      }
+      const { data } = await axios.get("/users/me");
+      this.user = data;
     }
   }
 });

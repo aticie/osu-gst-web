@@ -13,7 +13,7 @@ const routes = router.options.routes.filter(route => (
 
 <template>
   <div class="grow flex flex-col justify-center">
-    <div class="flex flex-col 2xl:flex-row items-center w-full">
+    <div class="flex flex-col truncate 2xl:flex-row items-center w-full">
       <div class="flex-center flex-col grow p-4 gap-6 2xl:gap-8">
         <GSTLive />
 
