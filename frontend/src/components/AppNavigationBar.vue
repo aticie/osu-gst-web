@@ -25,15 +25,13 @@ router.afterEach(() => {
 
     <div class="relative h-full flex items-center">
       <Transition name="change" tag="div">
-        <template v-if="!isMenuOpen">
-          <div class="flex items-center gap-2">
-            <div class="h-5 w-1 bg-pink-p" />
-            <p class="font-bold text-xl">{{ route.name }}</p>
-          </div>
-        </template>
-        <template v-else>
+        <div v-if="isMenuOpen" class="flex items-center gap-2">
+          <div class="h-5 w-1 bg-pink-p" />
+          <p class="font-bold text-xl">{{ route.name }}</p>
+        </div>
+        <RouterLink v-else to="/">
           <GST />
-        </template>
+        </RouterLink>
       </Transition>
     </div>
   </button>
