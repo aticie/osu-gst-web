@@ -1,12 +1,24 @@
 <script setup lang="ts">
+import { User } from '../../Models/User';
 import { getInvites } from '../../api';
-// import Close from '../icons/circle/Close.vue';
+import { useRequest } from '../../hooks/useRequest';
+import { useUserStore } from '../../store';
 import Tick from '../icons/circle/Tick.vue';
 
 const invites = await getInvites();
+const userStore = useUserStore();
 
-const acceptInvite = async (team_hash: string) => {
-  const response = await acceptInvite(team_hash);
+const inviteHandler = async (team_hash: string) => {
+  const user = await useRequest<User>({
+    method: "POST",
+    url: "/team/join",
+    params: {
+      team_hash
+    }
+  });
+
+  if (!user) return;
+  userStore.user = user;
 }
 </script>
 
@@ -21,7 +33,7 @@ const acceptInvite = async (team_hash: string) => {
       <p class="text-purple-s">{{ invite.team.title }}</p>
     </div>
 
-    <button @click="() => acceptInvite(invite.team.team_hash)">
+    <button @click="() => inviteHandler(invite.team.team_hash)">
       <Tick class="hover:fill-green-500" />
     </button>
   </div>

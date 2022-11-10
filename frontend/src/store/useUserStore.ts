@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { User } from "../Models/User";
-import axios from "axios";
+import { useRequest } from "../hooks/useRequest";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -8,8 +8,12 @@ export const useUserStore = defineStore("user", {
   }),
   actions: {
     async refreshUser() {
-      const { data } = await axios.get("/users/me");
-      this.user = data;
+      const user = await useRequest<User>({
+        url: "/users/me"
+      });
+
+      if (!user) return;
+      this.user = user;
     }
   }
 });
