@@ -59,7 +59,12 @@
   }
 
   .info-container {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-4;
+  }
+
+  .info-container p {
+    font-family: Inter;
+    @apply text-sm;
   }
 
   .info-head {
@@ -69,21 +74,16 @@
   }
 
   .info-head h1 {
-    @apply font-bold text-xl 2xl:text-5xl;
-  }
-
-  .info-container p {
-    font-family: Inter;
-    @apply text-sm;
+    @apply font-bold text-xl 2xl:text-2xl;
   }
 
   .info-content {
     @apply ml-4 pr-4;
-    @apply flex flex-col grow flex-shrink gap-2;
+    @apply flex flex-col grow flex-shrink gap-4;
   }
   
   .info-content h1 {
-    @apply font-bold 2xl:text-2xl;
+    @apply font-bold 2xl:text-xl;
   }
 
   .info-content ol {
