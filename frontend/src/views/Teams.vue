@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { getTeams } from "../api";
-import Team from "../components/teams/Team.vue";
+import TeamVue from "../components/teams/Team.vue";
+import { useRequest } from "../hooks/useRequest";
 
-console.log("hey")
-const teams = await getTeams();
+const teams = await useRequest({
+  url: "/teams"
+});
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-2">
-    <Team v-for="team in teams" :team="team" />
+  <div class="flex flex-wrap justify-center gap-4">
+
+    <template v-for="x in 30">
+      <TeamVue v-for="team in teams" :team="team" />
+    </template>
   </div>
 </template>

@@ -98,7 +98,6 @@
     @apply flex items-center justify-center;
   }
 
-  
   .no-feather {
     mask-image: none;
   }
@@ -110,6 +109,10 @@
       transparent 100%
     );
   }
+
+  .blurred-bg {
+    @apply bg-dark bg-opacity-80;
+    @apply p-2 rounded-lg;
+    @apply backdrop-blur-sm;
+  }
 }
-
-
