@@ -37,7 +37,7 @@ try {
       <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
     </div>
 
-    <button v-else class="flex-center gap-4 w-full p-2">
+    <button v-else @click="toOsuAuth" class="flex-center gap-4 w-full p-2">
       <Right />
       <p>LOGIN WITH
         <span class="text-pink-p">OSU!</span>
