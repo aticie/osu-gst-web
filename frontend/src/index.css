@@ -19,6 +19,10 @@
     @apply overflow-hidden;
   }
 
+  main {
+    @apply font-gotham;
+  }
+
   input,
   textarea,
   button,
