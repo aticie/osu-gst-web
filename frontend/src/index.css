@@ -64,8 +64,4 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
-
-  .bg-translucent {
-    @apply bg-dark bg-opacity-30;
-  }
 }
