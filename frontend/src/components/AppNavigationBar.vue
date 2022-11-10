@@ -22,7 +22,7 @@ router.afterEach(() => {
 
 <template>
   <div class="absolute h-full left-0 max-w-sm w-full" :class="{'pointer-events-none': !isMenuOpen}" v-press-outside="closeMenu">
-    <button class="absolute left-4 top-4 h-6 2xl:left-5 2xl:top-5 flex items-center gap-2 z-10" @click="toggleMenu">
+    <button class="absolute left-4 top-4 h-6 2xl:left-5 2xl:top-5 flex items-center gap-2 z-10 pointer-events-auto" @click="toggleMenu">
       <Burger />
 
       <div class="relative h-full flex items-center">

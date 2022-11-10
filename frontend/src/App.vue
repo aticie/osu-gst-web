@@ -17,7 +17,11 @@ const isMainRoute = computed(() => route.path === "/");
     <suspense :timeout="0">
       <template #default>
         <main class="h-full overflow-y-scroll pt-16 2xl:p-0">
-          <div class="max-w-4xl mx-auto">
+          <template v-if="isMainRoute">
+            <component :is="Component" />
+          </template>
+
+          <div v-else class="max-w-4xl mx-auto">
             <component :is="Component" />
           </div>
         </main>
