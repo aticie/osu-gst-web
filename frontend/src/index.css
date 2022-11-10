@@ -91,6 +91,18 @@
     @apply flex flex-col gap-4;
     @apply border-l-2 border-l-purple-p;
   }
+
+  .input-box {
+    @apply bg-dark;
+    @apply p-2 px-4;
+    @apply font-inter;
+  }
+
+  .button {
+    @apply bg-dark hover:bg-pink-p transition-colors;
+    @apply p-2 px-4;
+    @apply font-bold;
+  }
 }
 
 @layer utilities {
