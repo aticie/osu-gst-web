@@ -8,7 +8,7 @@ const teams = await useRequest({
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center gap-4">
+  <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
 
     <template v-for="x in 30">
       <TeamVue v-for="team in teams" :team="team" />
