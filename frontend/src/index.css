@@ -60,10 +60,11 @@
 
   .info-container {
     @apply flex flex-col gap-2;
+    @apply mt-4;
   }
 
   .info-head {
-    @apply p-4 mt-2;
+    @apply p-4;
     @apply bg-purple-s bg-opacity-40;
     @apply 2xl:rounded-lg;
   }
