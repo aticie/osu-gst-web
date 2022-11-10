@@ -15,9 +15,9 @@ try {
 </script>
 
 <template>
-  <div class="w-full text-xl">
-    <div v-if="userStore.user" class="w-full flex flex-col p-2 gap-2">
-      <div class="flex-center gap-2 p-2 bg-dark">
+  <div class="w-full text-xl h-14 2xl:h-16">
+    <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2">
+      <div class="h-full flex-center gap-2 bg-dark">
         <p>WELCOME BACK
         <span class="text-pink-p">{{ userStore.user.osu_username }}</span>
         </p>
@@ -28,7 +28,7 @@ try {
       <button 
         v-if="!userStore.user.discord_id" 
         @click="toDiscordAuth" 
-        class="flex-center flex-col 2xl:flex-row gap-2 p-2 text-yellow-400 bg-dark"
+        class="h-full flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark"
       >
         <Danger />
         <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
@@ -37,7 +37,7 @@ try {
       <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
     </div>
 
-    <button v-else @click="toOsuAuth" class="flex-center gap-4 w-full p-2">
+    <button v-else @click="toOsuAuth" class="h-full w-full flex-center gap-4 bg-dark">
       <Right />
       <p>LOGIN WITH
         <span class="text-pink-p">OSU!</span>
