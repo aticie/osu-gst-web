@@ -29,6 +29,9 @@ module.exports = {
       },
       animation: {
         "horizontal-loop": "horizontal-loop 80s linear infinite"
+      },
+      aspectRatio: {
+        "banner": "4/3"
       }
     }
   },

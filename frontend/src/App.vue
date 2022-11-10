@@ -14,22 +14,20 @@ const isMainRoute = computed(() => route.path === "/");
   <div class="artwork absolute inset-0" />
 
   <RouterView v-slot="{ Component }">
-    <suspense :timeout="0">
-      <template #default>
-        <main class="h-full overflow-y-scroll mt-14 pb-16 2xl:mt-0 2xl:p-0 feather 2xl:no-feather">
-          <template v-if="isMainRoute">
-            <component :is="Component" />
-          </template>
+    <main class="h-full overflow-y-scroll mt-14 pb-16 2xl:mt-0 2xl:p-0 feather 2xl:no-feather">
+      <suspense :timeout="0">
+        <component v-if="isMainRoute" :is="Component" />
 
-          <div v-else class="max-w-4xl mx-auto pt-5">
-            <component :is="Component" />
+        <div v-else class="max-w-6xl mx-auto pt-5">
+          <component :is="Component" />
+        </div>
+
+        <template #fallback>
+          <div class="flex-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Spinner class="absolute" />
           </div>
-        </main>
-      </template>
-
-      <template #fallback>
-        <Spinner />
-      </template>
-    </suspense>
+        </template>
+      </suspense>
+    </main>
   </RouterView>
 </template>
