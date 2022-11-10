@@ -5,3 +5,11 @@ export const getInvites = async () => {
   const response = await axios.get<Invite[]>("/users/me/invites");
   return response.data;
 }
+
+export const acceptInvite = async () => {
+
+}
+
+export const declineInvite = async () => {
+  
+}

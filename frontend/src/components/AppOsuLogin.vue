@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { getInvites } from "../api";
 import { toDiscordAuth, toOsuAuth } from "../auth";
-import { Invite } from "../Models/Invite";
 import { useUserStore } from "../store";
+import TeamInvites from "./teams/TeamInvites.vue";
 
-import { Right, Left, Danger, Tick, Close } from "./icons";
+import { Right, Left, Danger } from "./icons";
 
 const userStore = useUserStore();
-const invites = ref<Invite[]>([]);
 
 try {
   await userStore.refreshUser();
-  invites.value = await getInvites();
 } catch {
 
 }
@@ -36,31 +32,12 @@ try {
 
     <div v-if="userStore.user" class="text-base flex flex-col gap-1">
       <button v-if="!userStore.user?.discord_id && userStore.user?.osu_username" @click="toDiscordAuth"
-        class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-dark bg-opacity-30 text-yellow-400">
+        class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-translucent text-yellow-400">
         <Danger />
         <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
       </button>
 
-      <div
-        v-for="invite in invites" 
-        @click="() => {}"
-        class="flex-center gap-4 p-2 bg-dark bg-opacity-30"
-      >
-        <div class="flex gap-1">
-          <span class="text-pink-p">{{ invite.inviter.osu_username }}</span>
-          <p>INVITED YOU TO JOIN</p>
-          <p class="text-purple-s truncate">{{ invite.team.title }}</p>
-        </div>
-
-        <div class="flex gap-2">
-          <button>
-            <Tick class="hover:fill-green-500 transition-colors" />
-          </button>
-          <button>
-            <Close class="hover:fill-red-500 transition-colors" />
-          </button>
-        </div>
-      </div>
+      <TeamInvites />
     </div>
   </div>
 </template>

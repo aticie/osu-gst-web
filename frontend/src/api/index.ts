@@ -1,3 +1,3 @@
 export { getTeams } from "./getTeams";
-export { getInvites } from "./getInvites";
+export { getInvites } from "./invite";
 export { joinTeam } from "./joinTeam";
