@@ -2,6 +2,7 @@ import { TeamlessUser } from "./User"
 
 export interface TeamBase {
   title: string,
+  team_hash: string,
   avatar_url: string
 }
 

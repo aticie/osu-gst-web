@@ -1,30 +1,19 @@
 import { defineStore } from "pinia";
-import axios from "axios";
-
-interface UserStruct {
-  discord_id: string,
-  discord_avatar_url: string,
-  discord_tag: string,
-  osu_id: number,
-  osu_username: string,
-  osu_avatar_url: string,
-  osu_global_rank: number,
-  team: {
-    title: string,
-    avatar_url: string,
-    id: number,
-    owner_id: number
-  }
-}
+import { User } from "../Models/User";
+import { useRequest } from "../hooks/useRequest";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: null as UserStruct | null
+    user: null as User | null
   }),
   actions: {
     async refreshUser() {
-      const { data } = await axios.get("/users/me");
-      this.user = data;
+      const user = await useRequest<User>({
+        url: "/users/me"
+      });
+
+      if (!user) return;
+      this.user = user;
     }
   }
 });

@@ -15,13 +15,12 @@
 @layer base {
   html, body, #app {
     @apply text-white;
-    @apply min-h-screen w-full;
-    @apply flex;
+    @apply h-full w-full;
+    @apply overflow-hidden;
   }
 
-  #app {
-    font-family: Gotham;
-    @apply relative flex-center;
+  main {
+    @apply font-gotham;
   }
 
   input,
@@ -58,10 +57,59 @@
     @apply  bg-repeat-x;
     @apply -z-10;
   }
+
+  .info-container {
+    @apply flex flex-col gap-4;
+  }
+
+  .info-container p {
+    font-family: Inter;
+    @apply text-sm;
+  }
+
+  .info-head {
+    @apply p-4;
+    @apply bg-purple-s bg-opacity-40;
+    @apply 2xl:rounded-lg;
+  }
+
+  .info-head h1 {
+    @apply font-bold text-xl 2xl:text-2xl;
+  }
+
+  .info-content {
+    @apply ml-4 pr-4;
+    @apply flex flex-col grow flex-shrink gap-4;
+  }
+  
+  .info-content h1 {
+    @apply font-bold 2xl:text-xl;
+  }
+
+  .info-content ol {
+    @apply pl-2 ml-2 mt-2;
+    @apply flex flex-col gap-4;
+    @apply border-l-2 border-l-purple-p;
+  }
 }
 
 @layer utilities {
   .flex-center {
     @apply flex items-center justify-center;
   }
+
+  
+  .no-feather {
+    mask-image: none;
+  }
+
+  .feather {
+    mask-image: linear-gradient(
+      0deg,
+      black 95%,
+      transparent 100%
+    );
+  }
 }
+
+

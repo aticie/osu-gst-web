@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Invite } from "../Models/Invite";
+import { User } from "../Models/User";
 
 export const getInvites = async () => {
   const response = await axios.get<Invite[]>("/users/me/invites");
