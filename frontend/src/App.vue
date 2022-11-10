@@ -16,7 +16,7 @@ const isMainRoute = computed(() => route.path === "/");
   <RouterView v-slot="{ Component }">
     <suspense :timeout="0">
       <template #default>
-        <main class="h-full overflow-y-scroll pt-16 2xl:p-0">
+        <main class="h-full overflow-y-scroll mt-14 2xl:mt-0 2xl:p-0 feather 2xl:no-feather">
           <template v-if="isMainRoute">
             <component :is="Component" />
           </template>

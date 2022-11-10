@@ -98,4 +98,19 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+
+  
+  .no-feather {
+    mask-image: none;
+  }
+
+  .feather {
+    mask-image: linear-gradient(
+      0deg,
+      black 95%,
+      transparent 100%
+    );
+  }
 }
+
+
