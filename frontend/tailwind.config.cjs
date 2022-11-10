@@ -14,7 +14,8 @@ module.exports = {
         "dark": "#100E11"
       },
       fontFamily: {
-        "inter": "inter"
+        "inter": "inter",
+        "gotham": "gotham"
       },
       keyframes: {
         "horizontal-loop": {

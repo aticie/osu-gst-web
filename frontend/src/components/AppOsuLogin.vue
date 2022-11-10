@@ -1,66 +1,48 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { getInvites } from "../api";
 import { toDiscordAuth, toOsuAuth } from "../auth";
-import { Invite } from "../Models/Invite";
 import { useUserStore } from "../store";
+import TeamInvites from "./teams/TeamInvites.vue";
 
-import { Right, Left, Danger, Tick, Close } from "./icons";
+import { Right, Left, Danger } from "./icons";
 
 const userStore = useUserStore();
-const invites = ref<Invite[]>([]);
 
 try {
   await userStore.refreshUser();
-  invites.value = await getInvites();
 } catch {
 
 }
 </script>
 
 <template>
-  <div class="h-full w-full text-xl 2xl:text-2xl">
-    <div class="flex-center bg-dark h-14 2xl:h-16 w-full p-2.5">
-      <button v-if="!userStore.user" @click="toOsuAuth" class="flex items-center gap-4">
-        <Right />
-        <p>LOGIN WITH <span class="text-pink-p">OSU!</span></p>
-        <Left />
-      </button>
+  <div class="w-full text-xl h-14 2xl:h-16">
+    <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2">
+      <div class="h-full flex-center gap-2 bg-dark">
+        <p>WELCOME BACK
+        <span class="text-pink-p">{{ userStore.user.osu_username }}</span>
+        </p>
 
-      <div v-else class="flex-center h-full gap-3">
-        <p>WELCOME BACK <span class="text-pink-p">{{ userStore.user.osu_username }}</span> </p>
-        <img :src="userStore.user.osu_avatar_url"
-          class="h-full aspect-square rounded-full object-cover shadow shadow-black" />
+        <img :src="userStore.user.osu_avatar_url" alt="user avatar" class="h-10 rounded-full" />
       </div>
-    </div>
 
-    <div v-if="userStore.user" class="text-base flex flex-col gap-1">
-      <button v-if="!userStore.user?.discord_id && userStore.user?.osu_username" @click="toDiscordAuth"
-        class="flex-center flex-col 2xl:flex-row gap-2 w-full p-2 bg-dark bg-opacity-30 text-yellow-400">
+      <button 
+        v-if="!userStore.user.discord_id" 
+        @click="toDiscordAuth" 
+        class="h-full flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark"
+      >
         <Danger />
         <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
       </button>
 
-      <div
-        v-for="invite in invites" 
-        @click="() => {}"
-        class="flex-center gap-4 p-2 bg-dark bg-opacity-30"
-      >
-        <div class="flex gap-1">
-          <span class="text-pink-p">{{ invite.inviter.osu_username }}</span>
-          <p>INVITED YOU TO JOIN</p>
-          <p class="text-purple-s truncate">{{ invite.team.title }}</p>
-        </div>
-
-        <div class="flex gap-2">
-          <button>
-            <Tick class="hover:fill-green-500 transition-colors" />
-          </button>
-          <button>
-            <Close class="hover:fill-red-500 transition-colors" />
-          </button>
-        </div>
-      </div>
+      <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
     </div>
+
+    <button v-else @click="toOsuAuth" class="h-full w-full flex-center gap-4 bg-dark">
+      <Right />
+      <p>LOGIN WITH
+        <span class="text-pink-p">OSU!</span>
+      </p>
+      <Left />
+    </button>
   </div>
 </template>
