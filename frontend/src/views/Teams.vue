@@ -5,7 +5,6 @@ import { Team } from "../Models/Team";
 import { useUserStore } from "../store";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
-import TeamUser from "../components/teams/TeamUser.vue";
 import { Plus } from "../components/icons";
 
 const userStore = useUserStore();
@@ -18,7 +17,7 @@ teams.value = await useRequest<Team[]>({
 watch(
   () => userStore.user?.team,
   async (previous, current) => {
-    if (previous?.team_hash === current?.team_hash) return;
+    if (previous?.title === current?.title) return;
 
     teams.value = await useRequest<Team[]>({
       url: "/teams"
@@ -27,7 +26,7 @@ watch(
 )
 
 const userTeam = computed(() => (
-  teams.value.find(team => team.team_hash == userStore.user?.team?.team_hash)
+  teams.value.find(team => team.title == userStore.user?.team?.title)
 ));
 </script>
 
@@ -58,7 +57,7 @@ const userTeam = computed(() => (
       <h1 class="font-bold text-2xl text-center">TEAMS</h1>
       <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
         <template v-for="team in teams">
-          <TeamVue v-if="team.team_hash != userTeam?.team_hash" :team="team" />
+          <TeamVue v-if="team.title != userTeam?.title" :team="team" />
         </template>
       </div>
     </div>
