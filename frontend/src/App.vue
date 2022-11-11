@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { Spinner } from "./components/icons";
 import AppNavigationBar from "./components/AppNavigationBar.vue";
+import AppNotification from "./components/AppNotification.vue";
 
 const route = useRoute();
 const isMainRoute = computed(() => route.path === "/");
@@ -13,9 +14,11 @@ const isMainRoute = computed(() => route.path === "/");
   <AppNavigationBar v-if="!isMainRoute" />
   <div class="artwork absolute inset-0 -z-20" />
 
+  <AppNotification />
+
   <RouterView v-slot="{ Component }">
     <main 
-      class="overflow-y-scroll h-scroll md:h-full"
+      class="overflow-y-auto h-scroll md:h-full"
     >
       <suspense :timeout="0">
         <component v-if="isMainRoute" :is="Component" />
