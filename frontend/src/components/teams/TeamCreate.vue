@@ -23,11 +23,8 @@ const createTeam = async () => {
     }
   });
 
-  userStore.$patch(state => {
-    if (!state.user) return;
-
-    state.user.team = resp;
-  })
+  if (!userStore.user) return;
+  userStore.user.team = resp;
 }
 </script>
 

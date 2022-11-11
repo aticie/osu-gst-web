@@ -23,8 +23,10 @@ const averageRank = players
     </template>
 
     <template v-slot:players>
-      <div v-for="(player, index) in players" class="flex flex-1 overflow-hidden gap-2">
-        <TeamUser :player="player" />
+      <div v-for="(player, index) in players" class="flex flex-1 w-full overflow-hidden gap-2">
+        <slot name="teamUsers" :player="player">
+          <TeamUser :player="player" />
+        </slot>
       </div>
     </template>
   </TeamBase>
