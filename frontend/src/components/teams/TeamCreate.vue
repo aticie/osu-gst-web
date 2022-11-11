@@ -23,7 +23,7 @@ const createTeam = async () => {
     url: "/team/create",
     method: "POST",
     data: {
-      title: "hey",
+      title: teamName.value,
       avatar_url: bannerUrl.value,
     }
   });
