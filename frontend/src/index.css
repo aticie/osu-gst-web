@@ -30,6 +30,20 @@
   a {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-900;
+    @apply rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-800;
+    @apply rounded-full;
+  }
 }
 
 @layer components {
@@ -96,12 +110,6 @@
     @apply bg-dark;
     @apply p-2 px-4;
     @apply font-inter;
-  }
-
-  .button {
-    @apply bg-dark hover:bg-pink-p transition-colors;
-    @apply p-2 px-4;
-    @apply font-bold;
   }
 }
 

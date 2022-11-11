@@ -3,12 +3,14 @@ import { computed, ref, watch } from "vue";
 import { useRequest } from "../hooks/useRequest";
 import { Team } from "../Models/Team";
 import { useUserStore } from "../store";
+import { Plus } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
-import { Plus } from "../components/icons";
+import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
 
 const userStore = useUserStore();
 const teams = ref<Team[]>([]);
+const isPlayersOpen = ref(false);
 
 teams.value = await useRequest<Team[]>({
   url: "/teams"
@@ -28,6 +30,10 @@ watch(
 const userTeam = computed(() => (
   teams.value.find(team => team.title == userStore.user?.team?.title)
 ));
+
+const showPlayers = async () => {
+  isPlayersOpen.value = !isPlayersOpen.value;
+}
 </script>
 
 <template>
@@ -37,13 +43,18 @@ const userTeam = computed(() => (
         <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>
         <TeamVue :team="userTeam">
           <template v-slot:teamUsers>
-            <button 
-              v-if="userTeam.players.length === 1" 
-              class="flex-center flex-1 gap-4 p-4 font-inter bg-pink-p hover:bg-purple-p transition-colors rounded text-sm"
-            >
-              <Plus class="h-full aspect-square" />
-              <p>Invite Someone!</p>
-            </button>
+            <div class="flex flex-col w-full gap-4">
+              <button 
+                v-if="userTeam.players.length === 1"
+                class="flex-center grow gap-2 p-2 font-inter bg-pink-p hover:bg-purple-p transition-colors rounded text-sm"
+                @click="showPlayers"
+              >
+                <Plus class="h-2/3 aspect-square" />
+                <p>Invite Someone!</p>
+              </button>
+  
+              <TeamPlayers v-if="isPlayersOpen" />
+            </div>
           </template>
         </TeamVue>
       </template>

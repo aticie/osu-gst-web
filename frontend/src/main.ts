@@ -16,13 +16,18 @@ axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 axios.defaults.withCredentials = true;
 
 app.directive("press-outside", {
-  mounted: (element, binding, vnode) => {
-    window.document.body.addEventListener("click", event => {
+  beforeMount: (element, binding, vnode) => {
+    element.pressOutsideListener = (event: MouseEvent) => {
       let targetElement = event.target as HTMLElement;
       if (element.contains(targetElement)) return;
 
       binding.value();
-    })
+    }
+
+    window.document.body.addEventListener("click", element.pressOutsideListener);
+  },
+  unmounted: (element) => {
+    window.document.body.removeEventListener("click", element.pressOutsideListener);
   }
 })
 
