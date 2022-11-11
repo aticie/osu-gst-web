@@ -1,4 +1,5 @@
 <template>
+  <div class="flex flex-col gap-10">
     <section class="info-container">
       <div class="info-head">
         <h1>SCHEDULES</h1>
@@ -76,4 +77,5 @@
         <!-- Rules will be here -->
       </div>
     </section>
+  </div>
 </template>
