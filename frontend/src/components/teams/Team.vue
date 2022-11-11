@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Team } from '../../Models/Team';
+import TeamBase from './TeamBase.vue';
+import TeamUser from './TeamUser.vue';
 
 const props = defineProps<{
   team: Team
@@ -12,27 +14,18 @@ const averageRank = players
 </script>
 
 <template>
-  <div class="flex flex-col sm:rounded-lg overflow-hidden p-4 gap-4 bg-dark max-w-md w-full">
-    <div class="flex grow gap-4 items-center font-inter">
-      <img :src="team.avatar_url" class="aspect-banner object-cover rounded-lg h-32 sm:h-40" />
-      <div class="w-full">
+  <TeamBase :team="team" :cover="team.avatar_url">
+    <template v-slot:top>
+      <div class="w-full truncate">
         <p class="text-sm">Avg Rank #{{ Math.round(averageRank) }}</p>
-        <p class="text-xl break-words">{{ team.title }}</p>
+        <p class="text-xl break-words truncate">{{ team.title }}</p>
       </div>
-    </div>
+    </template>
 
-    <div class="flex gap-4">
+    <template v-slot:players>
       <div v-for="(player, index) in players" class="flex flex-1 overflow-hidden gap-2">
-        <img :src="player.osu_avatar_url" alt="osu avatar" class="aspect-square object-cover rounded-lg h-16"
-          :class="{ 'flex-row-reverse': index == 1 }" />
-        <div class="flex flex-col gap-2 overflow-hidden text-sm">
-          <p class="font-bold truncate">{{ player.osu_username }}</p>
-          <div class="font-inter">
-            <p class="font-bold">#{{ player.bws_rank }}</p>
-            <p class="text-purple-s">BWS rank</p>
-          </div>
-        </div>
+        <TeamUser :player="player" />
       </div>
-    </div>
-  </div>
+    </template>
+  </TeamBase>
 </template>
