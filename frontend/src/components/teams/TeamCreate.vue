@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { useRequest } from '../../hooks/useRequest';
 import { TeamCreate } from '../../Models/Team';
 import { useUserStore } from '../../store';
-import { createId } from "../../utils";
 import TeamBase from './TeamBase.vue';
 
 const userStore = useUserStore();
@@ -19,7 +18,6 @@ const createTeam = async () => {
     data: {
       title: teamName.value,
       avatar_url: bannerUrl.value,
-      team_hash: createId(10)
     }
   });
 

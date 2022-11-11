@@ -54,7 +54,7 @@ const userTeam = computed(() => (
       </template>
     </div>
 
-    <div v-if="teams.length" class="flex flex-col gap-6 w-full">
+    <div class="flex flex-col gap-6 w-full">
       <h1 class="font-bold text-2xl text-center">TEAMS</h1>
       <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
         <template v-for="team in teams">
