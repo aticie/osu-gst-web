@@ -68,7 +68,7 @@
   .artwork {
     background-image: url("./assets/gstLoop.png");
     @apply animate-horizontal-loop;
-    @apply  bg-repeat-x;
+    @apply bg-repeat-x bg-cover;
     @apply -z-10;
   }
 
