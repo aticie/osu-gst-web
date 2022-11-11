@@ -43,7 +43,7 @@ const leaveTeam = async () => {
   });
 
   if (!response) return;
-  
+
   teams.value.splice(
     teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
     1
@@ -61,22 +61,16 @@ const leaveTeam = async () => {
         <TeamVue :team="userTeam">
           <template v-slot:teamUsers>
             <div class="flex flex-col w-full gap-2">
-              <button 
-                class="base-button bg-red-500 hover:bg-red-800" 
-                @click="leaveTeam"
-              >
+              <button class="base-button bg-red-500 hover:bg-red-800" @click="leaveTeam">
                 Leave The Team
               </button>
 
-              <button
-                v-if="userTeam.players.length === 1"
-                class="base-button bg-pink-p hover:bg-purple-p"
-                @click="showPlayers"
-              >
+              <button v-if="userTeam.players.length === 1" class="base-button bg-pink-p hover:bg-purple-p"
+                @click="showPlayers">
                 <Plus v-if="!isPlayersOpen" class="h-2/3 aspect-square" />
-                <p>{{isPlayersOpen ? "Close" : "Invite Someone!"}}</p>
+                <p>{{ isPlayersOpen ? "Close" : "Invite Someone!" }}</p>
               </button>
-  
+
               <TeamPlayers v-if="isPlayersOpen" />
             </div>
           </template>
