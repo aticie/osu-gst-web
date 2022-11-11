@@ -111,6 +111,13 @@
     @apply p-2 px-4;
     @apply font-inter;
   }
+
+  .base-button {
+    @apply flex-center grow;
+    @apply font-inter text-sm;
+    @apply p-2 gap-2 rounded;
+    @apply transition-colors;
+  }
 }
 
 @layer utilities {

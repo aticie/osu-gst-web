@@ -7,6 +7,7 @@ import { Plus } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
+import { User } from "../Models/User";
 
 const userStore = useUserStore();
 const teams = ref<Team[]>([]);
@@ -34,6 +35,22 @@ const userTeam = computed(() => (
 const showPlayers = async () => {
   isPlayersOpen.value = !isPlayersOpen.value;
 }
+
+const leaveTeam = async () => {
+  const response = await useRequest<User>({
+    url: "/team/leave",
+    method: "POST"
+  });
+
+  if (!response) return;
+  
+  teams.value.splice(
+    teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
+    1
+  )
+
+  userStore.user = response;
+}
 </script>
 
 <template>
@@ -43,14 +60,21 @@ const showPlayers = async () => {
         <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>
         <TeamVue :team="userTeam">
           <template v-slot:teamUsers>
-            <div class="flex flex-col w-full gap-4">
+            <div class="flex flex-col w-full gap-2">
               <button 
+                class="base-button bg-red-500 hover:bg-red-800" 
+                @click="leaveTeam"
+              >
+                Leave The Team
+              </button>
+
+              <button
                 v-if="userTeam.players.length === 1"
-                class="flex-center grow gap-2 p-2 font-inter bg-pink-p hover:bg-purple-p transition-colors rounded text-sm"
+                class="base-button bg-pink-p hover:bg-purple-p"
                 @click="showPlayers"
               >
-                <Plus class="h-2/3 aspect-square" />
-                <p>Invite Someone!</p>
+                <Plus v-if="!isPlayersOpen" class="h-2/3 aspect-square" />
+                <p>{{isPlayersOpen ? "Close" : "Invite Someone!"}}</p>
               </button>
   
               <TeamPlayers v-if="isPlayersOpen" />
