@@ -15,34 +15,29 @@ try {
 </script>
 
 <template>
-  <div class="w-full text-xl h-14 2xl:h-16">
-    <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2">
-      <div class="h-full flex-center gap-2 bg-dark">
-        <p>WELCOME BACK
+  <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2 2xl:text-xl">
+    <div class="h-14 2xl:h-16 flex-center gap-2 bg-dark">
+      <p>WELCOME BACK
         <span class="text-pink-p">{{ userStore.user.osu_username }}</span>
-        </p>
+      </p>
 
-        <img :src="userStore.user.osu_avatar_url" alt="user avatar" class="h-10 rounded-full" />
-      </div>
-
-      <button 
-        v-if="!userStore.user.discord_id" 
-        @click="toDiscordAuth" 
-        class="h-full flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark"
-      >
-        <Danger />
-        <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
-      </button>
-
-      <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
+      <img :src="userStore.user.osu_avatar_url" alt="user avatar" class="h-10 rounded-full" />
     </div>
 
-    <button v-else @click="toOsuAuth" class="h-full w-full flex-center gap-4 bg-dark">
-      <Right />
-      <p>LOGIN WITH
-        <span class="text-pink-p">OSU!</span>
-      </p>
-      <Left />
+    <button v-if="!userStore.user.discord_id" @click="toDiscordAuth"
+      class="h-full flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark">
+      <Danger />
+      <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
     </button>
+
+    <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
   </div>
+
+  <button v-else @click="toOsuAuth" class="h-14 w-full flex-center gap-4 bg-dark">
+    <Right />
+    <p>LOGIN WITH
+      <span class="text-pink-p">OSU!</span>
+    </p>
+    <Left />
+  </button>
 </template>

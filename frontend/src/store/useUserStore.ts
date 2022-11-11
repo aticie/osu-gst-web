@@ -15,5 +15,6 @@ export const useUserStore = defineStore("user", {
       if (!user) return;
       this.user = user;
     }
-  }
+  },
+  persist: true
 });
