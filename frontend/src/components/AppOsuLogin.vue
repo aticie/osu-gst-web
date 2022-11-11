@@ -25,7 +25,7 @@ try {
     </div>
 
     <button v-if="!userStore.user.discord_id" @click="toDiscordAuth"
-      class="h-full flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark">
+      class="h-full flex-center flex-col 2xl:flex-row gap-2 p-2 text-yellow-400 bg-dark">
       <Danger />
       <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
     </button>
