@@ -25,7 +25,6 @@ router.afterEach(() => {
     class="p-6 absolute" 
     v-press-outside="closeMenu"
   >
-      <!-- class="absolute left-4 top-4 h-6 2xl:left-5 2xl:top-5 flex items-center gap-2 z-10 pointer-events-auto"  -->
     <button 
       class="flex-center gap-4" 
       @click="toggleMenu"

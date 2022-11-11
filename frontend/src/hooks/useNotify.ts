@@ -6,6 +6,6 @@ type Events = {
 
 export const events = mitt<Events>();
 
-export const notifify = (text: string) => {
+export const useNotify = (text: string) => {
   events.emit("info", text);
 }

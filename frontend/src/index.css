@@ -130,6 +130,9 @@
 
   .h-scroll {
     height: calc(100% - 68px);
-    @apply mt-16 md:mt-0;
+    margin-top: 68px;
+
+    @apply overflow-x-hidden;
+    @apply md:mt-0;
   }
 }

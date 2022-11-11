@@ -15,7 +15,7 @@ try {
 </script>
 
 <template>
-  <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2">
+  <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2 2xl:text-xl">
     <div class="h-14 2xl:h-16 flex-center gap-2 bg-dark">
       <p>WELCOME BACK
         <span class="text-pink-p">{{ userStore.user.osu_username }}</span>

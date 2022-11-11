@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig } from "axios";
+import { useNotify } from "./useNotify";
 
 export const useRequest = async <T>(config: AxiosRequestConfig) => {
   try {
@@ -7,6 +8,6 @@ export const useRequest = async <T>(config: AxiosRequestConfig) => {
   } catch(error) {
     if (!axios.isAxiosError(error)) return;
 
-    // TODO: notification popup
+    useNotify(error.response?.data.detail);
   }
 }
