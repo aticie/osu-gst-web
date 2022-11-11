@@ -127,4 +127,9 @@
     @apply p-2 rounded-lg;
     @apply backdrop-blur-sm;
   }
+
+  .h-scroll {
+    height: calc(100% - 68px);
+    @apply mt-16 md:mt-0;
+  }
 }

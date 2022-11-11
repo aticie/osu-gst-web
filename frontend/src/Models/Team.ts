@@ -6,7 +6,9 @@ export interface TeamBase {
 }
 
 export interface TeamCreate extends TeamBase {}
-export interface PlayerlessTeam extends TeamBase {}
+export interface PlayerlessTeam extends TeamBase {
+  team_hash: string
+}
 
 export interface Team extends PlayerlessTeam {
   players: TeamlessUser[]

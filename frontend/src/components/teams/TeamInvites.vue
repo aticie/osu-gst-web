@@ -27,7 +27,7 @@ const inviteHandler = async (team_hash: string) => {
     v-for="invite in invites"
     class="bg-dark flex-center p-2"
   >
-    <div class="flex-center grow gap-2">
+    <div class="flex-center grow flex-wrap gap-x-2">
       <p class="text-pink-p">{{ invite.inviter.osu_username }}</p>
       <p>INVITED YOU TO JOIN</p>
       <p class="text-purple-s">{{ invite.team.title }}</p>

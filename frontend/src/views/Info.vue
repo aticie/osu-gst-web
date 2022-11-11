@@ -1,5 +1,4 @@
 <template>
-  <div class="flex flex-col gap-6">
     <section class="info-container">
       <div class="info-head">
         <h1>SCHEDULES</h1>
@@ -55,7 +54,7 @@
         </p>
 
         <img src="../assets/mrtMap.png" alt="mrt map"
-          class="w-5/6 rounded-lg mx-auto hover:scale-150 transition-transform" />
+          class="w-5/6 rounded-lg mx-auto" />
 
         <div>
           <h1>ESPORTS EXPERIENCE CENTER</h1>
@@ -77,5 +76,4 @@
         <!-- Rules will be here -->
       </div>
     </section>
-  </div>
 </template>

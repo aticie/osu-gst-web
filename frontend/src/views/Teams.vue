@@ -31,7 +31,7 @@ const userTeam = computed(() => (
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-10">
+  <div class="flex flex-col gap-10">
     <div class="flex flex-col items-center w-full gap-4">
       <template v-if="userStore.user?.team && userTeam">
         <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>

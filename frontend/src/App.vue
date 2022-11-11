@@ -11,10 +11,12 @@ const isMainRoute = computed(() => route.path === "/");
 
 <template>
   <AppNavigationBar v-if="!isMainRoute" />
-  <div class="artwork absolute inset-0" />
+  <div class="artwork absolute inset-0 -z-20" />
 
   <RouterView v-slot="{ Component }">
-    <main class="h-full overflow-y-scroll mt-14 pb-16 2xl:mt-0 2xl:p-0 feather 2xl:no-feather">
+    <main 
+      class="overflow-y-scroll h-scroll md:h-full"
+    >
       <suspense :timeout="0">
         <component v-if="isMainRoute" :is="Component" />
 
