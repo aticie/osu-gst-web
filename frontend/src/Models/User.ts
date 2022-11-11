@@ -1,21 +1,4 @@
-import { TeamBase } from "./Team";
-
-// export interface UserBase {
-//   user_hash: string,
-//   osu_id: number,
-//   osu_avatar_url: string,
-//   osu_username: string,
-//   osu_global_rank: number,
-//   discord_id: number,
-//   discord_avatar_url: string,
-//   discord_tag: string,
-//   discord_linked: boolean,
-//   osu_linked: boolean,
-//   bws_rank: number,
-//   badges: number,
-//   team_hash: string,
-//   team: Team
-// }
+import { PlayerlessTeam } from "./Team";
 
 interface UserBase {}
 
@@ -42,5 +25,5 @@ export interface UserCreate extends OsuUser, DiscordUser {}
 export interface TeamlessUser extends UserCreate {}
 
 export interface User extends UserCreate {
-  team: TeamBase | undefined
+  team: PlayerlessTeam | undefined
 }

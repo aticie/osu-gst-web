@@ -1,8 +1,8 @@
-import { TeamBase } from "./Team"
+import { PlayerlessTeam } from "./Team"
 import { TeamlessUser } from "./User"
 
 export interface Invite {
-  team: TeamBase,
+  team: PlayerlessTeam,
   inviter: TeamlessUser,
   invited: TeamlessUser
 }
