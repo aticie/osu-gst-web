@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { useRequest } from "../hooks/useRequest";
-import { Team } from "../Models/Team";
 import { useUserStore } from "../store";
+import { Team } from "../Models/Team";
+import { User } from "../Models/User";
 import { Plus } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
-import { User } from "../Models/User";
 
 const userStore = useUserStore();
 const teams = ref<Team[]>([]);
@@ -59,20 +59,21 @@ const leaveTeam = async () => {
       <template v-if="userStore.user.team && userTeam">
         <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>
         <TeamVue :team="userTeam">
-          <template v-slot:teamUsers>
-            <div class="flex flex-col w-full gap-2">
-              <button class="base-button bg-red-500 hover:bg-red-800" @click="leaveTeam">
-                Leave The Team
-              </button>
+          <template v-slot:options>
+            <button class="base-button bg-red-500 hover:bg-red-800" @click="leaveTeam">
+              Leave The Team
+            </button>
 
-              <button v-if="userTeam.players.length === 1" class="base-button bg-pink-p hover:bg-purple-p"
-                @click="showPlayers">
-                <Plus v-if="!isPlayersOpen" class="h-2/3 aspect-square" />
-                <p>{{ isPlayersOpen ? "Close" : "Invite Someone!" }}</p>
-              </button>
+            <button 
+              v-if="userTeam.players.length === 1" 
+              class="base-button bg-pink-p hover:bg-purple-p"
+              @click="showPlayers"
+            >
+              <Plus class="h-3 aspect-square" />
+              Invite Someone
+            </button>
 
-              <TeamPlayers v-if="isPlayersOpen" />
-            </div>
+            <TeamPlayers v-if="isPlayersOpen" />
           </template>
         </TeamVue>
       </template>
