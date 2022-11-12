@@ -28,7 +28,7 @@ const invitePlayer = async (user: User) => {
   try {
     const response = await axios.post("/team/invite", {}, {
       params: {
-        other_user_osu_id: 123
+        other_user_osu_id: user.osu_id
       }
     });
 
