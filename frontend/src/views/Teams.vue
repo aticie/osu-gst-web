@@ -1,34 +1,52 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useRequest } from "../hooks/useRequest";
-import { useUserStore } from "../store";
-import { Team, PlayerlessTeam } from "../Models/Team";
+import { notify } from "../hooks/useNotify";
+
+import { Team } from "../Models/Team";
 import { User } from "../Models/User";
+
+import { useUserStore } from "../store";
+import { uploadAvatar } from "../utils";
+import axios from "axios";
+
 import { Plus, Upload } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
-import { uploadAvatar } from "../utils";
-import { notify } from "../hooks/useNotify";
-import axios from "axios";
 
 const userStore = useUserStore();
 const teams = ref<Team[]>([]);
 const isPlayersOpen = ref(false);
 const isDisabled = ref(false);
 
-teams.value = await useRequest<Team[]>({
-  url: "/teams"
-}) || [];
+try {
+  const response = await axios.get<Team[]>("/teams");
+  teams.value = response.data;
+} catch (error) {
+  teams.value = [];
+
+  notify({
+    title: "Request Error",
+    message: "Cannot get team list"
+  });
+}
 
 watch(
   () => userStore.user?.team,
   async (previous, current) => {
     if (previous?.title === current?.title) return;
 
-    teams.value = await useRequest<Team[]>({
-      url: "/teams"
-    }) || [];
+    try {
+      const response = await axios.get<Team[]>("/teams");
+      teams.value = response.data;
+    } catch (error) {
+      teams.value = [];
+
+      notify({
+        title: "Request Error",
+        message: "Cannot refresh teams list"
+      });
+    }
   }
 )
 
@@ -41,19 +59,23 @@ const showPlayers = async () => {
 }
 
 const leaveTeam = async () => {
-  const response = await useRequest<User>({
-    url: "/team/leave",
-    method: "POST"
-  });
+  try {
+    const response = await axios.post<User>("/team/leave");
 
-  if (!response) return;
+    teams.value.splice(
+      teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
+      1
+    );
 
-  teams.value.splice(
-    teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
-    1
-  )
+    userStore.user = response.data;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
 
-  userStore.user = response;
+    notify({
+      title: "Team",
+      message: error.response?.data.detail
+    });
+  }
 }
 
 const uploadHandler = async () => {
@@ -91,10 +113,7 @@ const uploadHandler = async () => {
               bg-dark bg-opacity-80 hover:bg-opacity-60 transition-colors
               flex-center flex-col text-sm
               disabled:pointer-events-none
-              "
-              @click="uploadHandler"
-              :disabled="isDisabled"
-            >
+              " @click="uploadHandler" :disabled="isDisabled">
               <Upload />
               <p>Upload Banner</p>
             </button>

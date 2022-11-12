@@ -3,14 +3,20 @@ import { toDiscordAuth, toOsuAuth } from "../auth";
 import { useUserStore } from "../store";
 import TeamInvites from "./teams/TeamInvites.vue";
 
+import axios from "axios";
 import { Right, Left, Danger } from "./icons";
+import { User } from "../Models/User";
 
 const userStore = useUserStore();
 
 try {
-  await userStore.refreshUser();
-} catch {
+  const response = await axios.get<User | null>("/users/me");
 
+  if (response.data) {
+    userStore.user = response.data;
+  }
+} catch {
+  
 }
 </script>
 

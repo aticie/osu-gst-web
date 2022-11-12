@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import { User } from '../../Models/User';
 import { getInvites } from '../../api';
-import { useRequest } from '../../hooks/useRequest';
 import { useUserStore } from '../../store';
+import { notify } from '../../hooks/useNotify';
 import Tick from '../icons/circle/Tick.vue';
+import axios from 'axios';
 
 const invites = await getInvites();
 const userStore = useUserStore();
 
 const inviteHandler = async (team_hash: string) => {
-  const user = await useRequest<User>({
-    method: "POST",
-    url: "/team/join",
-    params: {
-      team_hash
-    }
-  });
+  try {
+    const response = await axios.post<User>("/team/join", {}, {
+      params: team_hash
+    });
 
-  if (!user) return;
-  userStore.user = user;
+    if (!response.data) return;
+    userStore.user = response.data;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
+
+    notify({
+      title: "Invite",
+      message: error.response?.data.detail
+    });
+  }
 }
 </script>
 

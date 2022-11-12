@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import axios from 'axios';
 import { ref } from 'vue';
 import { notify } from '../../hooks/useNotify';
-import { useRequest } from '../../hooks/useRequest';
 import { Invite } from '../../Models/Invite';
 import { User } from '../../Models/User';
 import { useUserStore } from '../../store';
@@ -9,18 +9,15 @@ import { useUserStore } from '../../store';
 const userStore = useUserStore();
 
 const [players, invites] = await Promise.all([
-  useRequest<User[]>({
-    url: "/users"
-  }),
-  useRequest<Invite[]>({
-    url: "/team/invites",
+  axios.get<User[]>("/users"),
+  axios.get<Invite[]>("/team/invites", {
     params: {
       team_hash: userStore.user?.team?.team_hash
     }
   })
 ]);
 
-const filteredPlayers = ref(players?.filter(player => {
+const filteredPlayers = ref(players.data.filter(player => {
   return (player.discord_id &&
     userStore.user?.osu_id !== player.osu_id &&
     !player.team
@@ -28,24 +25,32 @@ const filteredPlayers = ref(players?.filter(player => {
 }) || [])
 
 const invitePlayer = async (user: User) => {
-  const inviteResponse = await useRequest<Invite>({
-    method: "POST",
-    url: "/team/invite",
-    params: {
-      other_user_osu_id: user.osu_id
-    }
-  });
+  try {
+    const response = await axios.post("/team/invite", {}, {
+      params: {
+        other_user_osu_id: 123
+      }
+    });
 
-  notify({
-    title: "Team Invite",
-    message: `Sent invite to ${inviteResponse?.invited.osu_username}`
-  });
-  let index = filteredPlayers.value.findIndex(pl => pl.osu_id === user.osu_id);
-  filteredPlayers.value?.splice(index, 1);
+    notify({
+      title: "Team Invite",
+      message: `Sent invite to ${response.data.invited.osu_username}`
+    });
+
+    let index = filteredPlayers.value.findIndex(pl => pl.osu_id === user.osu_id);
+    filteredPlayers.value?.splice(index, 1);
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
+
+    notify({
+      title: "User Invite",
+      message: error.response?.data.detail
+    });
+  }
 }
 
 const isPlayerInvited = (osu_id: number) => {
-  return invites?.find(invite => invite.invited.osu_id === osu_id);
+  return invites.data.find(invite => invite.invited.osu_id === osu_id);
 }
 </script>
 
