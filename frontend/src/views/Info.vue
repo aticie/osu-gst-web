@@ -50,6 +50,15 @@
           <p>1 STADIUM PL, SINGAPORE 397628</p>
         </div>
 
+        <iframe
+          class="h-80"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCltV8mIvQRpJXvplqmmlw9YlcWM-R19iE
+            &q=1.3027715981306334,103.87357898182611">
+        </iframe>
+
         <p>If you're looking to get here via public transit, the nearest MRT station is Stadium (CC6), directly next to
           Kallang Wave Mall. There is an alternative route alighting at Kallang (EW10) that requires a bit of walking.
         </p>
