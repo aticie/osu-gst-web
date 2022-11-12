@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRequest } from '../../hooks/useRequest';
-import { useNotify } from "../../hooks/useNotify";
+import { notify } from "../../hooks/useNotify";
 import { Team } from '../../Models/Team';
 import { useUserStore } from '../../store';
 import TeamBase from './TeamBase.vue';
@@ -13,7 +13,10 @@ const disabled = ref(false);
 
 const createTeam = async () => {
   if (!teamName.value) {
-    useNotify("Team name is required to create a team!")
+    notify({
+      title: "Required field",
+      message: "Team name is required to create a team."
+    })
 
     return;
   }
@@ -37,16 +40,6 @@ const createTeam = async () => {
 
 <template>
   <TeamBase>
-    <template v-slot:top>
-      <div class="flex-center absolute left-0 w-full h-44 bg-dark bg-opacity-70 backdrop-blur-sm">
-        <input 
-          placeholder="Banner URL" 
-          class="input-box rounded"
-          v-model="bannerUrl"
-        />
-      </div>
-    </template>
-
     <template v-slot:players>
       <input 
         placeholder="Team Name" 

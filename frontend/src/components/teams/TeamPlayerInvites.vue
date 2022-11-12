@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useNotify } from '../../hooks/useNotify';
+import { notify } from '../../hooks/useNotify';
 import { useRequest } from '../../hooks/useRequest';
 import { Invite } from '../../Models/Invite';
 import { User } from '../../Models/User';
@@ -36,7 +36,10 @@ const invitePlayer = async (user: User) => {
     }
   });
 
-  useNotify(`Sent invite to ${inviteResponse?.invited.osu_username}`);
+  notify({
+    title: "Team Invite",
+    message: `Sent invite to ${inviteResponse?.invited.osu_username}`
+  });
   let index = filteredPlayers.value.findIndex(pl => pl.osu_id === user.osu_id);
   filteredPlayers.value?.splice(index, 1);
 }

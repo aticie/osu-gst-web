@@ -1,25 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { events } from "../hooks/useNotify";
-
-interface Notification {
-  id: number,
-  message: string
-}
+import { events, Notification } from "../hooks/useNotify";
 
 const notifications = ref<Notification[]>([]);
 
-events.on("info", message => {
-  let random = Math.random() * 200;
-  notifications.value.push({
-    id: random,
-    message
-  });
+events.on("info", notif => {
+  notifications.value.push(notif);
 
   setTimeout(() => {
-    let index = notifications.value.findIndex(x => x.id === random);
+    let index = notifications.value.findIndex(x => x.id === notif.id);
     notifications.value.splice(index, 1);
-  }, 4000);
+  },  7000);
 })
 </script>
 
@@ -33,9 +24,10 @@ events.on("info", message => {
     <div
       v-for="notif in notifications"
       :key="notif.id"
-      class="bg-dark border border-neutral-900 font-inter rounded"
+      class="bg-dark border border-neutral-900 font-inter rounded-lg p-4"
     >
-      <p class="p-2">{{ notif.message }}</p>
+    <h1 class="text-lg text-pink-p">{{ notif.title }}</h1>
+      <p class="text-sm">{{ notif.message }}</p>
     </div>
   </TransitionGroup>
 </template>
