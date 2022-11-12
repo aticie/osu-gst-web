@@ -5,6 +5,7 @@ import { useUserStore } from '../../store';
 import { notify } from '../../hooks/useNotify';
 import Tick from '../icons/circle/Tick.vue';
 import axios from 'axios';
+import Close from '../icons/circle/Close.vue';
 
 const invites = await getInvites();
 const userStore = useUserStore();
@@ -28,6 +29,10 @@ const inviteHandler = async (team_hash: string) => {
     });
   }
 }
+
+const deleteInvite = async (team_hash: string) => {
+
+}
 </script>
 
 <template>
@@ -43,6 +48,9 @@ const inviteHandler = async (team_hash: string) => {
 
     <button @click="() => inviteHandler(invite.team.team_hash)">
       <Tick class="hover:fill-green-500" />
+    </button>
+    <button @click="() => deleteInvite(invite.team.team_hash)">
+      <Close class="hover:bg-red-500" />
     </button>
   </div>
 </template>

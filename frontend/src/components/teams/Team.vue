@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const players = props.team.players;
 const averageRank = players
-  .map(player => player.osu_global_rank ? player.osu_global_rank : 0)
+  .map(player => player.bws_rank ? player.bws_rank : 0)
   .reduce((prev, curr) => prev + curr) / players.length;
 </script>
 
