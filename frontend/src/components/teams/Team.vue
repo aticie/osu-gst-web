@@ -19,7 +19,7 @@ const averageRank = players
       <div class="w-full relative">
         <slot name="cover">
           <img 
-            :src="'/artwork.jpg'" 
+            :src="team.avatar_url || '/artwork.jpg'" 
             class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full" 
           />
         </slot>
