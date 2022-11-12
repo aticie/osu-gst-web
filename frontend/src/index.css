@@ -76,6 +76,11 @@
     @apply flex flex-col gap-4;
   }
 
+  .info-container a {
+    @apply underline;
+    @apply decoration-pink-p decoration-2;
+  }
+
   .info-container p {
     font-family: Inter;
     @apply text-sm;
