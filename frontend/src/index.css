@@ -100,13 +100,9 @@
     @apply font-bold 2xl:text-xl;
   }
 
-  .info-content ul, ol {
+  .info-content ol {
     @apply pl-2 ml-4 mt-2;
-    @apply flex flex-col gap-4;
-  }
-
-  .info-content ul {
-    @apply flex flex-row;
+    @apply flex flex-col gap-2;
   }
 
   .info-content ol {
@@ -126,15 +122,19 @@
     @apply transition-colors;
   }
 
-  .organisers li {
+  .staff {
+    @apply flex flex-wrap;
+  }
+
+  .staff li {
     @apply flex items-center gap-2;
   }
 
-  .organisers img {
+  .staff img {
     @apply h-12 rounded-lg;
   }
 
-  .organisers p {
+  .staff p {
     @apply text-xl;
   }
 }

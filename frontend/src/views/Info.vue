@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import InfoStaff from '../components/info/InfoStaff.vue';
+</script>
+
 <template>
   <div class="flex flex-col gap-10 pb-10">
     <section class="info-container">
@@ -127,16 +131,191 @@
         <div>
           <h1>ORGANISER</h1>
 
-          <ul class="organisers">
-            <li>
-              <img src="https://a.ppy.sh/7537133" />
-              <p>megumic</p>
-            </li>
-            <li>
-              <img src="https://a.ppy.sh/8301957" />
-              <p>_gt</p>
-            </li>
-          </ul>
+          <InfoStaff 
+            :users="[
+              {
+                id: 7537133,
+                username: 'megumic'
+              },
+              {
+                id: 8301957,
+                username: '_gt'
+              }
+            ]"
+          />
+        </div>
+
+        <div>
+          <h1>CUSTOM MAPPER</h1>
+          
+          <InfoStaff 
+            :users="[
+              {
+                id: 7605060,
+                username: '-Eresh'
+              },
+              {
+                id: 2427693,
+                username: '[ -Scarlet- ]'
+              },
+              {
+                id: 19270348,
+                username: 'Amami Yuu'
+              },
+              {
+                id: 5312202,
+                username: 'bongo'
+              },
+              {
+                id: 689997,
+                username: 'captin1'
+              },
+              {
+                id: 18730172,
+                username: 'chaser01'
+              },
+              {
+                id: 5286213,
+                username: 'Deppyforce'
+              },
+              {
+                id: 12704035,
+                username: 'Fsjallink'
+              },
+              {
+                id: 2123087,
+                username: 'hehe'
+              },
+              {
+                id: 11194087,
+                username: 'Ixcors'
+              },
+              {
+                id: 7823498,
+                username: 'Kotoha'
+              },
+              {
+                id: 5404892,
+                username: 'Kowari'
+              },
+              {
+                id: 10734032,
+                username: 'Mrgglock'
+              },
+              {
+                id: 5875419,
+                username: 'newton-'
+              },
+              {
+                id: 1843447,
+                username: 'oneplusone'
+              },
+              {
+                id: 6639059,
+                username: 'P4ndemonium'
+              },
+              {
+                id: 10820856,
+                username: 'Shirahane Suou'
+              },
+              {
+                id: 9162649,
+                username: 'Slyze-'
+              },
+              {
+                id: 2500099,
+                username: 'sorciere'
+              },
+              {
+                id: 6151332,
+                username: 'squirrelpascals'
+              },
+              {
+                id: 3388082,
+                username: 'ThunderBird2678'
+              },
+              {
+                id: 2715118,
+                username: 'Voltaeyx'
+              },
+              {
+                id: 7904667,
+                username: 'xidorn'
+              },
+            ]"
+          />
+        </div>
+
+        <div>
+          <h1>Developer</h1>
+          
+          <InfoStaff 
+            :users="[
+              {
+                id: 5642779,
+                username: 'heyronii'
+              },
+              {
+                id: 10440852,
+                username: 'Sibyl'
+              }
+            ]"
+          />
+        </div>
+
+        <div>
+          <h1>GFX Artist</h1>
+
+          <InfoStaff 
+            :users="[
+              {
+                id: 8244635,
+                username: 'Hecatia'
+              },
+              {
+                id: 27014435,
+                username: 'iroha_2807'
+              },
+              {
+                id: 7537133,
+                username: 'megumic'
+              },
+              {
+                id: 11825315,
+                username: 'NoPengoo'
+              },
+            ]"
+          />
+        </div>
+
+        <div>
+          <h1>On-site Staff</h1>
+
+          <InfoStaff 
+            :users="[
+              {
+                id: 8547527,
+                username: 'Dreamy'
+              },
+              {
+                id: 10592989,
+                username: 'ellyn'
+              }
+            ]"
+          />
+        </div>
+
+        <div>
+          <h1>Wiki Editor</h1>
+
+          <InfoStaff 
+            :users="[
+              {
+                id: 8301957,
+                username: '_gt'
+              }
+            ]"
+          />
         </div>
       </div>
     </section>
