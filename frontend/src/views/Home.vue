@@ -17,9 +17,11 @@ const routes = router.options.routes.filter(route => (
       <GSTLive />
 
       <div class="flex flex-wrap 2xl:gap-10">
-        <AppCard title="SIGN UP" description="YOUR TEAM!">
-          <Triangles />
-        </AppCard>
+        <RouterLink to="/teams">
+          <AppCard title="SIGN UP" description="YOUR TEAM!">
+            <Triangles />
+          </AppCard>
+        </RouterLink>
         <a href="https://discord.gg/3YXF2UCEYs">
           <AppCard title="DISCORD" description="FOR MORE INFO!">
             <Discord />
