@@ -12,7 +12,9 @@ const userStore = useUserStore();
 const inviteHandler = async (team_hash: string) => {
   try {
     const response = await axios.post<User>("/team/join", {}, {
-      params: team_hash
+      params: {
+        team_hash
+      }
     });
 
     if (!response.data) return;
