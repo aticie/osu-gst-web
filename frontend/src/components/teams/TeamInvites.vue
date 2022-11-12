@@ -50,9 +50,9 @@ const deleteInvite = async (team_hash: string) => {
       <button @click="() => inviteHandler(invite.team.team_hash)">
         <Tick class="hover:fill-green-500" />
       </button>
-      <button @click="() => deleteInvite(invite.team.team_hash)">
+      <!-- <button @click="() => deleteInvite(invite.team.team_hash)">
         <Close class="hover:fill-red-500" />
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
