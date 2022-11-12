@@ -100,10 +100,17 @@
     @apply font-bold 2xl:text-xl;
   }
 
-  .info-content ol {
-    @apply pl-2 ml-2 mt-2;
+  .info-content ul, ol {
+    @apply pl-2 ml-4 mt-2;
     @apply flex flex-col gap-4;
-    @apply border-l-2 border-l-purple-p;
+  }
+
+  .info-content ul {
+    @apply flex flex-row;
+  }
+
+  .info-content ol {
+    @apply list-disc;
   }
 
   .input-box {
@@ -117,6 +124,18 @@
     @apply font-inter text-sm;
     @apply p-2 gap-2 rounded;
     @apply transition-colors;
+  }
+
+  .organisers li {
+    @apply flex items-center gap-2;
+  }
+
+  .organisers img {
+    @apply h-12 rounded-lg;
+  }
+
+  .organisers p {
+    @apply text-xl;
   }
 }
 

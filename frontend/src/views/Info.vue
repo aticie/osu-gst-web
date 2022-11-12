@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-10">
+  <div class="flex flex-col gap-10 pb-10">
     <section class="info-container">
       <div class="info-head">
         <h1>SCHEDULES</h1>
@@ -72,11 +72,63 @@
 
     <section class="info-container">
       <div class="info-head">
-        <h1>GENERAL RULES</h1>
+        <h1>PRIZES</h1>
+        <p>Per player, w00t!!</p>
       </div>
 
       <div class="info-content">
-        <!-- Rules will be here -->
+        <div>
+          <h1>1ST PLACE</h1>
+
+          <ol>
+            <li>
+              <p>Unique Profile Badge</p>
+            </li>
+            <li>
+              <p>Physical Medal</p>
+            </li>
+            <li>
+              <p>12 months of osu!supporter</p>
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h1>2ND PLACE</h1>
+
+          <ol>
+            <li>
+              <p>Physical Medal</p>
+            </li>
+            <li>
+              <p>6 months of osu!supporter</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-container">
+      <div class="info-head">
+        <h1>STAFF</h1>
+        <p>We do... Stuff.</p>
+      </div>
+
+      <div class="info-content">
+        <div>
+          <h1>ORGANISER</h1>
+
+          <ul class="organisers">
+            <li>
+              <img src="https://a.ppy.sh/7537133" />
+              <p>megumic</p>
+            </li>
+            <li>
+              <img src="https://a.ppy.sh/8301957" />
+              <p>_gt</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   </div>
