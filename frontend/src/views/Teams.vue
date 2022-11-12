@@ -69,9 +69,9 @@ const uploadHandler = async () => {
       title: error.message,
       message: error.response?.data.detail
     });
+  } finally {
+    isDisabled.value = false;
   }
-
-  isDisabled.value = false;
 }
 </script>
 
