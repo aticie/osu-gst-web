@@ -14,6 +14,8 @@ try {
 
   if (response.data) {
     userStore.user = response.data;
+  } else {
+    userStore.user = null
   }
 } catch {
   
