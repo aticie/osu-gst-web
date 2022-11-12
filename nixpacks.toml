@@ -1,4 +1,4 @@
 providers = ["rust", "node"]
 
 [start]
-  cmd = ["cd ./frontend && npm run build && cd .. && cd ./server && cargo run --release"]
+  cmd = "cd ./frontend && npm run build && cd .. && cd ./server && cargo run --release"
