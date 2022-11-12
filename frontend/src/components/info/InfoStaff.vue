@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <ul class="flex flex-wrap justify-start items-start"> 
     <template v-for="user in users">
-      <li class="flex basis-1/4">
+      <li class="flex xl:basis-1/4">
         <a 
           :href="`https://osu.ppy.sh/users/${user.id}`"
           class="flex grow gap-2 items-center hover:bg-neutral-800 p-2 rounded-lg"
