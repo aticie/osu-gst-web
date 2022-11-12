@@ -46,11 +46,13 @@ const deleteInvite = async (team_hash: string) => {
       <p class="text-purple-s">{{ invite.team.title }}</p>
     </div>
 
-    <button @click="() => inviteHandler(invite.team.team_hash)">
-      <Tick class="hover:fill-green-500" />
-    </button>
-    <button @click="() => deleteInvite(invite.team.team_hash)">
-      <Close class="hover:bg-red-500" />
-    </button>
+    <div class="flex gap-2">
+      <button @click="() => inviteHandler(invite.team.team_hash)">
+        <Tick class="hover:fill-green-500" />
+      </button>
+      <button @click="() => deleteInvite(invite.team.team_hash)">
+        <Close class="hover:fill-red-500" />
+      </button>
+    </div>
   </div>
 </template>
