@@ -20,9 +20,11 @@ const routes = router.options.routes.filter(route => (
         <AppCard title="SIGN UP" description="YOUR TEAM!">
           <Triangles />
         </AppCard>
-        <AppCard title="DISCORD" description="FOR MORE INFO!">
-          <Discord />
-        </AppCard>
+        <a href="https://discord.gg/3YXF2UCEYs">
+          <AppCard title="DISCORD" description="FOR MORE INFO!">
+            <Discord />
+          </AppCard>
+        </a>
       </div>
 
       <div class="flex flex-wrap justify-center gap-4">
