@@ -172,6 +172,6 @@
     margin-top: 68px;
 
     @apply overflow-x-hidden;
-    @apply md:mt-0;
+    @apply 2xl:mt-0;
   }
 }
