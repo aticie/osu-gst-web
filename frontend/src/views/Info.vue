@@ -65,6 +65,8 @@
         <p>The entire bracket stage of GST:LIVE 2022 will be held in the main event space inside Esports Experience
           Center
         </p>
+
+        <img src="../assets/Gam3GG.png" alt="gam3gg image" class="w-5/6 rounded-lg mx-auto" />
       </div>
     </section>
 
