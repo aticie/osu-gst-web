@@ -52,7 +52,11 @@ const isPlayerInvited = (osu_id: number) => {
       <template v-for="player in filteredPlayers">
         <div v-if="!isPlayerInvited(player.osu_id)" class="flex items-center gap-2 font-inter hover:bg-neutral-900">
           <img :src="player.osu_avatar_url" class="h-10 aspect-square rounded-lg" />
-          <p>{{ player.osu_username }}</p>
+          
+          <div>
+            <p>{{ player.osu_username }}</p>
+            <p class="text-xs text-pink-p">Bws Rank - {{ player.bws_rank }}</p>
+          </div>
 
           <button class="ml-auto mr-2 bg-neutral-800 hover:bg-pink-p transition-colors p-1 px-6 rounded"
             @click="() => invitePlayer(player)">
