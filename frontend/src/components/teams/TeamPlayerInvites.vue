@@ -16,7 +16,7 @@ var invites = await getTeamInvites(userStore.user?.team?.team_hash);
 const filteredPlayers = ref(players.data.filter(player => {
   return (player.discord_id &&
     userStore.user?.osu_id !== player.osu_id &&
-    !player.team
+    !player.team && !player.is_admin
   )
 }) || [])
 
