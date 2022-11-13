@@ -1,1 +1,1 @@
-export { getInvites } from "./invite";
+export { getMeInvites as getInvites } from "./invite";

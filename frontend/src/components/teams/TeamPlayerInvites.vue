@@ -1,22 +1,16 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ref } from 'vue';
+import { getTeamInvites } from '../../api/invite';
 import { notify } from '../../hooks/useNotify';
-import { Invite } from '../../Models/Invite';
 import { User } from '../../Models/User';
 import { useUserStore } from '../../store';
 
 const userStore = useUserStore();
 const userInvited = ref(0);
 
-var [players, invites] = await Promise.all([
-  axios.get<User[]>("/users"),
-  axios.get<Invite[]>("/team/invites", {
-    params: {
-      team_hash: userStore.user?.team?.team_hash
-    }
-  })
-]);
+const players = await axios.get<User[]>("/users");
+var invites = await getTeamInvites(userStore.user?.team?.team_hash);
 
 
 const filteredPlayers = ref(players.data.filter(player => {
@@ -38,11 +32,7 @@ const invitePlayer = async (user: User) => {
       title: "Team Invite",
       message: `Sent invite to ${response.data.invited.osu_username}`
     });
-    invites = await axios.get<Invite[]>("/team/invites", {
-      params: {
-        team_hash: userStore.user?.team?.team_hash
-      }
-    })
+    invites.push(response.data)
     userInvited.value += 1;
 
   } catch (error) {
@@ -67,11 +57,7 @@ const inviteCancel = async (user: User) => {
       title: "Team Invite",
       message: `Canceled invite to ${user.osu_username}`
     });
-    invites = await axios.get<Invite[]>("/team/invites", {
-      params: {
-        team_hash: userStore.user?.team?.team_hash
-      }
-    })
+    invites = response.data
     userInvited.value += 1;
     } catch (error) {
       if (!axios.isAxiosError(error)) return;
@@ -84,7 +70,7 @@ const inviteCancel = async (user: User) => {
 }
 
 const isPlayerInvited = (osu_id: number) => {
-  return invites.data.find(invite => invite.invited.osu_id === osu_id);
+  return invites.find(invite => invite.invited.osu_id === osu_id);
 }
 </script>
 

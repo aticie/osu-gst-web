@@ -6,13 +6,15 @@ import { notify } from '../../hooks/useNotify';
 import Tick from '../icons/circle/Tick.vue';
 import axios from 'axios';
 import Close from '../icons/circle/Close.vue';
+import { ref } from 'vue';
 
-const invites = await getInvites();
+var invites = await getInvites();
 const userStore = useUserStore();
+const inviteUpdate = ref(0);
 
 const inviteAccept = async (team_hash: string) => {
   try {
-    const response = await axios.post<User>("/team/join", {}, {
+    const response = await axios.post<User>("/user/team/join", {}, {
       params: {
         team_hash
       }
@@ -24,7 +26,7 @@ const inviteAccept = async (team_hash: string) => {
     if (!axios.isAxiosError(error)) return;
 
     notify({
-      title: "Invite",
+      title: "Invite Accept Failed.",
       message: error.response?.data.detail
     });
   }
@@ -32,18 +34,18 @@ const inviteAccept = async (team_hash: string) => {
 
 const inviteDecline = async (team_hash: string) => {
   try {
-    const response = await axios.post<User>("/team/invite/decline", {}, {
+    const response = await axios.post<User>("/user/invite/decline", {}, {
       params: {
         team_hash
       }
     });
-    if (!response.data) return;
-    userStore.user = response.data;
+  invites = await getInvites();
+  inviteUpdate.value += 1;
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
 
     notify({
-      title: "Invite",
+      title: "Invite Decline Failed.",
       message: error.response?.data.detail
     });
   }
@@ -52,7 +54,7 @@ const inviteDecline = async (team_hash: string) => {
 
 <template>
   <div 
-    v-for="invite in invites"
+    v-for="invite in invites" :key="inviteUpdate"
     class="bg-dark flex-center p-2"
   >
     <div class="flex-center grow flex-wrap gap-x-2">
