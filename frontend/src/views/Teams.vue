@@ -19,8 +19,21 @@ const teams = ref<Team[]>([]);
 const isPlayersOpen = ref(false);
 const isDisabled = ref(false);
 
+const getAverageRank = (team: Team) => {
+  const averageRank = team.players  
+    .map(player => player.bws_rank ? player.bws_rank : 0)
+    .reduce((prev, curr) => prev + curr) / team.players.length;
+
+  return averageRank;
+}
+
 try {
   const response = await axios.get<Team[]>("/teams");
+
+  response.data.sort((a, b) => {
+    return getAverageRank(a) - getAverageRank(b)
+  });
+
   teams.value = response.data;
 } catch (error) {
   teams.value = [];

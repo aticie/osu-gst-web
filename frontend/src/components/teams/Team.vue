@@ -7,6 +7,8 @@ const props = defineProps<{
   team: Team
 }>();
 
+
+// this calculation happens twice. we might need to refactor some stuff
 const players = props.team.players;
 const averageRank = players
   .map(player => player.bws_rank ? player.bws_rank : 0)
