@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { User } from '../../Models/User';
+import { Invite } from '../../Models/Invite';
 import { getInvites } from '../../api';
 import { useUserStore } from '../../store';
 import { notify } from '../../hooks/useNotify';
 import Tick from '../icons/circle/Tick.vue';
-import axios from 'axios';
 import Close from '../icons/circle/Close.vue';
-import { ref } from 'vue';
+import axios from 'axios';
 
-var invites = await getInvites();
+const invites = ref<Invite[]>(await getInvites());
 const userStore = useUserStore();
-const inviteUpdate = ref(0);
 
 const inviteAccept = async (team_hash: string) => {
   try {
@@ -34,13 +34,13 @@ const inviteAccept = async (team_hash: string) => {
 
 const inviteDecline = async (team_hash: string) => {
   try {
-    const response = await axios.delete<User>("/user/invite", {
+    await axios.delete<User>("/user/invite", {
       params: {
         team_hash
       }
     });
-  invites = await getInvites();
-  inviteUpdate.value += 1;
+
+  invites.value = await getInvites();
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
 
@@ -54,7 +54,7 @@ const inviteDecline = async (team_hash: string) => {
 
 <template>
   <div 
-    v-for="invite in invites" :key="inviteUpdate"
+    v-for="invite in invites"
     class="bg-dark flex-center p-2"
   >
     <div class="flex-center grow flex-wrap gap-x-2">

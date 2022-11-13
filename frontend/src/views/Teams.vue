@@ -2,11 +2,11 @@
 import { computed, ref, watch } from "vue";
 import { notify } from "../hooks/useNotify";
 
-import { Team } from "../Models/Team";
+import { PlayerlessTeam, Team } from "../Models/Team";
 import { User } from "../Models/User";
 
 import { useUserStore } from "../store";
-import { uploadAvatar } from "../utils";
+import { getFileInputElement } from "../utils";
 import axios from "axios";
 
 import { Plus, Upload } from "../components/icons";
@@ -79,21 +79,46 @@ const leaveTeam = async () => {
 }
 
 const uploadHandler = async () => {
-  isDisabled.value = true;
+  let inputElement = getFileInputElement();
 
-  try {
-    const response = await uploadAvatar();
-    userStore.user!.team = response;
-  } catch (error) {
-    if (!axios.isAxiosError(error)) return;
+  inputElement.addEventListener("change", async () => {
+    if (!inputElement.files) return;
 
-    notify({
-      title: error.message,
-      message: error.response?.data.detail
-    });
-  } finally {
-    isDisabled.value = false;
-  }
+    let file = inputElement.files[0];
+    if (file.size / 1000 > 10_000) {
+      notify({
+        title: "Banner Upload",
+        message: "File size cannot exceed 10MB"
+      });
+
+      return;
+    }
+
+    isDisabled.value = true;
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await axios.post<PlayerlessTeam>(
+        "/avatar/upload",
+        formData
+      );
+
+      userStore.user!.team = response.data;
+    } catch (error) {
+      if (!axios.isAxiosError(error)) return;
+
+      notify({
+        title: error.message,
+        message: error.response?.data.detail
+      });
+    } finally {
+      isDisabled.value = false;
+    }
+  })
+
+  inputElement.click();
+  isDisabled.value = false;
 }
 </script>
 
