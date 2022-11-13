@@ -34,7 +34,7 @@ const inviteAccept = async (team_hash: string) => {
 
 const inviteDecline = async (team_hash: string) => {
   try {
-    const response = await axios.post<User>("/user/invite/decline", {}, {
+    const response = await axios.delete<User>("/user/invite", {
       params: {
         team_hash
       }

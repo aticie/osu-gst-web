@@ -60,7 +60,7 @@ const showPlayers = async () => {
 
 const leaveTeam = async () => {
   try {
-    const response = await axios.post<User>("/team/leave");
+    const response = await axios.delete<User>("/team");
 
     teams.value.splice(
       teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),

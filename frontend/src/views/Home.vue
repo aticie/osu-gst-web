@@ -4,11 +4,14 @@ import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import AppSuspense from "../components/AppSuspense.vue";
 import { Triangles, Discord, GSTLive } from "../components/icons";
+import { useUserStore } from "../store";
 
 const router = useRouter();
 const routes = router.options.routes.filter(route => (
   route.path !== "/"
 ))
+const userStore = useUserStore();
+
 </script>
 
 <template>

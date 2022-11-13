@@ -26,8 +26,8 @@ const averageRank = players
       </div>
 
       <div class="w-full truncate">
-        <p class="text-sm">Avg Rank #{{ Math.round(averageRank) }}</p>
         <p class="text-xl break-words truncate">{{ team.title }}</p>
+        <p class="text-sm">Avg. BWS #{{ Math.round(averageRank) }}</p>
       </div>
     </template>
 

@@ -305,18 +305,6 @@ import InfoStaff from '../components/info/InfoStaff.vue';
           />
         </div>
 
-        <div>
-          <h1>Wiki Editor</h1>
-
-          <InfoStaff 
-            :users="[
-              {
-                id: 8301957,
-                username: '_gt'
-              }
-            ]"
-          />
-        </div>
       </div>
     </section>
 

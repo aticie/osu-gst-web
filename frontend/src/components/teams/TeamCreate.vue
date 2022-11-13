@@ -22,7 +22,7 @@ const createTeam = async () => {
 
   isDisabled.value = true;
   try {
-    const response = await axios.post<Team>("/team/create", {
+    const response = await axios.post<Team>("/team", {
       title: teamName.value
     });
 

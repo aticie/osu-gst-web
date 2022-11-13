@@ -47,7 +47,7 @@ const invitePlayer = async (user: User) => {
 
 const inviteCancel = async (user: User) => {
   try {
-    const response = await axios.post("/team/invite/cancel", {}, {
+    const response = await axios.delete("/team/invite", {
       params: {
         other_user_osu_id: user.osu_id
       }

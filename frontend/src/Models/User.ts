@@ -21,7 +21,10 @@ export interface DiscordUser extends UserBase {
   discord_tag: string | undefined
 }
 
-export interface UserCreate extends OsuUser, DiscordUser {}
+export interface UserCreate extends OsuUser, DiscordUser {
+  is_banned: boolean,
+  is_admin: boolean
+}
 export interface TeamlessUser extends UserCreate {}
 
 export interface User extends UserCreate {
