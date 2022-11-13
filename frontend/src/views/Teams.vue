@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { notify } from "../hooks/useNotify";
 
 import { PlayerlessTeam, Team } from "../Models/Team";
+import { CalculatedTeam } from "../Models/Custom";
 import { User } from "../Models/User";
 
 import { useUserStore } from "../store";
@@ -15,7 +16,7 @@ import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
 
 const userStore = useUserStore();
-const teams = ref<Team[]>([]);
+const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
 const isDisabled = ref(false);
 
@@ -27,15 +28,27 @@ const getAverageRank = (team: Team) => {
   return averageRank;
 }
 
-try {
+const getTeams = async () => {
   const response = await axios.get<Team[]>("/teams");
-  let filteredTeams = response.data.filter(team => team.players.length >= 1);
 
-  filteredTeams.sort((a, b) => {
-    return getAverageRank(a) - getAverageRank(b)
+  let teamsWithBwsRank: CalculatedTeam[] = response.data.flatMap(team => {
+    if (team.players.length < 1) return [];
+
+    return {
+      ...team,
+      averageBwsRank: getAverageRank(team)
+    }
+  })
+
+  teamsWithBwsRank.sort((a, b) => {
+    return a.averageBwsRank - b.averageBwsRank
   });
 
-  teams.value = filteredTeams;
+  return teamsWithBwsRank;
+}
+
+try {
+  teams.value = await getTeams();
 } catch (error) {
   teams.value = [];
 
@@ -51,8 +64,7 @@ watch(
     if (previous?.title === current?.title) return;
 
     try {
-      const response = await axios.get<Team[]>("/teams");
-      teams.value = response.data;
+      teams.value = await getTeams();
     } catch (error) {
       teams.value = [];
 
