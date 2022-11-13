@@ -10,13 +10,8 @@ import { User } from "../Models/User";
 const userStore = useUserStore();
 
 try {
-  const response = await axios.get<User | null>("/users/me");
-
-  if (response.data) {
-    userStore.user = response.data;
-  } else {
-    userStore.user = null
-  }
+  const response = await axios.get<User>("/users/me");
+  userStore.user = response.data;
 } catch {
   
 }
