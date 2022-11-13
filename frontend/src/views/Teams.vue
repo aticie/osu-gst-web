@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { notify } from "../hooks/useNotify";
 
 import { PlayerlessTeam, Team } from "../Models/Team";
+import { CalculatedTeam } from "../Models/Custom";
 import { User } from "../Models/User";
 
 import { useUserStore } from "../store";
@@ -15,26 +16,39 @@ import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
 
 const userStore = useUserStore();
-const teams = ref<Team[]>([]);
+const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
 const isDisabled = ref(false);
 
-// const getAverageRank = (team: Team) => {
-//   const averageRank = team.players  
-//     .map(player => player.bws_rank ? player.bws_rank : 0)
-//     .reduce((prev, curr) => prev + curr) / team.players.length;
+const getAverageRank = (team: Team) => {
+  const averageRank = team.players  
+    .map(player => player.bws_rank ? player.bws_rank : 0)
+    .reduce((prev, curr) => prev + curr) / team.players.length;
 
-//   return averageRank;
-// }
+  return averageRank;
+}
 
-try {
+const getTeams = async () => {
   const response = await axios.get<Team[]>("/teams");
 
-  // response.data.sort((a, b) => {
-  //   return getAverageRank(a) - getAverageRank(b)
-  // });
+  let teamsWithBwsRank: CalculatedTeam[] = response.data.flatMap(team => {
+    if (team.players.length < 1) return [];
 
-  teams.value = response.data;
+    return {
+      ...team,
+      averageBwsRank: getAverageRank(team)
+    }
+  })
+
+  teamsWithBwsRank.sort((a, b) => {
+    return a.averageBwsRank - b.averageBwsRank
+  });
+
+  return teamsWithBwsRank;
+}
+
+try {
+  teams.value = await getTeams();
 } catch (error) {
   teams.value = [];
 
@@ -50,8 +64,7 @@ watch(
     if (previous?.title === current?.title) return;
 
     try {
-      const response = await axios.get<Team[]>("/teams");
-      teams.value = response.data;
+      teams.value = await getTeams();
     } catch (error) {
       teams.value = [];
 
@@ -180,7 +193,8 @@ const uploadHandler = async () => {
     </div>
 
     <div class="flex flex-col gap-6 w-full">
-      <h1 class="font-bold text-2xl text-center">TEAMS</h1>
+      <h1 class="font-bold text-2xl text-center">TEAMS - {{ teams.length }}</h1>
+
       <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
         <template v-for="team in teams">
           <TeamVue v-if="team.title != userTeam?.title" :team="team" />

@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { Team } from '../../Models/Team';
+import { CalculatedTeam } from '../../Models/Custom';
 import TeamBase from './TeamBase.vue';
 import TeamUser from './TeamUser.vue';
 
-const props = defineProps<{
-  team: Team
+defineProps<{
+  team: CalculatedTeam
 }>();
-
-
-// this calculation happens twice. we might need to refactor some stuff
-const players = props.team.players;
-const averageRank = players
-  .map(player => player.bws_rank ? player.bws_rank : 0)
-  .reduce((prev, curr) => prev + curr) / players.length;
 </script>
 
 <template>
@@ -29,13 +22,13 @@ const averageRank = players
 
       <div class="w-full truncate">
         <p class="text-xl break-words truncate">{{ team.title }}</p>
-        <p class="text-sm">Avg. BWS #{{ Math.round(averageRank) }}</p>
+        <p class="text-sm">Avg. BWS #{{ Math.round(team.averageBwsRank) }}</p>
       </div>
     </template>
 
     <template v-slot:players>
       <div class="flex flex-wrap gap-2">
-        <TeamUser v-for="player in players" :player="player" />
+        <TeamUser v-for="player in team.players" :player="player" />
       </div>
 
       <slot name="options"></slot>
