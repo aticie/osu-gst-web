@@ -10,7 +10,7 @@ import Close from '../icons/circle/Close.vue';
 const invites = await getInvites();
 const userStore = useUserStore();
 
-const inviteHandler = async (team_hash: string) => {
+const inviteAccept = async (team_hash: string) => {
   try {
     const response = await axios.post<User>("/team/join", {}, {
       params: {
@@ -30,8 +30,23 @@ const inviteHandler = async (team_hash: string) => {
   }
 }
 
-const deleteInvite = async (team_hash: string) => {
+const inviteDecline = async (team_hash: string) => {
+  try {
+    const response = await axios.post<User>("/team/invite/decline", {}, {
+      params: {
+        team_hash
+      }
+    });
+    if (!response.data) return;
+    userStore.user = response.data;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
 
+    notify({
+      title: "Invite",
+      message: error.response?.data.detail
+    });
+  }
 }
 </script>
 
@@ -47,12 +62,12 @@ const deleteInvite = async (team_hash: string) => {
     </div>
 
     <div class="flex gap-2">
-      <button @click="() => inviteHandler(invite.team.team_hash)">
+      <button @click="() => inviteAccept(invite.team.team_hash)">
         <Tick class="hover:fill-green-500" />
       </button>
-      <!-- <button @click="() => deleteInvite(invite.team.team_hash)">
+      <button @click="() => inviteDecline(invite.team.team_hash)">
         <Close class="hover:fill-red-500" />
-      </button> -->
+      </button>
     </div>
   </div>
 </template>

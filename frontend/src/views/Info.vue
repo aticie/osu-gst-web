@@ -332,7 +332,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
 
           <ol>
             <li>
-              <p>Registration will be through <a href="https://gstlive.org/">this site</a></p>
+              <p>Registration will be through <a href="https://gstlive.org/">this website</a></p>
             </li>
             <li>
               <p><a href="https://github.com/underscoregt/osu-wiki/tree/master/wiki/Tournaments/Badge-weighted_seeding">Badge-weighted seeding</a>(BWS) will be used with the formula of rank^(0.9937^(badges^2)).</p>
