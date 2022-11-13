@@ -38,6 +38,20 @@ import InfoStaff from '../components/info/InfoStaff.vue';
         <div>
           <h1>OFFLINE PHASE</h1>
           <p>17TH DECEMBER 14:00 - 19:40</p>
+          <ol>
+            <li>
+              <h1>Quarterfinals Stage</h1>
+              <p>14:00 - 16:40</p>
+            </li>
+            <li>
+              <h1>Semifinals Stage</h1>
+              <p>16:40 - 18:40</p>
+            </li>
+            <li>
+              <h1>Finals Stage</h1>
+              <p>18:40 - 19:40</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
@@ -129,7 +143,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
 
       <div class="info-content">
         <div>
-          <h1>ORGANISER</h1>
+          <h1>Organiser</h1>
 
           <InfoStaff 
             :users="[
@@ -146,7 +160,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
         </div>
 
         <div>
-          <h1>CUSTOM MAPPER</h1>
+          <h1>Custom Mapper</h1>
           
           <InfoStaff 
             :users="[
