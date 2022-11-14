@@ -17,7 +17,7 @@ const routes = router.options.routes.filter(route => (
     <div class="flex-center flex-col grow p-4 gap-6 2xl:gap-8">
       <GSTLive />
 
-      <div class="flex flex-wrap 2xl:gap-10">
+      <div class="flex flex-wrap justify-center 2xl:gap-10">
         <RouterLink to="/teams">
           <AppCard title="SIGN UP" description="YOUR TEAM!">
             <Triangles />
