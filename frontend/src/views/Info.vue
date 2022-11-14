@@ -82,7 +82,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
         </p>
 
         <img src="../assets/mrtMap.png" alt="mrt map"
-          class="w-5/6 rounded-lg mx-auto" />
+          class="w-5/6 rounded-lg mx-auto" loading="lazy" />
 
         <div>
           <h1>ESPORTS EXPERIENCE CENTER</h1>
@@ -93,7 +93,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
           Center
         </p>
 
-        <img src="../assets/Gam3GG.png" alt="gam3gg image" class="w-5/6 rounded-lg mx-auto" />
+        <img src="../assets/Gam3GG.png" alt="gam3gg image" class="w-5/6 rounded-lg mx-auto" loading="lazy" />
       </div>
     </section>
 
