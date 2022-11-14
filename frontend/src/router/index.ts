@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 import Home from "../views/Home.vue";
 import Teams from "../views/Teams.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -19,6 +20,10 @@ const routes: RouteRecordRaw[] = [
     name: "TEAMS",
     component: Teams
   },
+  {
+    path: "/:pathMatch(.*)*",
+    component: NotFound
+  }
 ];
 
 const router = createRouter({

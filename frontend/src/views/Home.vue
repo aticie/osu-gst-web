@@ -31,8 +31,11 @@ const routes = router.options.routes.filter(route => (
       </div>
 
       <div class="flex flex-wrap justify-center gap-4">
-        <RouterLink v-for="route in routes" :to="route.path" class="route-link">
-          {{ route.name }}
+        <RouterLink to="/info" class="route-link">
+          INFO
+        </RouterLink>
+        <RouterLink to="/teams" class="route-link">
+          TEAMS
         </RouterLink>
       </div>
 
