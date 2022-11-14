@@ -15,7 +15,8 @@ defineProps<{
         <slot name="cover">
           <img 
             :src="team.avatar_url || '/artwork.jpg'" 
-            class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full" 
+            class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full"
+            loading="lazy"
           />
         </slot>
       </div>
