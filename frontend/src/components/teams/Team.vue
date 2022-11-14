@@ -33,8 +33,10 @@ defineProps<{
       </div>
 
       <div 
-        class="absolute inset-0 bg-dark
-          hidden group-hover:flex-center"
+        class="absolute top-0 inset-x-0 p-2 bg-red-500 rounded-lg
+          -translate-y-full group-hover:translate-y-0
+          transition-all text-center
+        "
         v-if="userStore.user?.team?.team_hash !== team.team_hash"
       >
         Average bws rank is below 2000
