@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { CalculatedTeam } from '../../Models/Custom';
+import { useUserStore } from '../../store';
+import { Danger } from "../icons";
 import TeamBase from './TeamBase.vue';
 import TeamUser from './TeamUser.vue';
-import { Danger } from "../icons";
+
+const userStore = useUserStore();
 
 defineProps<{
   team: CalculatedTeam
@@ -23,7 +26,7 @@ defineProps<{
       </div>
 
       <div class="w-full truncate">
-        <Danger v-if="team.averageBwsRank < 2000" class="absolute opacity-40 w-4/5 h-4/5" />
+        <Danger v-if="team.averageBwsRank < 2000" class="absolute opacity-40 w-4/5 h-4/5 pointer-events-none" />
 
         <p class="text-xl break-words truncate">{{ team.title }}</p>
         <p class="text-sm">Avg. BWS #{{ Math.round(team.averageBwsRank) }}</p>
@@ -31,7 +34,9 @@ defineProps<{
 
       <div 
         class="absolute inset-0 bg-dark
-          hidden group-hover:flex-center">
+          hidden group-hover:flex-center"
+        v-if="userStore.user?.team?.team_hash !== team.team_hash"
+      >
         Average bws rank is below 2000
       </div>
     </template>
