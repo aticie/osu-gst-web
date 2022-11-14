@@ -26,7 +26,7 @@ defineProps<{
       </div>
 
       <div class="w-full truncate">
-        <Danger v-if="team.averageBwsRank < 2000" class="absolute opacity-40 w-4/5 h-4/5 pointer-events-none" />
+        <Danger v-if="team.averageBwsRank < 2000" class="absolute opacity-10 w-4/5 h-4/5 pointer-events-none" />
 
         <p class="text-xl break-words truncate">{{ team.title }}</p>
         <p class="text-sm">Avg. BWS #{{ Math.round(team.averageBwsRank) }}</p>
