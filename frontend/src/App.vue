@@ -23,7 +23,7 @@ const isMainRoute = computed(() => route.path === "/");
       <suspense :timeout="0">
         <component v-if="isMainRoute" :is="Component" />
 
-        <div v-else class="max-w-6xl mx-auto pt-5">
+        <div v-else class="max-w-6xl mx-auto pt-5 h-full">
           <component :is="Component" />
         </div>
 
