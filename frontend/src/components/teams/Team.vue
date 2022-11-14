@@ -37,7 +37,7 @@ defineProps<{
           -translate-y-full group-hover:translate-y-0
           transition-all text-center
         "
-        v-if="userStore.user?.team?.team_hash !== team.team_hash"
+        v-if="userStore.user?.team?.team_hash !== team.team_hash && team.averageBwsRank < 2000"
       >
         Average bws rank is below 2000
       </div>
