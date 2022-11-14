@@ -2,6 +2,7 @@
 import { CalculatedTeam } from '../../Models/Custom';
 import TeamBase from './TeamBase.vue';
 import TeamUser from './TeamUser.vue';
+import { Danger } from "../icons";
 
 defineProps<{
   team: CalculatedTeam
@@ -22,8 +23,16 @@ defineProps<{
       </div>
 
       <div class="w-full truncate">
+        <Danger v-if="team.averageBwsRank < 2000" class="absolute opacity-40 w-4/5 h-4/5" />
+
         <p class="text-xl break-words truncate">{{ team.title }}</p>
         <p class="text-sm">Avg. BWS #{{ Math.round(team.averageBwsRank) }}</p>
+      </div>
+
+      <div 
+        class="absolute inset-0 bg-dark
+          hidden group-hover:flex-center">
+        Average bws rank is below 2000
       </div>
     </template>
 
