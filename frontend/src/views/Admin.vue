@@ -3,6 +3,7 @@ import axios from 'axios';
 import { notify } from '../hooks/useNotify';
 import { User } from '../Models/User';
 import { ref } from 'vue';
+import AdminPlayerListInfo from "../components/admin/AdminPlayerListInfo.vue"
 
 const users = ref((await axios.get<User[]>("/users")).data);
 
@@ -51,33 +52,41 @@ const toggleBan = async (osuId: number, isBanned: boolean) => {
         />
 
         <div class="flex flex-wrap grow overflow-x-auto gap-x-4">
-          <div class="flex-1">
-            <p class="text-xs text-pink-p">osu username</p>
-            <p>{{ player.osu_username }}</p>
-            <p class="text-xs text-pink-p">osu id</p>
-            <p>{{ player.osu_id }}</p>
-          </div>
+          <AdminPlayerListInfo 
+            :info="{
+              topTitle: 'osu username',
+              topField: player.osu_username,
+              bottomTitle: 'osu id',
+              bottomField: player.osu_id
+            }"
+          />
 
-          <div class="flex-1">
-            <p class="text-xs text-pink-p">osu global rank</p>
-            <p>{{ player.osu_global_rank }}</p>
-            <p class="text-xs text-pink-p">bws Rank</p>
-            <p>{{ player.bws_rank }}</p>
-          </div>
+          <AdminPlayerListInfo 
+            :info="{
+              topTitle: 'osu global rank',
+              topField: player.osu_global_rank,
+              bottomTitle: 'bws Rank',
+              bottomField: player.bws_rank
+            }"
+          />
 
-          <div class="flex-1 truncate">
-            <p class="text-xs text-pink-p">Team Hash</p>
-            <p class="truncate">{{ player.team?.team_hash }}</p>
-            <p class="text-xs text-pink-p">Team Title</p>
-            <p>{{ player.team?.title }}</p>
-          </div>
+          <AdminPlayerListInfo 
+            :info="{
+              topTitle: 'Team Hash',
+              topField: player.team?.team_hash,
+              bottomTitle: 'Team Title',
+              bottomField: player.team?.title
+            }"
+          />
 
-          <div class="flex-1">
-            <p class="text-xs text-pink-p">discord_id</p>
-            <p>{{ player.discord_id }}</p>
-            <p class="text-xs text-pink-p">Discord Tag</p>
-            <p>{{ player.discord_tag }}</p>
-          </div>
+          <AdminPlayerListInfo 
+            :info="{
+              topTitle: 'Discord Id',
+              topField: player.discord_id,
+              bottomTitle: 'Discord Tag',
+              bottomField: player.discord_tag
+            }"
+          />
         </div>
 
         <button
