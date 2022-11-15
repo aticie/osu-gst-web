@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import Teams from "../views/Teams.vue";
 import NotFound from "../views/NotFound.vue";
+import { useUserStore } from "../store";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -19,6 +20,16 @@ const routes: RouteRecordRaw[] = [
     path: "/teams",
     name: "TEAMS",
     component: Teams
+  },
+  {
+    path: "/admin",
+    name: "ADMIN",
+    component: () => import("../views/Admin.vue"),
+    beforeEnter: () => {
+      const userStore = useUserStore();
+
+      if (!userStore.user?.is_admin) return "/";
+    }
   },
   {
     path: "/:pathMatch(.*)*",
