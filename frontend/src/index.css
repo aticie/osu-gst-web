@@ -44,6 +44,16 @@
     @apply bg-neutral-800;
     @apply rounded-full;
   }
+
+  .full-height {
+    @apply 2xl:h-[calc(100vh-2.50rem)] h-[calc(100vh-6.50rem)];
+  }
+
+  .admin-section {
+    @apply flex flex-col full-height p-2;
+    @apply border-2 border-neutral-800 rounded-lg;
+    @apply font-inter overflow-y-auto;
+  }
 }
 
 @layer components {
