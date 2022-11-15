@@ -6,11 +6,13 @@ import { ref } from 'vue';
 
 const users = ref((await axios.get<User[]>("/users")).data);
 
-const banUser = async (osuId: number) => {
+const toggleBan = async (osuId: number, isBanned: boolean) => {
   if (!confirm("Are you sure?")) return;
 
   try {
-    const response = await axios.post<User>("/user/ban", {}, {
+    const response = await axios({
+      url: "/user/ban",
+      method: isBanned ? "DELETE" : "POST",
       params: {
         user_osu_id: osuId
       }
@@ -35,51 +37,57 @@ const banUser = async (osuId: number) => {
 </script>
 
 <template>
-  <div class="
-    flex flex-col border-2 rounded-lg
-    border-neutral-800 gap-2 p-2 max-h-96 overflow-y-auto font-inter
-  ">
-    <div 
-    v-for="player in users"
-      class="
-        flex-center flex-wrap gap-10 gap-y-3
-      hover:bg-neutral-700 rounded-lg transition-colors p-2" >
-      <img :src="player.osu_avatar_url" class="rounded-lg h-20" />
+  <div class="flex flex-col gap-4 pb-4">
+    <div class="admin-section">
+      <div v-for="player in users"
+        :key="player.osu_id"
+        class="
+          flex-center flex-wrap gap-10 gap-y-3
+        hover:bg-neutral-700 rounded-lg transition-colors p-2">
+        <img 
+          :src="player.osu_avatar_url" 
+          class="rounded-lg h-20 aspect-square" 
+          loading="lazy" 
+        />
 
-      <div class="flex flex-wrap grow">
-        <div class="flex-1">
-          <p class="text-xs text-pink-p">osu username</p>
-          <p>{{ player.osu_username }}</p>
-          <p class="text-xs text-pink-p">osu id</p>
-          <p>{{ player.osu_id }}</p>
+        <div class="flex flex-wrap grow overflow-x-auto gap-x-4">
+          <div class="flex-1">
+            <p class="text-xs text-pink-p">osu username</p>
+            <p>{{ player.osu_username }}</p>
+            <p class="text-xs text-pink-p">osu id</p>
+            <p>{{ player.osu_id }}</p>
+          </div>
+
+          <div class="flex-1">
+            <p class="text-xs text-pink-p">osu global rank</p>
+            <p>{{ player.osu_global_rank }}</p>
+            <p class="text-xs text-pink-p">bws Rank</p>
+            <p>{{ player.bws_rank }}</p>
+          </div>
+
+          <div class="flex-1 truncate">
+            <p class="text-xs text-pink-p">Team Hash</p>
+            <p class="truncate">{{ player.team?.team_hash }}</p>
+            <p class="text-xs text-pink-p">Team Title</p>
+            <p>{{ player.team?.title }}</p>
+          </div>
+
+          <div class="flex-1">
+            <p class="text-xs text-pink-p">discord_id</p>
+            <p>{{ player.discord_id }}</p>
+            <p class="text-xs text-pink-p">Discord Tag</p>
+            <p>{{ player.discord_tag }}</p>
+          </div>
         </div>
 
-        <div class="flex-1">
-          <p class="text-xs text-pink-p">osu global rank</p>
-          <p>{{ player.osu_global_rank }}</p>
-          <p class="text-xs text-pink-p">bws Rank</p>
-          <p>{{ player.bws_rank }}</p>
-        </div>
-  
-        <div class="flex-1 truncate">
-          <p class="text-xs text-pink-p">Team Hash</p>
-          <p class="truncate">{{ player.team?.team_hash }}</p>
-          <p class="text-xs text-pink-p">Team Title</p>
-          <p>{{ player.team?.title }}</p>
-        </div>
-  
-        <div class="flex-1">
-          <p class="text-xs text-pink-p">discord_id</p>
-          <p>{{ player.discord_id }}</p>
-          <p class="text-xs text-pink-p">Discord Tag</p>
-          <p>{{ player.discord_tag }}</p>
-        </div>
+        <button
+          class="base-button grow-0 px-4 w-32 hover:bg-neutral-800"
+          :class="{ 'bg-purple-p': player.is_banned, 'bg-red-500': !player.is_banned }"
+          @click="toggleBan(player.osu_id, player.is_banned)"
+        >
+          {{ player.is_banned ? 'Unban User' : 'Ban User' }}
+        </button>
       </div>
-
-      <button 
-        class="base-button grow-0 bg-red-500 hover:bg-red-800" 
-        @click="banUser(player.osu_id)"
-      >Ban Player</button>
     </div>
   </div>
 </template>

@@ -54,11 +54,24 @@ router.afterEach(() => {
         -translate-x-full transition-transform
       " :class="{ 'translate-x-0': isMenuOpen }">
       <div class="flex flex-col row-start-2">
-        <RouterLink v-for="route in routes" :to="route.path" 
+        <RouterLink to="/info" 
           class="text-2xl font-bold transition-colors p-2 pl-4 hover:bg-neutral-900"
           active-class="route-active"
         >
-          {{ route.name }}
+          INFO
+        </RouterLink>
+        <RouterLink to="/teams" 
+          class="text-2xl font-bold transition-colors p-2 pl-4 hover:bg-neutral-900"
+          active-class="route-active"
+        >
+          TEAMS
+        </RouterLink>
+        <RouterLink to="/admin"
+          v-if="userStore.user?.is_admin"
+          class="text-2xl font-bold transition-colors p-2 pl-4 hover:bg-neutral-900"
+          active-class="route-active"
+        >
+          ADMIN
         </RouterLink>
       </div>
 
