@@ -9,8 +9,8 @@ const userStore = useUserStore();
 </script>
 
 <template>
-  <div class="flex flex-col justify-center truncate 2xl:flex-row items-center w-full h-full">
-    <div class="flex-center flex-col grow p-4 gap-6 2xl:gap-8">
+  <div class="2xl:flex-center h-full">
+    <div class="w-full flex-center flex-col grow p-4 gap-6 2xl:gap-8">
       <GSTLive />
 
       <div class="flex flex-wrap justify-center 2xl:gap-10">
