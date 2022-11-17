@@ -20,7 +20,7 @@ import AppSuspense from "../components/AppSuspense.vue";
 const userStore = useUserStore();
 const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
-const isDisabled = ref(false);
+const isUploadLoading = ref(false);
 const isLeaveButtonLoading = ref(false);
 
 const getAverageRank = (team: Team) => {
@@ -127,7 +127,7 @@ const uploadHandler = async () => {
       return;
     }
 
-    isDisabled.value = true;
+    isUploadLoading.value = true;
     const formData = new FormData();
     formData.append("file", file);
 
@@ -146,12 +146,12 @@ const uploadHandler = async () => {
         message: error.response?.data.detail
       });
     } finally {
-      isDisabled.value = false;
+      isUploadLoading.value = false;
     }
   })
 
   inputElement.click();
-  isDisabled.value = false;
+  isUploadLoading.value = false;
 }
 </script>
 
@@ -166,15 +166,16 @@ const uploadHandler = async () => {
             <img :src="userStore.user.team.avatar_url || '/artwork.jpg'"
               class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full" />
 
-            <button class="
-              absolute h-full w-full inset-0
-              bg-dark bg-opacity-80 hover:bg-opacity-60 transition-colors
-              flex-center flex-col text-sm
-              disabled:pointer-events-none
-              " @click="uploadHandler" :disabled="isDisabled">
-              <Upload />
-              <p>Upload Banner</p>
-            </button>
+            <AppButton 
+              :isLoading="isUploadLoading" 
+              @click="uploadHandler"
+              class="absolute inset-0 bg-opacity-80 hover:bg-opacity-80 disabled:opacity-100"
+            >
+              <template #icon>
+                <Upload />
+              </template>
+              <p>Upload banner</p>
+            </AppButton>
           </template>
 
           <template v-slot:options>

@@ -9,10 +9,10 @@ defineProps<{
 
 <template>
   <button 
-    class="input-box rounded transition-all
-    disabled:opacity-50 disabled:pointer-events-none
-    flex-center gap-3 text-sm
-    "
+    class="
+      input-box rounded transition-all
+      disabled:opacity-50 disabled:pointer-events-none
+      flex-center gap-3 text-sm"
     :class="{ 'bg-neutral-800 hover:bg-pink-p': !isRed, 'bg-red-500 hover:bg-red-800': isRed }"
     :disabled="isLoading || false"
   >
