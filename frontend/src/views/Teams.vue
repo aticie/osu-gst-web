@@ -10,18 +10,21 @@ import { useUserStore } from "../store";
 import { getFileInputElement } from "../utils";
 import axios from "axios";
 
-import { Plus, Upload } from "../components/icons";
+import { Add, Upload, Leave } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
+import AppButton from "../components/ui/AppButton.vue";
+import AppSuspense from "../components/AppSuspense.vue";
 
 const userStore = useUserStore();
 const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
 const isDisabled = ref(false);
+const isLeaveButtonLoading = ref(false);
 
 const getAverageRank = (team: Team) => {
-  const averageRank = team.players  
+  const averageRank = team.players
     .map(player => player.bws_rank ? player.bws_rank : 0)
     .reduce((prev, curr) => prev + curr) / team.players.length;
 
@@ -85,6 +88,8 @@ const showPlayers = async () => {
 }
 
 const leaveTeam = async () => {
+  isLeaveButtonLoading.value = true;
+
   try {
     const response = await axios.delete<User>("/team");
 
@@ -101,6 +106,8 @@ const leaveTeam = async () => {
       title: "Team",
       message: error.response?.data.detail
     });
+  } finally {
+    isLeaveButtonLoading.value = false;
   }
 }
 
@@ -171,17 +178,27 @@ const uploadHandler = async () => {
           </template>
 
           <template v-slot:options>
-            <button class="base-button bg-red-500 hover:bg-red-800" @click="leaveTeam">
-              Leave The Team
-            </button>
+            <AppButton :isRed="true" :isLoading="isLeaveButtonLoading" @click="leaveTeam">
+              <template #icon>
+                <Leave class="h-6" />
+              </template>
 
-            <button v-if="userTeam.players.length === 1" class="base-button bg-pink-p hover:bg-purple-p"
-              @click="showPlayers">
-              <Plus class="h-3 aspect-square" />
-              Invite Someone
-            </button>
+              <p>Leave the team</p>
+            </AppButton>
 
-            <TeamPlayers v-if="isPlayersOpen" />
+            <AppButton v-if="userTeam.players.length === 1" :isLoading="false" @click="showPlayers">
+              <template #icon>
+                <Add class="h-6" />
+              </template>
+
+              <p>Invite Someone</p>
+            </AppButton>
+
+            <template v-if="isPlayersOpen">
+              <AppSuspense>
+                <TeamPlayers />
+              </AppSuspense>
+            </template>
           </template>
         </TeamVue>
       </template>

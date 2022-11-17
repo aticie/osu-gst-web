@@ -6,6 +6,7 @@ import { useUserStore } from '../../store';
 import { User } from "../../Models/User";
 import { Invite } from '../../Models/Invite';
 import { notify } from '../../hooks/useNotify';
+import AppButton from '../ui/AppButton.vue';
 
 const userStore = useUserStore();
 
@@ -17,8 +18,12 @@ const invitePromise = userStore.user?.team?.team_hash ? axios.get<Invite[]>("/te
   }
 }) : Promise.resolve({ data: [] as Invite[] });
 
-const players = ref((await usersPromise).data);
-const invites = ref((await invitePromise).data);
+const playersResponse = await usersPromise;
+const invitesResponse = await invitePromise;
+
+const players = ref(playersResponse.data);
+const invites = ref(invitesResponse.data);
+const isLoading = ref(false);
 
 const filteredPlayers = computed(() => {
   return players.value.filter(player => {
@@ -36,6 +41,7 @@ const isPlayerInvited = (osuId: number) => {
 }
 
 const invitePlayer = async (osuId: number) => {
+  isLoading.value = true;
   try {
     const response = await axios.post<Invite>("/team/invite", {}, {
       params: {
@@ -55,6 +61,8 @@ const invitePlayer = async (osuId: number) => {
       title: "User Invite",
       message: error.response?.data.detail
     });
+  } finally {
+    isLoading.value = false;
   }
 }
 
@@ -84,7 +92,7 @@ const inviteCancel = async (user: User) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-1 max-h-32 overflow-y-auto rounded" v-if="players">
+  <div class="flex flex-col gap-1 max-h-48 overflow-y-auto rounded">
     <template v-for="player in filteredPlayers">
       <div class="flex items-center gap-2 font-inter hover:bg-neutral-900">
         <img :src="player.osu_avatar_url" class="h-10 aspect-square rounded-lg" />
@@ -95,14 +103,23 @@ const inviteCancel = async (user: User) => {
         </div>
 
         <div class="ml-auto">
-          <button v-if="!isPlayerInvited(player.osu_id)" class="base-button bg-neutral-800 hover:bg-pink-p"
-            @click="invitePlayer(player.osu_id)">
-            Send Invite
-          </button>
+          <AppButton 
+            :isLoading="false"
+            :disabled="isLoading"
+            v-if="!isPlayerInvited(player.osu_id)"
+            @click="invitePlayer(player.osu_id)"
+          >
+            <p>Send Invite</p>
+          </AppButton>
 
-          <button v-else class="base-button bg-red-500 hover:bg-red-800" @click="inviteCancel(player)">
-            Cancel Invite
-          </button>
+          <AppButton 
+            v-else 
+            :isLoading="false" 
+            :disabled="isLoading"
+            @click="inviteCancel(player)"
+          >
+            <p>Cancel Invite</p>
+          </AppButton>
         </div>
       </div>
     </template>

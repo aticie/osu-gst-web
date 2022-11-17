@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { notify } from "../../hooks/useNotify";
-import { Team } from '../../Models/Team';
 import { useUserStore } from '../../store';
+import { Team } from '../../Models/Team';
 import TeamBase from './TeamBase.vue';
+import AppButton from '../ui/AppButton.vue';
 import axios from 'axios';
 
 const userStore = useUserStore();
 const teamName = ref();
-const isDisabled = ref(false);
+const isLoading= ref(false);
 
 const createTeam = async () => {
   if (!teamName.value) {
@@ -20,7 +21,7 @@ const createTeam = async () => {
     return;
   }
 
-  isDisabled.value = true;
+  isLoading.value = true;
   try {
     const response = await axios.post<Team>("/team", {
       title: teamName.value
@@ -36,8 +37,6 @@ const createTeam = async () => {
       message:
         error.response?.data.detail[0].msg || error.response?.data.detail
     });
-  } finally {
-    isDisabled.value = false;
   }
 }
 </script>
@@ -46,11 +45,9 @@ const createTeam = async () => {
   <TeamBase>
     <template v-slot:players>
       <input placeholder="Team Name" class="input-box border-2 border-neutral-800 rounded flex-1" v-model="teamName" />
-      <button class="input-box rounded bg-neutral-800 hover:bg-pink-p transition-colors
-          disabled:opacity-50 disabled:pointer-events-none
-        " @click="createTeam" :disabled="isDisabled">
-        Create Team
-      </button>
+      <AppButton :isLoading="isLoading" @click="createTeam">
+        <p>Create Team</p>
+      </AppButton>
     </template>
   </TeamBase>
 </template>
