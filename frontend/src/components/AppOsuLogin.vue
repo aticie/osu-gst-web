@@ -19,7 +19,7 @@ try {
 
 <template>
   <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2 2xl:text-xl">
-    <div class="h-14 2xl:h-16 flex-center gap-2 bg-dark">
+    <div class="h-16 py-2 flex-center gap-2 bg-dark">
       <p>WELCOME BACK
         <span class="text-pink-p">{{ userStore.user.osu_username }}</span>
       </p>
@@ -28,7 +28,8 @@ try {
     </div>
 
     <button v-if="!userStore.user.discord_id" @click="toDiscordAuth"
-      class="h-full flex-center flex-col 2xl:flex-row gap-2 p-2 text-yellow-400 bg-dark">
+      class="flex-center flex-col 2xl:flex-row gap-2 text-yellow-400 bg-dark p-2 whitespace-normal">
+      <!-- class="h-full flex-center flex-col 2xl:flex-row gap-2 p-2 text-yellow-400 bg-dark"> -->
       <Danger />
       <p>PLEASE VERIFY YOUR DISCORD TO PARTICIPATE</p>
     </button>

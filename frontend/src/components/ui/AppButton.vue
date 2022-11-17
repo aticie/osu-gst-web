@@ -17,7 +17,7 @@ defineProps<{
     :disabled="isLoading || false"
   >
     <TransitionGroup name="button" tag="div" class="grid grid-flow-col items-center gap-4">
-      <Spinner v-if="isLoading" class="h-6" :key="1" />
+      <Spinner v-if="isLoading" class="h-6 aspect-square" :key="1" />
       <slot v-else name="icon" :key="2"></slot>
       
       <slot :key="3"></slot>

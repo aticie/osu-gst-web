@@ -7,7 +7,7 @@ import { Spinner } from "./icons";
     <slot></slot>
 
     <template #fallback>
-      <Spinner />
+      <Spinner class="h-12" />
     </template>
   </Suspense>
 </template>
