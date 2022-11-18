@@ -45,7 +45,7 @@ defineProps<{
 
     <template v-slot:players>
       <div class="flex flex-wrap gap-2">
-        <TeamUser v-for="player in team.players" :player="player" />
+        <TeamUser v-for="player in team.players" :key="player.osu_id" :player="player" />
       </div>
 
       <slot name="options"></slot>

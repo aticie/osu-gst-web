@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <ul class="flex flex-wrap justify-start items-start"> 
-    <template v-for="user in users">
+    <template v-for="user in users" :key="user.user_id">
       <li class="flex xl:basis-1/4">
         <a 
           :href="`https://osu.ppy.sh/users/${user.id}`"
