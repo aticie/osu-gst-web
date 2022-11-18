@@ -40,11 +40,12 @@ const toggleBan = async (osuId: number, isBanned: boolean) => {
 <template>
   <div class="flex flex-col gap-4 pb-4">
     <div class="admin-section">
-      <div v-for="player in users"
+      <div v-for="(player, index) in users"
         :key="player.osu_id"
-        class="
-          flex-center flex-wrap gap-10 gap-y-3
+        class="flex-center flex-wrap gap-8 gap-y-3
         hover:bg-neutral-700 rounded-lg transition-colors p-2">
+        <p>{{ index }}</p>
+
         <img 
           :src="player.osu_avatar_url" 
           class="rounded-lg h-20 aspect-square" 

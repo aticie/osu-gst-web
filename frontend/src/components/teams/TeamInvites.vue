@@ -55,6 +55,7 @@ const inviteDecline = async (team_hash: string) => {
 <template>
   <div 
     v-for="invite in invites"
+    :key="invite.team.team_hash"
     class="bg-dark flex-center p-2"
   >
     <div class="flex-center grow flex-wrap gap-x-2">

@@ -93,7 +93,7 @@ const inviteCancel = async (user: User) => {
 
 <template>
   <div class="flex flex-col gap-1 max-h-48 overflow-y-auto rounded">
-    <template v-for="player in filteredPlayers">
+    <template v-for="player in filteredPlayers" :key="player.osu_id">
       <div class="flex items-center gap-2 font-inter hover:bg-neutral-900">
         <img :src="player.osu_avatar_url" class="h-10 aspect-square rounded-lg" />
 
