@@ -152,6 +152,12 @@
   .staff p {
     @apply text-xl;
   }
+
+  .team {
+    @apply flex flex-col relative gap-3 max-w-md w-full;
+    @apply sm:rounded-lg p-2 sm:p-4 overflow-hidden;
+    @apply bg-dark;
+  }
 }
 
 @layer utilities {
