@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import { useUserStore } from '../store';
 import { notify } from '../hooks/useNotify';
 import { Lobby as LobbyModel } from "../models/Lobby";
-import { User } from '../Models/User';
+import { User } from '../models/User';
 
 import Lobby from "../components/lobbies/Lobby.vue";
 import LobbyBase from "../components/lobbies/LobbyBase.vue";

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CalculatedTeam } from '../../Models/Custom';
+import { CalculatedTeam } from '../../models/Custom';
 import { useUserStore } from '../../store';
 import { Danger } from "../icons";
 import TeamBase from './TeamBase.vue';

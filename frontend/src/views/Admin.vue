@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from 'axios';
-import { User } from '../Models/User';
+import { User } from '../models/User';
 import { ref } from 'vue';
 import AdminPlayerListItem from '../components/admin/AdminPlayerListItem.vue';
 

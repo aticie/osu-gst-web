@@ -5,7 +5,7 @@ import TeamInvites from "./teams/TeamInvites.vue";
 
 import axios from "axios";
 import { Right, Left, Danger } from "./icons";
-import { User } from "../Models/User";
+import { User } from "../models/User";
 
 const userStore = useUserStore();
 

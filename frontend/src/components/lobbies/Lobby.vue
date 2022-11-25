@@ -7,7 +7,7 @@ import { useUserStore } from '../../store';
 
 import AppButton from '../ui/AppButton.vue';
 import { notify } from '../../hooks/useNotify';
-import { User } from '../../Models/User';
+import { User } from '../../models/User';
 
 const userStore = useUserStore();
 const isLoading = ref(false);

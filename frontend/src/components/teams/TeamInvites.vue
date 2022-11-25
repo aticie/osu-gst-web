@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { User } from '../../Models/User';
-import { Invite } from '../../Models/Invite';
+import { User } from '../../models/User';
+import { Invite } from '../../models/Invite';
 import { getInvites } from '../../api';
 import { useUserStore } from '../../store';
 import { notify } from '../../hooks/useNotify';

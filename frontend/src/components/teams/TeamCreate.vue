@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { notify } from "../../hooks/useNotify";
 import { useUserStore } from '../../store';
-import { Team } from '../../Models/Team';
+import { Team } from '../../models/Team';
 import TeamBase from './TeamBase.vue';
 import AppButton from '../ui/AppButton.vue';
 import axios from 'axios';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { User } from '../../Models/User';
+import { User } from '../../models/User';
 import { notify } from "../../hooks/useNotify";
 import AdminPlayerListInfo from "./AdminPlayerListInfo.vue";
 import axios from "axios";
