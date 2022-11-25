@@ -18,8 +18,11 @@ const lobbyDate = ref("");
 const lobbyReferee = ref("");
 const isLoading = ref(false);
 
-const response = await axios.get<LobbyModel[]>("/lobby");
-lobbies.value = response.data;
+const updateLobbies = async () => {
+  const response = await axios.get<LobbyModel[]>("/lobby");
+  lobbies.value = response.data;
+}
+await updateLobbies();
 
 const createLobby = async () => {
   if (
@@ -110,7 +113,7 @@ const createLobby = async () => {
       <h1 class="page-title">LOBBIES</h1>
       <div class="flex flex-col gap-2">
         <LobbyBase v-for="lobby in lobbies" class="flex-row">
-          <Lobby :lobby="lobby" />
+          <Lobby :lobby="lobby" :updateCallback="updateLobbies" />
         </LobbyBase>
       </div>
     </div>

@@ -6,27 +6,57 @@ import { Lobby } from '../../models/Lobby';
 import { useUserStore } from '../../store';
 
 import AppButton from '../ui/AppButton.vue';
+import { notify } from '../../hooks/useNotify';
+import { User } from '../../Models/User';
 
 const userStore = useUserStore();
 const isLoading = ref(false);
 
 const props = defineProps<{
-  lobby: Lobby
+  lobby: Lobby,
+  updateCallback: () => void
 }>();
 
 const joinLobby = async () => {
   isLoading.value = true;
 
   try {
-    const response = await axios.post("/user/lobby/join", {}, {
+    const response = await axios.post<User>("/user/lobby/join", {}, {
       params: {
         lobby_id: props.lobby.id
       }
     });
 
-    console.log(response.data);
+    userStore.user = response.data;
+    props.updateCallback();
   } catch (error) {
+    if (!axios.isAxiosError(error)) return;
 
+    notify({
+      title: "Joining lobby",
+      message: error.response?.data.detail
+    });
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+const leaveLobby = async () => {
+  isLoading.value = true;
+
+  try {
+    const response = await axios.post<User>("/user/lobby/leave");
+    userStore.user = response.data;
+
+    let teamIndex = props.lobby.teams.findIndex(team => team.team_hash === response.data.team?.team_hash);
+    props.lobby.teams.splice(teamIndex, 1);
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
+
+    notify({
+      title: "Leaving lobby",
+      message: error.response?.data.detail
+    });
   } finally {
     isLoading.value = false;
   }
@@ -36,7 +66,6 @@ const joinLobby = async () => {
 <template>
   <div class="flex flex-col justify-between gap-14 w-1/4">
     <h1 class="text-2xl font-bold text-pink-p">{{ lobby.lobby_name }}</h1>
-
     <div>
       <h1 class="flex-wrap text-2xl font-bold">{{
           new Date(lobby.date).toLocaleString("en-US", {
@@ -56,13 +85,24 @@ const joinLobby = async () => {
         <p>{{ lobby.referee.osu_username }}</p>
       </div>
 
-      <AppButton 
-        v-if="userStore.user?.discord_id" 
-        :isLoading="isLoading"
-        @click="joinLobby"
-      >
-        <p>Join Lobby</p>
-      </AppButton>
+      <template v-if="userStore.user?.discord_id">
+        <AppButton 
+          v-if="!lobby.teams.find(team => team.team_hash === userStore.user?.team?.team_hash)" 
+          :isLoading="isLoading"
+          @click="joinLobby"
+        >
+          <p>Join Lobby</p>
+        </AppButton>
+
+        <AppButton
+          v-else
+          :isLoading="isLoading"
+          @click="leaveLobby"
+          class="bg-red-500"
+        >
+          Leave Lobby
+        </AppButton>
+      </template>
     </div>
   </div>
 
