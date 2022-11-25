@@ -33,6 +33,9 @@ const userStore = useUserStore();
         <RouterLink to="/teams" class="route-link">
           TEAMS
         </RouterLink>
+        <RouterLink to="/lobbies" class="route-link">
+          LOBBIES
+        </RouterLink>
         <RouterLink v-if="userStore.user?.is_admin" to="/admin" class="route-link bg-red-500">
           ADMIN
         </RouterLink>
