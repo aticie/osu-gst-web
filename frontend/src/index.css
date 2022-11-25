@@ -153,10 +153,14 @@
     @apply text-xl;
   }
 
-  .team {
-    @apply flex flex-col relative gap-3 max-w-md w-full;
+  .team, .lobby {
+    @apply flex flex-col relative gap-3;
     @apply sm:rounded-lg p-2 sm:p-4 overflow-hidden;
     @apply bg-dark;
+  }
+
+  .page-title {
+    @apply font-bold text-2xl text-center;
   }
 }
 
@@ -189,5 +193,18 @@
 
     @apply overflow-x-hidden;
     @apply 2xl:mt-0;
+  }
+
+  .color-scheme {
+    color-scheme: dark;
+  }
+
+  .input-border {
+    @apply border-2 border-neutral-800 rounded;
+  }
+
+  .field-description {
+    @apply text-pink-p;
+    @apply text-sm;
   }
 }

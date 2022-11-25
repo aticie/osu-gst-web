@@ -157,14 +157,14 @@ const uploadHandler = async () => {
 
 <template>
   <div class="flex flex-col gap-10">
-    <div v-if="userStore.user" class="flex flex-col items-center w-full gap-4">
+    <div v-if="userStore.user" class="flex flex-col max-w-md w-full mx-auto gap-4">
       <template v-if="userStore.user.team && userTeam">
-        <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>
+        <h1 class="page-title">YOUR TEAM</h1>
 
         <TeamVue :team="userTeam">
           <template v-slot:cover>
             <img :src="userStore.user.team.avatar_url || '/artwork.jpg'"
-              class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full" />
+              class="aspect-banner rounded-lg object-cover h-full w-full" />
 
             <AppButton 
               :isLoading="isUploadLoading" 
@@ -211,9 +211,9 @@ const uploadHandler = async () => {
     </div>
 
     <div class="flex flex-col gap-6 w-full">
-      <h1 class="font-bold text-2xl text-center">TEAMS - {{ teams.length }}</h1>
+      <h1 class="page-title">TEAMS - {{ teams.length }}</h1>
 
-      <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
+      <div class="flex flex-wrap justify-center gap-4">
         <template v-for="team in teams" :key="team.team_hash">
           <TeamVue v-if="team.title != userTeam?.title" :team="team" />
         </template>

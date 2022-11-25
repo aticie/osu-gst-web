@@ -44,7 +44,7 @@ const createTeam = async () => {
 <template>
   <TeamBase>
     <template v-slot:players>
-      <input placeholder="Team Name" class="input-box border-2 border-neutral-800 rounded flex-1" v-model="teamName" />
+      <input placeholder="Team Name" class="input-box input-border flex-1" v-model="teamName" />
       <AppButton :isLoading="isLoading" @click="createTeam">
         <p>Create Team</p>
       </AppButton>
