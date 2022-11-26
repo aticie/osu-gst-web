@@ -86,7 +86,7 @@ const createLobby = async () => {
   <div class="flex flex-col gap-10">
     <div class="flex flex-col gap-4">
       <h1 class="page-title">CREATE A LOBBY</h1>
-      <LobbyBase class="font-inter mx-auto w-full max-w-md" v-if="userStore.user?.is_admin">
+      <LobbyBase class="font-inter mx-auto w-full max-w-md flex-col" v-if="userStore.user?.is_admin">
         <div>
           <p class="field-description">Enter a lobby name</p>
           <input type="text" v-model="lobbyName" placeholder="Lobby name" class="input-box input-border w-full" />
@@ -112,7 +112,7 @@ const createLobby = async () => {
     <div class="flex flex-col gap-4">
       <h1 class="page-title">LOBBIES</h1>
       <div class="flex flex-col gap-2">
-        <LobbyBase v-for="lobby in lobbies" class="flex-row">
+        <LobbyBase v-for="lobby in lobbies" class="lg:flex-row">
           <Lobby :lobby="lobby" :updateCallback="updateLobbies" />
         </LobbyBase>
       </div>

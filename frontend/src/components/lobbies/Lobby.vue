@@ -68,7 +68,7 @@ const isInLobby = () => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-between gap-14 w-1/4">
+  <div class="flex flex-col justify-between gap-6 lg:gap-14 lg:w-1/4">
     <h1 class="text-2xl font-bold text-pink-p">{{ lobby.lobby_name }}</h1>
     <div>
       <h1 class="flex-wrap text-2xl font-bold">{{
@@ -110,8 +110,8 @@ const isInLobby = () => {
     </div>
   </div>
 
-  <div class="grid grid-cols-3 grid-rows-2 justify-items-center items-center flex-1">
-    <div v-for="team in lobby.teams" class="flex gap-2 font-inter">
+  <div class="grid grid-cols-3 grid-rows-2 place-items-center grow">
+    <div v-for="team in lobby.teams" class="flex flex-col lg:flex-row gap-2 font-inter">
       <img
         :src="team.avatar_url || '/artwork.jpg'"
         class="rounded-lg object-cover w-48"
@@ -131,7 +131,7 @@ const isInLobby = () => {
     </div>
     <p 
       v-for="_ in 6 - lobby.teams.length" 
-      class="text-pink-p text-lg font-bold"
+      class="text-pink-p lg:text-lg font-bold"
     >
       EMPTY SLOT
     </p>
