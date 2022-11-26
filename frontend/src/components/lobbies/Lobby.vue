@@ -7,7 +7,7 @@ import { useUserStore } from '../../store';
 
 import AppButton from '../ui/AppButton.vue';
 import { notify } from '../../hooks/useNotify';
-import { User } from '../../models/User';
+import { Team } from '../../models/Team';
 
 const userStore = useUserStore();
 const isLoading = ref(false);
@@ -21,13 +21,12 @@ const joinLobby = async () => {
   isLoading.value = true;
 
   try {
-    const response = await axios.post<User>("/user/lobby/join", {}, {
+    await axios.post<Team>("/user/lobby/join", {}, {
       params: {
         lobby_id: props.lobby.id
       }
     });
 
-    userStore.user = response.data;
     props.updateCallback();
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
@@ -45,10 +44,9 @@ const leaveLobby = async () => {
   isLoading.value = true;
 
   try {
-    const response = await axios.post<User>("/user/lobby/leave");
-    userStore.user = response.data;
+    const response = await axios.post<Team>("/user/lobby/leave");
 
-    let teamIndex = props.lobby.teams.findIndex(team => team.team_hash === response.data.team?.team_hash);
+    let teamIndex = props.lobby.teams.findIndex(team => team.team_hash === response.data.team_hash);
     props.lobby.teams.splice(teamIndex, 1);
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
@@ -60,6 +58,12 @@ const leaveLobby = async () => {
   } finally {
     isLoading.value = false;
   }
+}
+
+const isInLobby = () => {
+  return props.lobby.teams.find(team => {
+    return team.team_hash === userStore.user?.team?.team_hash
+  })
 }
 </script>
 
@@ -85,9 +89,9 @@ const leaveLobby = async () => {
         <p>{{ lobby.referee.osu_username }}</p>
       </div>
 
-      <template v-if="userStore.user?.discord_id">
+      <template v-if="userStore.user?.discord_id && userStore.user?.team">
         <AppButton 
-          v-if="!lobby.teams.find(team => team.team_hash === userStore.user?.team?.team_hash)" 
+          v-if="!isInLobby()" 
           :isLoading="isLoading"
           @click="joinLobby"
         >
@@ -100,7 +104,7 @@ const leaveLobby = async () => {
           @click="leaveLobby"
           class="bg-red-500"
         >
-          Leave Lobby
+          <p>Leave Lobby</p>
         </AppButton>
       </template>
     </div>
