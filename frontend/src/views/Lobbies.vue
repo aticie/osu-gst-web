@@ -4,7 +4,6 @@ import { ref } from 'vue';
 import { useUserStore } from '../store';
 import { notify } from '../hooks/useNotify';
 import { Lobby as LobbyModel } from "../models/Lobby";
-import { User } from '../models/User';
 
 import Lobby from "../components/lobbies/Lobby.vue";
 import LobbyBase from "../components/lobbies/LobbyBase.vue";
@@ -37,25 +36,13 @@ const createLobby = async () => {
 
   isLoading.value = true;
 
-  var createParams = {}
-  if (lobbyReferee.value) {
-   createParams = {
-        lobby_time: lobbyDate.value,
-        lobby_name: lobbyName.value,
-        referee_osu_username: lobbyReferee.value
-      }
-    }
-  else{    
-   createParams = {
-        lobby_time: lobbyDate.value,
-        lobby_name: lobbyName.value,
-        referee_osu_username: null
-      }
-    }
-
   try {
     const response = await axios.post<LobbyModel>("/lobby/create", {}, {
-      params: createParams
+      params: {
+        lobby_time: lobbyDate.value,
+        lobby_name: lobbyName.value,
+        referee_osu_username: lobbyReferee.value || null
+      }
     });
 
     lobbies.value.push(response.data);
@@ -88,7 +75,7 @@ const createLobby = async () => {
         </div>
 
         <div>
-          <p class="field-description">Referee osu! username</p>
+          <p class="field-description">Referee osu! username {{ lobbyReferee }}</p>
           <input type="text" class="input-box input-border w-full" placeholder="Referee osu username"
             v-model="lobbyReferee" />
         </div>
