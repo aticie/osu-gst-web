@@ -86,7 +86,7 @@ const isInLobby = () => {
     <div class="flex justify-between">
       <div class="font-inter text-sm">
         <p class="field-description">referee</p>
-        <p>{{ lobby.referee.osu_username }}</p>
+        <p>{{ lobby.referee?.osu_username }}</p>
       </div>
 
       <template v-if="userStore.user?.discord_id && userStore.user?.team">

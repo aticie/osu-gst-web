@@ -19,7 +19,7 @@ const lobbyReferee = ref("");
 const isLoading = ref(false);
 
 const updateLobbies = async () => {
-  const response = await axios.get<LobbyModel[]>("/lobby");
+  const response = await axios.get<LobbyModel[]>("/lobbies");
   lobbies.value = response.data;
 }
 await updateLobbies();
@@ -27,8 +27,7 @@ await updateLobbies();
 const createLobby = async () => {
   if (
     !lobbyName.value ||
-    !lobbyDate.value ||
-    !lobbyReferee.value
+    !lobbyDate.value
   ) {
     return notify({
       title: "Creating Lobby",
@@ -38,34 +37,25 @@ const createLobby = async () => {
 
   isLoading.value = true;
 
-  let referee: User | undefined;
-  try {
-    const users = await axios.get<User[]>("/users");
-    referee = users.data.find(user => user.osu_username === lobbyReferee.value);
-
-    if (!referee) {
-      return notify({
-        title: "Finding Referee",
-        message: "Couldn't find referee in user list. Are you sure the username is correct?"
-      });
+  var createParams = {}
+  if (lobbyReferee.value) {
+   createParams = {
+        lobby_time: lobbyDate.value,
+        lobby_name: lobbyName.value,
+        referee_osu_username: lobbyReferee.value
+      }
     }
-  } catch (error) {
-    if (!axios.isAxiosError(error)) return;
-    isLoading.value = false;
-
-    return notify({
-      title: "Reading users",
-      message: `Cannot get users list. Code: ${error.response?.status}`
-    });
-  }
+  else{    
+   createParams = {
+        lobby_time: lobbyDate.value,
+        lobby_name: lobbyName.value,
+        referee_osu_username: null
+      }
+    }
 
   try {
     const response = await axios.post<LobbyModel>("/lobby/create", {}, {
-      params: {
-        referee_osu_id: referee.osu_id,
-        lobby_time: lobbyDate.value,
-        lobby_name: lobbyName.value
-      }
+      params: createParams
     });
 
     lobbies.value.push(response.data);
