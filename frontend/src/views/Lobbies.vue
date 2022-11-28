@@ -75,7 +75,7 @@ const createLobby = async () => {
         </div>
 
         <div>
-          <p class="field-description">Referee osu! username {{ lobbyReferee }}</p>
+          <p class="field-description">Referee osu! username</p>
           <input type="text" class="input-box input-border w-full" placeholder="Referee osu username"
             v-model="lobbyReferee" />
         </div>
