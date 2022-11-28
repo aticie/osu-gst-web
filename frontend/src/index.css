@@ -126,7 +126,7 @@
 
   .input-box {
     @apply bg-dark;
-    @apply p-2 px-4;
+    @apply p-2;
     @apply font-inter;
   }
 
