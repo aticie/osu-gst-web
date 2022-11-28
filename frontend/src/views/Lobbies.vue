@@ -61,9 +61,9 @@ const createLobby = async () => {
 
 <template>
   <div class="flex flex-col gap-10">
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4" v-if="userStore.user?.is_admin">
       <h1 class="page-title">CREATE A LOBBY</h1>
-      <LobbyBase class="font-inter mx-auto w-full max-w-md flex-col" v-if="userStore.user?.is_admin">
+      <LobbyBase class="font-inter mx-auto w-full max-w-md flex-col">
         <div>
           <p class="field-description">Enter a lobby name</p>
           <input type="text" v-model="lobbyName" placeholder="Lobby name" class="input-box input-border w-full" />
