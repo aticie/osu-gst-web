@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRefs, watch } from 'vue';
 import axios from "axios";
 
 import { Lobby } from '../../models/Lobby';
@@ -9,13 +9,45 @@ import AppButton from '../ui/AppButton.vue';
 import { notify } from '../../hooks/useNotify';
 import { Team } from '../../models/Team';
 
-const userStore = useUserStore();
-const isLoading = ref(false);
-
 const props = defineProps<{
   lobby: Lobby,
   updateCallback: () => void
 }>();
+
+const { lobby } = toRefs(props);
+const userStore = useUserStore();
+const isLoading = ref(false);
+const referee = ref(lobby.value.referee || "-");
+
+let timeout: NodeJS.Timeout;
+watch(referee, (newValue, oldValue) => {
+  if (newValue === oldValue) return;
+  if (timeout) {
+    clearTimeout(timeout);
+  };
+
+  timeout = setTimeout(updateReferee, 1000);
+})
+
+const updateReferee = async () => {
+  try {
+    const response = await axios.post<Lobby>("/lobby/add_referee", {}, {
+      params: {
+        referee_osu_username: referee.value,
+        lobby_id: lobby.value.id
+      }
+    });
+
+    lobby.value = response.data;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
+
+    notify({
+      title: "Lobby referee update",
+      message: error.response?.data.detail
+    });
+  }
+}
 
 const joinLobby = async () => {
   isLoading.value = true;
@@ -23,7 +55,7 @@ const joinLobby = async () => {
   try {
     await axios.post<Team>("/user/lobby/join", {}, {
       params: {
-        lobby_id: props.lobby.id
+        lobby_id: lobby.value.id
       }
     });
 
@@ -46,8 +78,8 @@ const leaveLobby = async () => {
   try {
     const response = await axios.post<Team>("/user/lobby/leave");
 
-    let teamIndex = props.lobby.teams.findIndex(team => team.team_hash === response.data.team_hash);
-    props.lobby.teams.splice(teamIndex, 1);
+    let teamIndex = lobby.value.teams.findIndex(team => team.team_hash === response.data.team_hash);
+    lobby.value.teams.splice(teamIndex, 1);
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
 
@@ -61,7 +93,7 @@ const leaveLobby = async () => {
 }
 
 const isInLobby = () => {
-  return props.lobby.teams.find(team => {
+  return lobby.value.teams.find(team => {
     return team.team_hash === userStore.user?.team?.team_hash
   })
 }
@@ -71,24 +103,35 @@ const isInLobby = () => {
   <div class="flex flex-col justify-between gap-6 lg:gap-14 lg:w-1/4">
     <h1 class="text-2xl font-bold text-pink-p">{{ lobby.lobby_name }}</h1>
     <div>
-      <h1 class="flex-wrap text-2xl font-bold">{{
-          new Date(lobby.date).toLocaleString("en-US", {
-            day: "2-digit",
-            month: "short",
-            weekday: "long",
-            hour: "2-digit",
-            hourCycle: "h24",
-            minute: "2-digit",
-          })
-      }}</h1>
+      <h1 class="flex-wrap text-3xl font-bold">{{
+        new Date(lobby.date).toLocaleString("en-GB", {
+          day: "numeric",
+          month: "short",
+          hour: "2-digit",
+          hourCycle: "h24",
+          minute: "2-digit"
+        })}}
+      </h1>
+      <p class="font-inter">{{
+        new Date(lobby.date).toLocaleString("en-GB", {
+          weekday: "long",
+          hour: "2-digit",
+          hourCycle: "h12",
+          minute: "2-digit"
+        })}}</p>
     </div>
 
-    <div class="flex justify-between">
+    <div class="flex items-end gap-4">
       <div class="font-inter text-sm">
         <p class="field-description">referee</p>
-        <p>{{ lobby.referee?.osu_username || '-' }}</p>
+        <input
+          v-if="userStore.user?.is_admin"
+          v-model="referee"
+          class="input-box input-border w-2/3" 
+        />
+        <p v-else>{{ referee }}</p>
       </div>
-
+      
       <template v-if="userStore.user?.discord_id && userStore.user?.team">
         <AppButton 
           v-if="!isInLobby()" 
@@ -114,11 +157,11 @@ const isInLobby = () => {
     <div v-for="team in lobby.teams" class="flex flex-col lg:flex-row gap-2 font-inter">
       <img
         :src="team.avatar_url || '/artwork.jpg'"
-        class="rounded-lg object-cover w-48"
+        class="aspect-banner rounded-lg object-cover w-36"
       />
 
       <div class="flex flex-col justify-between">
-        <h1 class="text-lg">{{ team.title }}</h1>
+        <h1 class="text-lg font-bold">{{ team.title }}</h1>
 
         <div>
           <p 
