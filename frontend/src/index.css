@@ -208,4 +208,13 @@
     @apply text-pink-p;
     @apply text-sm;
   }
+
+  .map-blur {
+    @apply rounded-md;
+    @apply bg-opacity-60 backdrop-blur-md;
+  }
+
+  .text-shadow {
+    text-shadow: 1px 1px 4px black;
+  }
 }

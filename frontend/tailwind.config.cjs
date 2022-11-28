@@ -32,6 +32,10 @@ module.exports = {
       },
       aspectRatio: {
         "banner": "4/3"
+      },
+      backgroundSize: {
+        "normal": "100%",
+        "zoom": "110%"
       }
     }
   },
