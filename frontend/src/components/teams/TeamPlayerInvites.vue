@@ -3,8 +3,8 @@ import axios from 'axios';
 import { ref, computed } from "vue";
 import { useUserStore } from '../../store';
 
-import { User } from "../../Models/User";
-import { Invite } from '../../Models/Invite';
+import { User } from "../../models/User";
+import { Invite } from '../../models/Invite';
 import { notify } from '../../hooks/useNotify';
 import AppButton from '../ui/AppButton.vue';
 

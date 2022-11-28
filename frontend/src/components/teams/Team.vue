@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CalculatedTeam } from '../../Models/Custom';
+import { CalculatedTeam } from '../../models/Custom';
 import { useUserStore } from '../../store';
 import { Danger } from "../icons";
 import TeamBase from './TeamBase.vue';
@@ -19,7 +19,7 @@ defineProps<{
         <slot name="cover">
           <img 
             :src="team.avatar_url || '/artwork.jpg'" 
-            class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full"
+            class="aspect-banner rounded-lg object-cover h-full w-full"
             loading="lazy"
           />
         </slot>

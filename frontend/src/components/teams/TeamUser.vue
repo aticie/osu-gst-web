@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TeamlessUser } from '../../Models/User';
+import { TeamlessUser } from '../../models/User';
 
 defineProps<{
   player: TeamlessUser

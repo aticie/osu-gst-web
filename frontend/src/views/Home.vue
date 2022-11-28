@@ -2,7 +2,8 @@
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import AppSuspense from "../components/AppSuspense.vue";
-import { Triangles, Discord, GSTLive } from "../components/icons";
+import Twitch from "../components/icons/Twitch.vue";
+import { Discord, GSTLive } from "../components/icons";
 import { useUserStore } from "../store";
 
 const userStore = useUserStore();
@@ -14,11 +15,12 @@ const userStore = useUserStore();
       <GSTLive />
 
       <div class="flex flex-wrap justify-center 2xl:gap-10">
-        <RouterLink to="/teams">
-          <AppCard title="SIGN UP" description="YOUR TEAM!">
-            <Triangles />
+        <a href="https://twitch.tv/osusg">
+          <AppCard title="WATCH" description="LIVESTREAMS!">
+            <Twitch />
           </AppCard>
-        </RouterLink>
+        </a>
+
         <a href="https://discord.gg/3YXF2UCEYs">
           <AppCard title="DISCORD" description="FOR MORE INFO!">
             <Discord />
@@ -32,6 +34,9 @@ const userStore = useUserStore();
         </RouterLink>
         <RouterLink to="/teams" class="route-link">
           TEAMS
+        </RouterLink>
+        <RouterLink to="/lobbies" class="route-link">
+          LOBBIES
         </RouterLink>
         <RouterLink v-if="userStore.user?.is_admin" to="/admin" class="route-link bg-red-500">
           ADMIN

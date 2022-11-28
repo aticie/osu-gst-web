@@ -152,6 +152,16 @@
   .staff p {
     @apply text-xl;
   }
+
+  .team, .lobby {
+    @apply flex flex-col relative gap-3;
+    @apply sm:rounded-lg p-2 sm:p-4 overflow-hidden;
+    @apply bg-dark;
+  }
+
+  .page-title {
+    @apply font-bold text-2xl text-center;
+  }
 }
 
 @layer utilities {
@@ -179,9 +189,22 @@
 
   .h-scroll {
     height: calc(100% - 68px);
-    margin-top: 68px;
+    padding-top: 68px;
 
     @apply overflow-x-hidden;
-    @apply 2xl:mt-0;
+    @apply 2xl:pt-0;
+  }
+
+  .color-scheme {
+    color-scheme: dark;
+  }
+
+  .input-border {
+    @apply border-2 border-neutral-800 rounded;
+  }
+
+  .field-description {
+    @apply text-pink-p;
+    @apply text-sm;
   }
 }

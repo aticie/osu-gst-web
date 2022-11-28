@@ -2,15 +2,15 @@
 import { computed, ref, watch } from "vue";
 import { notify } from "../hooks/useNotify";
 
-import { PlayerlessTeam, Team } from "../Models/Team";
-import { CalculatedTeam } from "../Models/Custom";
-import { User } from "../Models/User";
+import { PlayerlessTeam, Team } from "../models/Team";
+import { CalculatedTeam } from "../models/Custom";
+// import { User } from "../models/User";
 
 import { useUserStore } from "../store";
 import { getFileInputElement } from "../utils";
 import axios from "axios";
 
-import { Add, Upload, Leave } from "../components/icons";
+import { Upload } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
 import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
@@ -21,7 +21,7 @@ const userStore = useUserStore();
 const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
 const isUploadLoading = ref(false);
-const isLeaveButtonLoading = ref(false);
+// const isLeaveButtonLoading = ref(false);
 
 const getAverageRank = (team: Team) => {
   const averageRank = team.players
@@ -83,33 +83,33 @@ const userTeam = computed(() => (
   teams.value.find(team => team.title == userStore.user?.team?.title)
 ));
 
-const showPlayers = async () => {
-  isPlayersOpen.value = !isPlayersOpen.value;
-}
+// const showPlayers = async () => {
+//   isPlayersOpen.value = !isPlayersOpen.value;
+// }
 
-const leaveTeam = async () => {
-  isLeaveButtonLoading.value = true;
+// const leaveTeam = async () => {
+//   isLeaveButtonLoading.value = true;
 
-  try {
-    const response = await axios.delete<User>("/team");
+//   try {
+//     const response = await axios.delete<User>("/team");
 
-    teams.value.splice(
-      teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
-      1
-    );
+//     teams.value.splice(
+//       teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
+//       1
+//     );
 
-    userStore.user = response.data;
-  } catch (error) {
-    if (!axios.isAxiosError(error)) return;
+//     userStore.user = response.data;
+//   } catch (error) {
+//     if (!axios.isAxiosError(error)) return;
 
-    notify({
-      title: "Team",
-      message: error.response?.data.detail
-    });
-  } finally {
-    isLeaveButtonLoading.value = false;
-  }
-}
+//     notify({
+//       title: "Team",
+//       message: error.response?.data.detail
+//     });
+//   } finally {
+//     isLeaveButtonLoading.value = false;
+//   }
+// }
 
 const uploadHandler = async () => {
   let inputElement = getFileInputElement();
@@ -157,14 +157,14 @@ const uploadHandler = async () => {
 
 <template>
   <div class="flex flex-col gap-10">
-    <div v-if="userStore.user" class="flex flex-col items-center w-full gap-4">
+    <div v-if="userStore.user" class="flex flex-col max-w-md w-full mx-auto gap-4">
       <template v-if="userStore.user.team && userTeam">
-        <h1 class="font-bold text-2xl text-center">YOUR TEAM</h1>
+        <h1 class="page-title">YOUR TEAM</h1>
 
         <TeamVue :team="userTeam">
           <template v-slot:cover>
             <img :src="userStore.user.team.avatar_url || '/artwork.jpg'"
-              class="aspect-banner object-cover rounded-lg h-32 sm:h-40 w-full" />
+              class="aspect-banner rounded-lg object-cover h-full w-full" />
 
             <AppButton 
               :isLoading="isUploadLoading" 
@@ -179,7 +179,7 @@ const uploadHandler = async () => {
           </template>
 
           <template v-slot:options>
-            <AppButton :isRed="true" :isLoading="isLeaveButtonLoading" @click="leaveTeam">
+            <!-- <AppButton :isRed="true" :isLoading="isLeaveButtonLoading" @click="leaveTeam">
               <template #icon>
                 <Leave class="h-6" />
               </template>
@@ -193,7 +193,7 @@ const uploadHandler = async () => {
               </template>
 
               <p>Invite Someone</p>
-            </AppButton>
+            </AppButton> -->
 
             <template v-if="isPlayersOpen">
               <AppSuspense>
@@ -211,9 +211,9 @@ const uploadHandler = async () => {
     </div>
 
     <div class="flex flex-col gap-6 w-full">
-      <h1 class="font-bold text-2xl text-center">TEAMS - {{ teams.length }}</h1>
+      <h1 class="page-title">TEAMS - {{ teams.length }}</h1>
 
-      <div class="flex flex-wrap justify-center gap-4 2xl:gap-6">
+      <div class="flex flex-wrap justify-center gap-4">
         <template v-for="team in teams" :key="team.team_hash">
           <TeamVue v-if="team.title != userTeam?.title" :team="team" />
         </template>

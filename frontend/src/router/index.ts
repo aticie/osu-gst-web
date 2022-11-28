@@ -2,7 +2,9 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 import Home from "../views/Home.vue";
 import Teams from "../views/Teams.vue";
+import Lobbies from "../views/Lobbies.vue";
 import NotFound from "../views/NotFound.vue";
+import Pool from "../views/Pool.vue";
 import { useUserStore } from "../store";
 
 const routes: RouteRecordRaw[] = [
@@ -20,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     path: "/teams",
     name: "TEAMS",
     component: Teams
+  },
+  {
+    path: "/lobbies",
+    name: "LOBBIES",
+    component: Lobbies
   },
   {
     path: "/admin",
