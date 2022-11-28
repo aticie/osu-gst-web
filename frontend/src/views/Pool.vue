@@ -154,28 +154,26 @@ const qualifierMaps: Map[] = [
 </script>
 
 <template>
-  <div>
-    <div class="flex flex-col gap-4">
-      <div>
-        <h1 class="font-bold text-4xl text-center">QUALIFIERS</h1>
+  <div class="flex flex-col gap-4 pb-6">
+    <div>
+      <h1 class="font-bold text-4xl text-center">QUALIFIERS</h1>
 
-        <div class="flex justify-between gap-4">
-          <a href="https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view">
-            <AppButton :isLoading="false">
-              <p>Download Mappack</p>
-            </AppButton>
-          </a>
-          <a href="https://docs.google.com/spreadsheets/d/1uzmEdqztstUAcbD46kZ8qhAp4iLl1KjLVskN_7kLmh0">
-            <AppButton :isLoading="false">
-              <p>Google Sheet</p>
-            </AppButton>
-          </a>
-        </div>
+      <div class="flex justify-between gap-4">
+        <a href="https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view">
+          <AppButton :isLoading="false">
+            <p>Download Mappack</p>
+          </AppButton>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1uzmEdqztstUAcbD46kZ8qhAp4iLl1KjLVskN_7kLmh0">
+          <AppButton :isLoading="false">
+            <p>Google Sheet</p>
+          </AppButton>
+        </a>
       </div>
-  
-      <div class="grid gap-4 md:grid-cols-2">
-        <MapVue v-for="map in qualifierMaps" :map="map" />
-      </div>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <MapVue v-for="map in qualifierMaps" :map="map" />
     </div>
   </div>
 </template>

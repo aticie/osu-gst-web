@@ -3,7 +3,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
 </script>
 
 <template>
-  <div class="flex flex-col gap-10 pb-10">
+  <div class="flex flex-col gap-10 pb-6">
     <section class="info-container">
       <div class="info-head">
         <h1>SCHEDULES</h1>
