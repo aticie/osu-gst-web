@@ -29,6 +29,11 @@ const routes: RouteRecordRaw[] = [
     component: Lobbies
   },
   {
+    path: "/pool",
+    name: "MAPPOOL",
+    component: Pool
+  },
+  {
     path: "/admin",
     name: "ADMIN",
     component: () => import("../views/Admin.vue"),
