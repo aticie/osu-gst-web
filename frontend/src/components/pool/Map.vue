@@ -27,13 +27,14 @@ defineProps<{
 <template>
   <a
     :href="`https://osu.ppy.sh/b/${map.mapsetId}`"
-    class="
-      flex flex-col gap-8 p-2 rounded-md font-bold
-      filter grayscale bg-center bg-normal
-      hover:grayscale-0 hover:bg-zoom transition-all
-    "
-    :style="{backgroundImage: `url(https://assets.ppy.sh/beatmaps/${map.mapId}/covers/cover@2x.jpg)`}"
+    class="flex flex-col gap-8 p-2 rounded-md font-bold relative overflow-hidden group"
   >
+    <img 
+      :src="`https://assets.ppy.sh/beatmaps/${map.mapId}/covers/cover@2x.jpg`" 
+      class="object-cover absolute inset-0 -z-10"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50 -z-10" />
+
     <div class="flex justify-between items-start">
       <div class="flex gap-4 bg-dark map-blur px-4 py-2">
         <div>
@@ -58,13 +59,12 @@ defineProps<{
         </div>
       </div>
 
-
       <div class="flex-center gap-2">
         <a :href="map.youtubeLink">
           <Youtube />
         </a>
   
-        <div class="map-blur py-2 px-4 bg-purple-p">
+        <div class="map-blur py-1 px-2 bg-purple-p">
           <p>{{ map?.mods ? `${map.mods} - ${map.id}` : map.id }}</p>
         </div>
       </div>
