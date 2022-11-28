@@ -21,7 +21,7 @@ const isMainRoute = computed(() => route.path === "/");
     <main 
       class="overflow-y-auto h-scroll md:h-full"
     >
-      <div class="h-full" :class="{ 'max-w-6xl mx-auto': !isMainRoute }">
+      <div class="h-full" :class="{ 'max-w-6xl mx-auto pt-6': !isMainRoute }">
         <suspense :timeout="0">
           <component :is="Component" />
 

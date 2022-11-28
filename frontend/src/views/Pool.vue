@@ -22,5 +22,7 @@ const maps: Map[] = [
 </script>
 
 <template>
-  <MapVue v-for="map in maps" :map="map" />
+  <div class="grid gap-4 md:grid-cols-2">
+    <MapVue v-for="map in maps" :map="map" />
+  </div>
 </template>
