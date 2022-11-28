@@ -207,4 +207,9 @@
     @apply text-pink-p;
     @apply text-sm;
   }
+
+  .map-blur {
+    @apply rounded-md;
+    @apply bg-dark bg-opacity-40 backdrop-blur-md;
+  }
 }
