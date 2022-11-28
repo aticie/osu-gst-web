@@ -203,11 +203,10 @@ const uploadHandler = async () => {
           </template>
         </TeamVue>
       </template>
-
-      <template v-else>
+      <!-- <template v-else>
         <h1 class="font-bold text-2xl text-center">CREATE A TEAM</h1>
         <TeamCreate />
-      </template>
+      </template> -->
     </div>
 
     <div class="flex flex-col gap-6 w-full">
