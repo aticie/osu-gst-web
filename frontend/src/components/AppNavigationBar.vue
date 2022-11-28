@@ -72,6 +72,12 @@ router.afterEach(() => {
         >
           LOBBIES
         </RouterLink>
+        <RouterLink to="/pool" 
+          class="text-2xl font-bold transition-colors p-2 pl-4 hover:bg-neutral-900"
+          active-class="route-active"
+        >
+          MAPPOOL
+        </RouterLink>
         <RouterLink to="/admin"
           v-if="userStore.user?.is_admin"
           class="text-2xl font-bold transition-colors p-2 pl-4 hover:bg-neutral-900"
