@@ -60,7 +60,7 @@ const createLobby = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-10">
+  <div class="flex flex-col gap-10 pb-6">
     <div class="flex flex-col gap-4" v-if="userStore.user?.is_admin">
       <h1 class="page-title">CREATE A LOBBY</h1>
       <LobbyBase class="font-inter mx-auto w-full max-w-md flex-col">

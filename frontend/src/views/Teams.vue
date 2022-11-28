@@ -156,7 +156,7 @@ const uploadHandler = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-10">
+  <div class="flex flex-col gap-10 pb-6">
     <div v-if="userStore.user" class="flex flex-col max-w-md w-full mx-auto gap-4">
       <template v-if="userStore.user.team && userTeam">
         <h1 class="page-title">YOUR TEAM</h1>
