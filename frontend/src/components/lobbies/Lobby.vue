@@ -103,25 +103,31 @@ const isInLobby = () => {
   <div class="flex flex-col justify-between gap-6 lg:gap-14 lg:w-1/4">
     <h1 class="text-2xl font-bold text-pink-p">{{ lobby.lobby_name }}</h1>
     <div>
-      <h1 class="flex-wrap text-2xl font-bold">{{
-          new Date(lobby.date).toLocaleString("en-US", {
-            day: "2-digit",
-            month: "short",
-            weekday: "long",
-            hour: "2-digit",
-            hourCycle: "h24",
-            minute: "2-digit",
-          })
-      }}</h1>
+      <h1 class="flex-wrap text-3xl font-bold">{{
+        new Date(lobby.date).toLocaleString("en-GB", {
+          day: "numeric",
+          month: "short",
+          hour: "2-digit",
+          hourCycle: "h24",
+          minute: "2-digit"
+        })}}
+      </h1>
+      <p class="font-inter">{{
+        new Date(lobby.date).toLocaleString("en-GB", {
+          weekday: "long",
+          hour: "2-digit",
+          hourCycle: "h12",
+          minute: "2-digit"
+        })}}</p>
     </div>
 
-    <div class="flex justify-between gap-4">
+    <div class="flex items-end gap-4">
       <div class="font-inter text-sm">
         <p class="field-description">referee</p>
         <input
           v-if="userStore.user?.is_admin"
           v-model="referee"
-          class="input-box input-border" 
+          class="input-box input-border w-2/3" 
         />
         <p v-else>{{ referee }}</p>
       </div>
@@ -151,11 +157,11 @@ const isInLobby = () => {
     <div v-for="team in lobby.teams" class="flex flex-col lg:flex-row gap-2 font-inter">
       <img
         :src="team.avatar_url || '/artwork.jpg'"
-        class="rounded-lg object-cover w-48"
+        class="aspect-banner rounded-lg object-cover w-36"
       />
 
       <div class="flex flex-col justify-between">
-        <h1 class="text-lg">{{ team.title }}</h1>
+        <h1 class="text-lg font-bold">{{ team.title }}</h1>
 
         <div>
           <p 

@@ -12,7 +12,7 @@ defineProps<{
     class="
       input-box rounded transition-all
       disabled:opacity-50 disabled:pointer-events-none
-      flex-center gap-3 text-sm"
+      flex-center gap-3 text-sm shrink-0"
     :class="{ 'bg-neutral-800 hover:bg-pink-p': !isRed, 'bg-red-500 hover:bg-red-800': isRed }"
     :disabled="isLoading || false"
   >

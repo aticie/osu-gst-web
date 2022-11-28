@@ -126,7 +126,7 @@
 
   .input-box {
     @apply bg-dark;
-    @apply p-2;
+    @apply px-4 py-2;
     @apply font-inter;
   }
 
@@ -155,7 +155,7 @@
 
   .team, .lobby {
     @apply flex flex-col relative gap-3;
-    @apply sm:rounded-lg p-2 sm:p-4 overflow-hidden;
+    @apply sm:rounded-lg p-2 sm:p-5 overflow-hidden;
     @apply bg-dark;
   }
 
@@ -190,9 +190,10 @@
   .h-scroll {
     height: calc(100% - 68px);
     padding-top: 68px;
+    margin-top: 68px;
 
     @apply overflow-x-hidden;
-    @apply 2xl:pt-0;
+    @apply 2xl:pt-0 2xl:mt-0;
   }
 
   .color-scheme {
