@@ -22,11 +22,11 @@ defineProps<{
 
 <template>
   <div 
-    class="flex flex-col gap-8 p-3 rounded-md bg-cover font-bold"
+    class="flex flex-col gap-8 p-2 rounded-md bg-cover font-bold"
     :style="{backgroundImage: `url(https://assets.ppy.sh/beatmaps/${map.mapId}/covers/cover@2x.jpg)`}"
   >
-    <div class="flex justify-between items-center">
-      <div class="flex gap-4 map-blur p-2">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-4 bg-dark map-blur px-4 py-2">
         <div>
           <p class="text-xs -mb-1">CS</p>
           <p>{{ map.cs }}</p>
@@ -49,11 +49,11 @@ defineProps<{
         </div>
       </div>
 
-      <div class="map-blur p-2">
+      <div class="map-blur py-2 px-4 bg-purple-p">
         <p>{{ map.mods }} - {{ map.id }}</p>
       </div>
     </div>
-    <div class="shadow-lg">
+    <div class="text-shadow">
       <p class="text-xs">Mapset by {{ map.mapset }}</p>
       <p class="text-lg">{{ map.title }}</p>
       <p class="text-xs">{{ map.artist }}</p>
