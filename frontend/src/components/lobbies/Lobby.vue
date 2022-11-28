@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRefs, watch } from 'vue';
 import axios from "axios";
 
 import { Lobby } from '../../models/Lobby';
@@ -9,13 +9,45 @@ import AppButton from '../ui/AppButton.vue';
 import { notify } from '../../hooks/useNotify';
 import { Team } from '../../models/Team';
 
-const userStore = useUserStore();
-const isLoading = ref(false);
-
 const props = defineProps<{
   lobby: Lobby,
   updateCallback: () => void
 }>();
+
+const { lobby } = toRefs(props);
+const userStore = useUserStore();
+const isLoading = ref(false);
+const referee = ref(lobby.value.referee || "-");
+
+let timeout: NodeJS.Timeout;
+watch(referee, (newValue, oldValue) => {
+  if (newValue === oldValue) return;
+  if (timeout) {
+    clearTimeout(timeout);
+  };
+
+  timeout = setTimeout(updateReferee, 1000);
+})
+
+const updateReferee = async () => {
+  try {
+    const response = await axios.post<Lobby>("/lobby/add_referee", {}, {
+      params: {
+        referee_osu_username: referee.value,
+        lobby_id: lobby.value.id
+      }
+    });
+
+    lobby.value = response.data;
+  } catch (error) {
+    if (!axios.isAxiosError(error)) return;
+
+    notify({
+      title: "Lobby referee update",
+      message: error.response?.data.detail
+    });
+  }
+}
 
 const joinLobby = async () => {
   isLoading.value = true;
@@ -23,7 +55,7 @@ const joinLobby = async () => {
   try {
     await axios.post<Team>("/user/lobby/join", {}, {
       params: {
-        lobby_id: props.lobby.id
+        lobby_id: lobby.value.id
       }
     });
 
@@ -46,8 +78,8 @@ const leaveLobby = async () => {
   try {
     const response = await axios.post<Team>("/user/lobby/leave");
 
-    let teamIndex = props.lobby.teams.findIndex(team => team.team_hash === response.data.team_hash);
-    props.lobby.teams.splice(teamIndex, 1);
+    let teamIndex = lobby.value.teams.findIndex(team => team.team_hash === response.data.team_hash);
+    lobby.value.teams.splice(teamIndex, 1);
   } catch (error) {
     if (!axios.isAxiosError(error)) return;
 
@@ -61,7 +93,7 @@ const leaveLobby = async () => {
 }
 
 const isInLobby = () => {
-  return props.lobby.teams.find(team => {
+  return lobby.value.teams.find(team => {
     return team.team_hash === userStore.user?.team?.team_hash
   })
 }
@@ -83,12 +115,17 @@ const isInLobby = () => {
       }}</h1>
     </div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-between gap-4">
       <div class="font-inter text-sm">
         <p class="field-description">referee</p>
-        <p>{{ lobby.referee?.osu_username || '-' }}</p>
+        <input
+          v-if="userStore.user?.is_admin"
+          v-model="referee"
+          class="input-box input-border" 
+        />
+        <p v-else>{{ referee }}</p>
       </div>
-
+      
       <template v-if="userStore.user?.discord_id && userStore.user?.team">
         <AppButton 
           v-if="!isInLobby()" 

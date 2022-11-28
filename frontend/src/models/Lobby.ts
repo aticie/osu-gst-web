@@ -1,10 +1,9 @@
 import { Team } from "./Team";
-import { User } from "./User";
 
 export interface Lobby {
   id: number,
   lobby_name: string,
-  referee: User,
+  referee: string,
   date: string,
   teams: Team[]
 }
