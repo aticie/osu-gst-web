@@ -3,7 +3,8 @@ import { Team } from "./Team";
 export interface Map {
   id: string,
   mapId: number,
-  mods: string,
+  mapsetId: number,
+  mods?: string,
   artist: string,
   title: string,
   difficulty: string,
@@ -13,7 +14,8 @@ export interface Map {
   cs: number,
   ar: number,
   od: number,
-  mapset: string
+  mapset: string,
+  youtubeLink: string
 }
 
 export interface CalculatedTeam extends Team {

@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import Youtube from '../icons/Youtube.vue';
+
 export interface Map {
   id: string,
   mapId: number,
-  mods: string,
+  mapsetId: number,
+  mods?: string,
   artist: string,
   title: string,
   difficulty: string,
@@ -12,7 +15,8 @@ export interface Map {
   cs: number,
   ar: number,
   od: number,
-  mapset: string
+  mapset: string,
+  youtubeLink: string
 }
 
 defineProps<{
@@ -21,8 +25,13 @@ defineProps<{
 </script>
 
 <template>
-  <div 
-    class="flex flex-col gap-8 p-2 rounded-md bg-cover font-bold"
+  <a
+    :href="`https://osu.ppy.sh/b/${map.mapsetId}`"
+    class="
+      flex flex-col gap-8 p-2 rounded-md font-bold
+      filter grayscale bg-center bg-normal
+      hover:grayscale-0 hover:bg-zoom transition-all
+    "
     :style="{backgroundImage: `url(https://assets.ppy.sh/beatmaps/${map.mapId}/covers/cover@2x.jpg)`}"
   >
     <div class="flex justify-between items-start">
@@ -49,8 +58,15 @@ defineProps<{
         </div>
       </div>
 
-      <div class="map-blur py-2 px-4 bg-purple-p">
-        <p>{{ map.mods }} - {{ map.id }}</p>
+
+      <div class="flex-center gap-2">
+        <a :href="map.youtubeLink">
+          <Youtube />
+        </a>
+  
+        <div class="map-blur py-2 px-4 bg-purple-p">
+          <p>{{ map?.mods ? `${map.mods} - ${map.id}` : map.id }}</p>
+        </div>
       </div>
     </div>
     <div class="text-shadow">
@@ -58,5 +74,5 @@ defineProps<{
       <p class="text-lg">{{ map.title }}</p>
       <p class="text-xs">{{ map.artist }}</p>
     </div>
-  </div>
+  </a>
 </template>
