@@ -154,7 +154,7 @@ const isInLobby = () => {
   </div>
 
   <div class="grid grid-cols-3 grid-rows-2 gap-4 grow">
-    <div v-for="team in lobby.teams" class="flex flex-col items-center lg:flex-row gap-2 font-inter">
+    <div v-for="team in lobby.teams" class="flex flex-col lg:items-center lg:flex-row gap-2 font-inter truncate">
       <img
         :src="team.avatar_url || '/artwork.jpg'"
         class="aspect-banner rounded-lg object-cover h-28"
