@@ -161,7 +161,7 @@ const isInLobby = () => {
       />
 
       <div class="flex flex-col justify-between lg:h-full py-2 truncate">
-        <h1 class="text-xl font-bold">{{ team.title }}</h1>
+        <h1 class="text-xl font-bold truncate">{{ team.title }}</h1>
 
         <div class="truncate">
           <p 
