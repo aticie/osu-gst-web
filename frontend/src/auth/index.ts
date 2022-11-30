@@ -6,17 +6,17 @@ export const useParams = (url: string, params: Record<string, string>) => {
   return base.toString();
 }
 
-// export const toOsuAuth = () => {
-//   window.location.href = useParams(
-//     "https://osu.ppy.sh/oauth/authorize",
-//     {
-//       response_type: "code",
-//       client_id: import.meta.env.VITE_OSU_CLIENT_ID.toString(),
-//       redirect_uri: `${import.meta.env.VITE_BASE_URL}/osu-identify`,
-//       scope: "identify"
-//     }
-//   );
-// }
+export const toOsuAuth = () => {
+  window.location.href = useParams(
+    "https://osu.ppy.sh/oauth/authorize",
+    {
+      response_type: "code",
+      client_id: import.meta.env.VITE_OSU_CLIENT_ID.toString(),
+      redirect_uri: `${import.meta.env.VITE_BASE_URL}/osu-identify`,
+      scope: "identify"
+    }
+  );
+}
 
 export const toDiscordAuth = () => {
   window.location.href = useParams(
