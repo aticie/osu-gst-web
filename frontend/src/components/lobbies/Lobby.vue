@@ -19,17 +19,6 @@ const userStore = useUserStore();
 const isLoading = ref(false);
 const referee = ref(lobby.value.referee || "-");
 
-if (lobby.value.teams.length > 0) {
-  lobby.value.teams = [
-    lobby.value.teams[0],
-    lobby.value.teams[0],
-    lobby.value.teams[0],
-    lobby.value.teams[0],
-    lobby.value.teams[0],
-    lobby.value.teams[0],
-  ]
-}
-
 let timeout: NodeJS.Timeout;
 watch(referee, (newValue, oldValue) => {
   if (newValue === oldValue) return;
