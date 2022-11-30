@@ -19,6 +19,17 @@ const userStore = useUserStore();
 const isLoading = ref(false);
 const referee = ref(lobby.value.referee || "-");
 
+if (lobby.value.teams.length > 0) {
+  lobby.value.teams = [
+    lobby.value.teams[0],
+    lobby.value.teams[0],
+    lobby.value.teams[0],
+    lobby.value.teams[0],
+    lobby.value.teams[0],
+    lobby.value.teams[0],
+  ]
+}
+
 let timeout: NodeJS.Timeout;
 watch(referee, (newValue, oldValue) => {
   if (newValue === oldValue) return;
@@ -100,7 +111,7 @@ const isInLobby = () => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-between gap-6 lg:gap-14 lg:w-1/4">
+  <div class="flex flex-col justify-between gap-6 lg:gap-14 lg:w-1/4 shrink-0">
     <h1 class="text-2xl font-bold text-pink-p">{{ lobby.lobby_name }}</h1>
     <div>
       <h1 class="flex-wrap text-3xl font-bold">{{
@@ -153,20 +164,20 @@ const isInLobby = () => {
     </div>
   </div>
 
-  <div class="grid grid-cols-3 grid-rows-2 place-items-center grow">
-    <div v-for="team in lobby.teams" class="flex flex-col lg:flex-row gap-2 font-inter">
+  <div class="grid grid-cols-3 grid-rows-2 gap-4 grow">
+    <div v-for="team in lobby.teams" class="flex flex-col items-center lg:flex-row gap-2 font-inter">
       <img
         :src="team.avatar_url || '/artwork.jpg'"
-        class="aspect-banner rounded-lg object-cover w-36"
+        class="aspect-banner rounded-lg object-cover h-28"
       />
 
-      <div class="flex flex-col justify-between">
-        <h1 class="text-lg font-bold">{{ team.title }}</h1>
+      <div class="flex flex-col justify-between lg:h-full py-2 truncate">
+        <h1 class="text-xl font-bold">{{ team.title }}</h1>
 
-        <div>
+        <div class="truncate">
           <p 
             v-for="player in team.players"
-            class="text-sm"
+            class="text-xs lg:text-sm truncate"
           >
           {{ player.osu_username }}</p>
         </div>
@@ -174,7 +185,7 @@ const isInLobby = () => {
     </div>
     <p 
       v-for="_ in 6 - lobby.teams.length" 
-      class="text-pink-p lg:text-lg font-bold"
+      class="text-pink-p lg:text-lg font-bold self-center text-center"
     >
       EMPTY SLOT
     </p>
