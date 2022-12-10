@@ -173,7 +173,7 @@ const isInLobby = () => {
       </div>
     </div>
     <p 
-      v-for="_ in 6 - lobby.teams.length" 
+      v-for="_ in 8 - lobby.teams.length" 
       class="text-pink-p lg:text-lg font-bold self-center text-center"
     >
       EMPTY SLOT
