@@ -153,14 +153,17 @@ const isInLobby = () => {
     </div>
   </div>
 
-  <div class="grid grid-cols-3 grid-rows-3 gap-4 grow">
-    <div v-for="team in lobby.teams" class="flex flex-col lg:items-center lg:flex-row gap-2 font-inter truncate">
+  <div class="grid grid-cols-3 grid-rows-3 gap-2 lg:gap-4 grow">
+    <div 
+      v-for="team in lobby.teams"
+      class="flex flex-col lg:items-center lg:flex-row lg:gap-2 font-inter truncate"
+    >
       <img
         :src="team.avatar_url || '/artwork.jpg'"
-        class="aspect-banner rounded-lg object-cover h-28"
+        class="aspect-banner rounded-lg object-cover h-20 lg:h-28"
       />
 
-      <div class="flex flex-col justify-between lg:h-full py-2 truncate">
+      <div class="flex flex-col justify-between lg:h-full lg:py-2 truncate">
         <h1 class="text-xl font-bold truncate">{{ team.title }}</h1>
 
         <div class="truncate">
