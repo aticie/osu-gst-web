@@ -13,3 +13,9 @@ export interface PlayerlessTeam extends TeamBase {
 export interface Team extends PlayerlessTeam {
   players: TeamlessUser[]
 }
+
+export interface TeamMapScore {
+  teamname: string,
+  map_id: string,
+  score: number
+}
