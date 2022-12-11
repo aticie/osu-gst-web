@@ -17,7 +17,8 @@ export interface Team extends PlayerlessTeam {
 export interface TeamMapScore {
   teamname: string,
   map_id: string,
-  score: number
+  score: number,
+  zscore: number
 }
 
 export interface CalculatedTeam extends Team {

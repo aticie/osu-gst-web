@@ -5,8 +5,7 @@ import RankingPlayer from "../components/results/RankingsPlayer.vue";
 import AppButton from '../components/ui/AppButton.vue';
 
 import axios from 'axios';
-import { Map } from '../models/Custom';
-
+import { Map } from '../models/Pool';
 
 const rankingTabs: {
   [key: string]: any
@@ -35,6 +34,14 @@ const selectedMapId = ref(pool[0].id);
     </div>
 
     <div class="flex flex-wrap gap-2">
+      <AppButton
+        :isLoading="false"
+        @click="selectedMapId = 'Overall'"
+        :class="{ '!bg-pink-p': selectedMapId === 'Overall'}"
+      >
+        <p>Overall</p>
+      </AppButton>
+
       <AppButton
         :isLoading="false"
         v-for="map in pool"
