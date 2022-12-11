@@ -5,6 +5,7 @@ import Teams from "../views/Teams.vue";
 import Lobbies from "../views/Lobbies.vue";
 import NotFound from "../views/NotFound.vue";
 import Pool from "../views/Pool.vue";
+import Results from "../views/Results.vue";
 import { useUserStore } from "../store";
 
 const routes: RouteRecordRaw[] = [
@@ -32,6 +33,11 @@ const routes: RouteRecordRaw[] = [
     path: "/pool",
     name: "MAPPOOL",
     component: Pool
+  },
+  {
+    path: "/results",
+    name: "RESULTS",
+    component: Results
   },
   {
     path: "/admin",

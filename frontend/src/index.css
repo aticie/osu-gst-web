@@ -189,7 +189,7 @@
 
   .h-scroll {
     height: calc(100% - 68px);
-    padding-top: 68px;
+    /* padding-top: 68px; */
     margin-top: 68px;
 
     @apply overflow-x-hidden;
