@@ -21,7 +21,7 @@ watch(() => props.mapId, getRankings);
 </script>
 
 <template>
-  <div class="font-inter">
+  <div class="grid font-inter">
     <div class="grid grid-cols-2 px-4 my-4">
       <p>Team Name</p>
       <div class="flex gap-10 justify-self-end">
@@ -37,9 +37,9 @@ watch(() => props.mapId, getRankings);
     >
       <p>{{ team.teamname }}</p>
 
-      <div class="flex gap-10 justify-self-end">
+      <div class="flex gap-8 justify-self-end">
         <p>{{ team.score.toFixed() }}</p>
-        <p>{{ team.zscore.toFixed() }}</p>
+        <p class="w-14 text-end">{{ team.zscore.toFixed(2) }}</p>
       </div>
     </div>
   </div>
