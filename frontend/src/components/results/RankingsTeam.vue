@@ -33,7 +33,7 @@ watch(() => props.mapId, getRankings);
     <div 
       v-for="(team, index) in teamRankings" 
       class="border border-neutral-800 p-4 grid grid-cols-2 bg-opacity-40"
-      :class="{ 'bg-green-500': isOverall && index < 8 }"
+      :class="isOverall && index < 8 ? 'bg-green-500' : 'bg-red-500'"
     >
       <p>{{ team.teamname }}</p>
 
