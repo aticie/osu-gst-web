@@ -1,9 +1,7 @@
-import { Team } from "./Team";
-
 export interface Map {
   id: string,
-  mapId: number,
-  mapsetId: number,
+  map_id: number,
+  set_id: number,
   mods?: string,
   artist: string,
   title: string,
@@ -15,9 +13,5 @@ export interface Map {
   ar: number,
   od: number,
   mapset: string,
-  youtubeLink: string
-}
-
-export interface CalculatedTeam extends Team {
-  averageBwsRank: number
+  youtube: string
 }

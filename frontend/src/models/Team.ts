@@ -19,3 +19,7 @@ export interface TeamMapScore {
   map_id: string,
   score: number
 }
+
+export interface CalculatedTeam extends Team {
+  averageBwsRank: number
+}

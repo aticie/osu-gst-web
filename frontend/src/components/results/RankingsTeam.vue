@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const teamRankings = ref<TeamMapScore[]>([]);
 const getRankings = async () => {
-  teamRankings.value = (await axios.get<TeamMapScore[]>("/team/scores", {
+  teamRankings.value = (await axios.get<TeamMapScore[]>("/team/zscores", {
     params: { map_id: props.mapId }
   })).data;
 }

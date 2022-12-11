@@ -1,36 +1,19 @@
 <script setup lang="ts">
 import Youtube from '../icons/Youtube.vue';
-
-export interface Map {
-  id: string,
-  mapId: number,
-  mapsetId: number,
-  mods?: string,
-  artist: string,
-  title: string,
-  difficulty: string,
-  sr: number,
-  bpm: number,
-  length: string,
-  cs: number,
-  ar: number,
-  od: number,
-  mapset: string,
-  youtubeLink: string
-}
+import { Map as MapModel } from '../../models/Pool';
 
 defineProps<{
-  map: Map
+  map: MapModel
 }>();
 </script>
 
 <template>
   <a
-    :href="`https://osu.ppy.sh/b/${map.mapsetId}`"
+    :href="`https://osu.ppy.sh/b/${map.set_id}`"
     class="flex flex-col gap-8 p-2 rounded-md font-bold relative overflow-hidden group"
   >
     <img 
-      :src="`https://assets.ppy.sh/beatmaps/${map.mapId}/covers/cover@2x.jpg`" 
+      :src="`https://assets.ppy.sh/beatmaps/${map.set_id}/covers/cover@2x.jpg`" 
       class="object-cover absolute inset-0 -z-10"
     />
     <div class="absolute inset-0 bg-black bg-opacity-50 -z-10" />
@@ -50,22 +33,18 @@ defineProps<{
           <p>{{ map.ar }}</p>
         </div>
         <div>
-          <p class="text-xs -mb-1">LEN</p>
-          <p>{{ map.length }}</p>
-        </div>
-        <div>
           <p class="text-xs -mb-1">BPM</p>
           <p>{{ map.bpm }}</p>
         </div>
       </div>
 
       <div class="flex-center gap-2">
-        <a :href="map.youtubeLink">
+        <a :href="map.youtube">
           <Youtube />
         </a>
   
         <div class="map-blur py-1 px-2 bg-purple-p">
-          <p>{{ map?.mods ? `${map.mods} - ${map.id}` : map.id }}</p>
+          <p>{{ map?.mods != "-" ? `${map.mods} - ${map.id}` : map.id }}</p>
         </div>
       </div>
     </div>
