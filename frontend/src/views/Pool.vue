@@ -9,7 +9,6 @@ import axios from "axios";
 
 const mapPackUrls: { [key: string]: string } = {
   "Qualifiers": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view",
-  // "Quarterfinals": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view"
 }
 
 const getPoolMaps = async () => {
@@ -58,7 +57,7 @@ watch(selectedStage, async () => {
     </div>
   </div>
 
-  <div class="grid gap-4 md:grid-cols-2">
+  <div class="grid gap-4 md:grid-cols-2 pb-6">
     <MapVue v-for="map in maps" :key="map.set_id" :map="map" />
   </div>
 </template>
