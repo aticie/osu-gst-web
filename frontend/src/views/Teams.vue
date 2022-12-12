@@ -2,9 +2,7 @@
 import { computed, ref, watch } from "vue";
 import { notify } from "../hooks/useNotify";
 
-import { PlayerlessTeam, Team } from "../models/Team";
-import { CalculatedTeam } from "../models/Custom";
-// import { User } from "../models/User";
+import { PlayerlessTeam, Team, CalculatedTeam } from "../models/Team";
 
 import { useUserStore } from "../store";
 import { getFileInputElement } from "../utils";
