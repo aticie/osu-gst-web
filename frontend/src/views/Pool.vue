@@ -9,7 +9,7 @@ import axios from "axios";
 
 const mapPackUrls: { [key: string]: string } = {
   "Qualifiers": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view",
-  "Quarterfinals": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view"
+  // "Quarterfinals": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view"
 }
 
 const getPoolMaps = async () => {
@@ -44,7 +44,7 @@ watch(selectedStage, async () => {
     </div>
 
     <div class="flex justify-between">
-      <a :href="mapPackUrls[selectedStage]">
+      <a v-if="mapPackUrls[selectedStage]" :href="mapPackUrls[selectedStage]">
         <AppButton :isLoading="false">
           <p>Download Mappack</p>
         </AppButton>
