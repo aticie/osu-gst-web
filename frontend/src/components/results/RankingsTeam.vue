@@ -18,6 +18,12 @@ const getRankings = async () => {
 
 await getRankings();
 watch(() => props.mapId, getRankings);
+
+const bgColor = (index: number) => {
+  if (!isOverall.value) return;
+
+  return index < 8 ? 'bg-green-500' : 'bg-red-500'
+}
 </script>
 
 <template>
@@ -33,7 +39,7 @@ watch(() => props.mapId, getRankings);
     <div 
       v-for="(team, index) in teamRankings" 
       class="border border-neutral-800 p-4 grid grid-cols-2 bg-opacity-40"
-      :class="isOverall && index < 8 ? 'bg-green-500' : 'bg-red-500'"
+      :class="bgColor(index)"
     >
       <p>{{ team.teamname }}</p>
 
