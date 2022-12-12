@@ -7,6 +7,11 @@ import { stages } from "../utils";
 import { ref, watch } from "vue";
 import axios from "axios";
 
+const mapPackUrls: { [key: string]: string } = {
+  "Qualifiers": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view",
+  "Quarterfinals": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view"
+}
+
 const getPoolMaps = async () => {
   const response = await axios.get<Map[]>("/mappool", {
     params: {
@@ -26,15 +31,31 @@ watch(selectedStage, async () => {
 </script>
 
 <template>
-  <div class="selection-buttons mb-4">
-    <AppButton
+  <div class="grid grid-rows-2 gap-6 mb-4">
+    <div class="selection-buttons">
+      <AppButton
       v-for="[key, value] in Object.entries(stages)"
       @click="selectedStage = key"
       :class="{ '!bg-pink-p': selectedStage === key }"
       :isLoading="false"
-    >
-      <p>{{ key }}</p>
-    </AppButton>
+      >
+        <p>{{ key }}</p>
+      </AppButton>
+    </div>
+
+    <div class="flex justify-between">
+      <a :href="mapPackUrls[selectedStage]">
+        <AppButton :isLoading="false">
+          <p>Download Mappack</p>
+        </AppButton>
+      </a>
+  
+      <a href="https://docs.google.com/spreadsheets/d/1uzmEdqztstUAcbD46kZ8qhAp4iLl1KjLVskN_7kLmh0/edit#gid=1601799396">
+        <AppButton :isLoading="false">
+          <p>Google Sheet</p>
+        </AppButton>
+      </a>
+    </div>
   </div>
 
   <div class="grid gap-4 md:grid-cols-2">
