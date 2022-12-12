@@ -19,13 +19,16 @@ watch(() => props.mapId, getRankings);
 </script>
 
 <template>
-  <div class="font-inter">
+  <div class="grid gap-0.5 font-inter">
     <div class="grid grid-cols-2 px-4 my-4">
       <p>Username</p>
       <p class="justify-self-end">Score</p>
     </div>
 
-    <div v-for="team in playerRankings" class="border border-neutral-800 p-4 grid grid-cols-2">
+    <div 
+      v-for="team in playerRankings" 
+      class="ranking-row"
+    >
       <p>{{ team.username }}</p>
       <p class="justify-self-end">{{ team.score.toFixed() }}</p>
     </div>

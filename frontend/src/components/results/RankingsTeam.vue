@@ -27,7 +27,7 @@ const bgColor = (index: number) => {
 </script>
 
 <template>
-  <div class="grid font-inter">
+  <div class="grid gap-0.5 font-inter">
     <div class="grid grid-cols-2 px-4 my-4">
       <p>Team Name</p>
       <div class="flex gap-10 justify-self-end">
@@ -38,7 +38,7 @@ const bgColor = (index: number) => {
 
     <div 
       v-for="(team, index) in teamRankings" 
-      class="border border-neutral-800 p-4 grid grid-cols-2 bg-opacity-40"
+      class="ranking-row bg-opacity-40"
       :class="bgColor(index)"
     >
       <p>{{ team.teamname }}</p>
