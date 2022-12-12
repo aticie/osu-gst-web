@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <a
-    :href="`https://osu.ppy.sh/b/${map.set_id}`"
+    :href="`https://osu.ppy.sh/b/${map.map_id}`"
     class="flex flex-col gap-8 p-2 rounded-md font-bold relative overflow-hidden group h-36"
   >
     <img 
