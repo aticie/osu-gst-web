@@ -42,6 +42,7 @@ const bgColor = (index: number) => {
       class="ranking-row bg-opacity-40"
       :class="bgColor(index)"
     >
+      <p>{{ index + 1 }}</p>
       <p>{{ team.teamname }}</p>
 
       <div class="flex gap-8 justify-self-end">
