@@ -10,7 +10,7 @@ const userStore = useUserStore();
 </script>
 
 <template>
-  <div class="2xl:flex-center h-full">
+  <div class="grid h-full 2xl:grid-cols-2 place-items-center">
     <div class="w-full flex-center flex-col grow p-4 gap-6 2xl:gap-8">
       <GSTLive />
 
@@ -56,6 +56,9 @@ const userStore = useUserStore();
       </div>
     </div>
 
-    <img src="/artwork.jpg" class="aspect-video object-cover max-h-[600px] w-full 2xl:w-auto" />
+    <img 
+      src="/artwork.jpg" 
+      class="aspect-video object-cover"
+    />
   </div>
 </template>
