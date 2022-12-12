@@ -162,6 +162,16 @@
   .page-title {
     @apply font-bold text-2xl text-center;
   }
+
+  .ranking-row {
+    @apply bg-neutral-800 bg-opacity-40 p-4;
+    @apply flex justify-between;
+    @apply rounded overflow-hidden;
+  }
+
+  .selection-buttons {
+    @apply flex flex-wrap gap-2;
+  }
 }
 
 @layer utilities {
@@ -189,7 +199,7 @@
 
   .h-scroll {
     height: calc(100% - 68px);
-    padding-top: 68px;
+    /* padding-top: 68px; */
     margin-top: 68px;
 
     @apply overflow-x-hidden;

@@ -41,6 +41,9 @@ const userStore = useUserStore();
         <RouterLink to="/pool" class="route-link">
           MAPPOOL
         </RouterLink>
+        <RouterLink to="/results" class="route-link">
+          RESULTS 
+        </RouterLink>
         <RouterLink v-if="userStore.user?.is_admin" to="/admin" class="route-link bg-red-500">
           ADMIN
         </RouterLink>

@@ -30,3 +30,9 @@ export interface TeamlessUser extends UserCreate {}
 export interface User extends UserCreate {
   team: PlayerlessTeam | undefined
 }
+
+export interface UserMapScore {
+  username: string,
+  map_id: string,
+  score: number
+}
