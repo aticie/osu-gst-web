@@ -10,7 +10,6 @@ import axios from "axios";
 
 import { Upload } from "../components/icons";
 import TeamVue from "../components/teams/Team.vue";
-import TeamCreate from "../components/teams/TeamCreate.vue";
 import TeamPlayers from "../components/teams/TeamPlayerInvites.vue";
 import AppButton from "../components/ui/AppButton.vue";
 import AppSuspense from "../components/AppSuspense.vue";
@@ -19,7 +18,6 @@ const userStore = useUserStore();
 const teams = ref<CalculatedTeam[]>([]);
 const isPlayersOpen = ref(false);
 const isUploadLoading = ref(false);
-// const isLeaveButtonLoading = ref(false);
 
 const getAverageRank = (team: Team) => {
   const averageRank = team.players
@@ -80,34 +78,6 @@ watch(
 const userTeam = computed(() => (
   teams.value.find(team => team.title == userStore.user?.team?.title)
 ));
-
-// const showPlayers = async () => {
-//   isPlayersOpen.value = !isPlayersOpen.value;
-// }
-
-// const leaveTeam = async () => {
-//   isLeaveButtonLoading.value = true;
-
-//   try {
-//     const response = await axios.delete<User>("/team");
-
-//     teams.value.splice(
-//       teams.value.findIndex(x => x.team_hash === userStore.user?.team?.team_hash),
-//       1
-//     );
-
-//     userStore.user = response.data;
-//   } catch (error) {
-//     if (!axios.isAxiosError(error)) return;
-
-//     notify({
-//       title: "Team",
-//       message: error.response?.data.detail
-//     });
-//   } finally {
-//     isLeaveButtonLoading.value = false;
-//   }
-// }
 
 const uploadHandler = async () => {
   let inputElement = getFileInputElement();
@@ -177,22 +147,6 @@ const uploadHandler = async () => {
           </template>
 
           <template v-slot:options>
-            <!-- <AppButton :isRed="true" :isLoading="isLeaveButtonLoading" @click="leaveTeam">
-              <template #icon>
-                <Leave class="h-6" />
-              </template>
-
-              <p>Leave the team</p>
-            </AppButton>
-
-            <AppButton v-if="userTeam.players.length === 1" :isLoading="false" @click="showPlayers">
-              <template #icon>
-                <Add class="h-6" />
-              </template>
-
-              <p>Invite Someone</p>
-            </AppButton> -->
-
             <template v-if="isPlayersOpen">
               <AppSuspense>
                 <TeamPlayers />
@@ -201,10 +155,6 @@ const uploadHandler = async () => {
           </template>
         </TeamVue>
       </template>
-      <!-- <template v-else>
-        <h1 class="font-bold text-2xl text-center">CREATE A TEAM</h1>
-        <TeamCreate />
-      </template> -->
     </div>
 
     <div class="flex flex-col gap-6 w-full">
