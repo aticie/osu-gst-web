@@ -9,6 +9,8 @@ import axios from "axios";
 
 const mapPackUrls: { [key: string]: string } = {
   "Qualifiers": "https://drive.google.com/file/d/1fIaEyRJUJoyPeP-1BMPXxH_lE93NOCu2/view",
+  // "Quarterfinals": "",
+  // "Semifinals": ""
 }
 
 const getPoolMaps = async () => {
