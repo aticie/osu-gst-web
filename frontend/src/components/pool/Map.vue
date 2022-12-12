@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <a
     :href="`https://osu.ppy.sh/b/${map.set_id}`"
-    class="flex flex-col gap-8 p-2 rounded-md font-bold relative overflow-hidden group"
+    class="flex flex-col gap-8 p-2 rounded-md font-bold relative overflow-hidden group h-36"
   >
     <img 
       :src="`https://assets.ppy.sh/beatmaps/${map.set_id}/covers/cover@2x.jpg`" 
@@ -39,7 +39,7 @@ defineProps<{
       </div>
 
       <div class="flex-center gap-2">
-        <a :href="map.youtube">
+        <a v-if="map.youtube" :href="map.youtube">
           <Youtube />
         </a>
   
@@ -50,7 +50,7 @@ defineProps<{
     </div>
     <div class="text-shadow">
       <p class="text-xs">Mapset by {{ map.mapset }}</p>
-      <p class="text-lg">{{ map.title }}</p>
+      <p class="text-lg truncate">{{ map.title }}</p>
       <p class="text-xs">{{ map.artist }}</p>
     </div>
   </a>

@@ -26,11 +26,12 @@ watch(() => props.mapId, getRankings);
     </div>
 
     <div 
-      v-for="team in playerRankings" 
+      v-for="player in playerRankings"
+      :key="player.username"
       class="ranking-row"
     >
-      <p>{{ team.username }}</p>
-      <p class="justify-self-end">{{ team.score.toFixed() }}</p>
+      <p>{{ player.username }}</p>
+      <p class="justify-self-end">{{ player.score.toFixed() }}</p>
     </div>
   </div>
 </template>

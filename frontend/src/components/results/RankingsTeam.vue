@@ -37,7 +37,8 @@ const bgColor = (index: number) => {
     </div>
 
     <div 
-      v-for="(team, index) in teamRankings" 
+      v-for="(team, index) in teamRankings"
+      :key="team.teamname"
       class="ranking-row bg-opacity-40"
       :class="bgColor(index)"
     >

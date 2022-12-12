@@ -168,6 +168,10 @@
     @apply flex justify-between;
     @apply rounded overflow-hidden;
   }
+
+  .selection-buttons {
+    @apply flex flex-wrap gap-2;
+  }
 }
 
 @layer utilities {
