@@ -13,7 +13,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
       <div class="info-content">
         <div>
           <h1>ONLINE PHASE</h1>
-          <p>13TH NOVEMBER - 11TH DECEMBER</p>
+          <p>13TH NOVEMBER - 12TH DECEMBER</p>
 
           <ol>
             <li>
@@ -30,7 +30,7 @@ import InfoStaff from '../components/info/InfoStaff.vue';
             </li>
             <li>
               <h1>Qualifier Results + Event Mappool Showcase</h1>
-              <p>11th December 22:00</p>
+              <p>12th December 20:00</p>
             </li>
           </ol>
         </div>
