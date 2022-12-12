@@ -12,7 +12,26 @@ const isMainRoute = computed(() => route.path === "/");
 </script>
 
 <template>
-  <AppNavigationBar v-if="!isMainRoute" />
+  <div 
+    class="artwork fixed inset-0" 
+  />
+
+  <RouterView v-slot="{ Component }">
+    <main 
+      class="h-full w-full pt-10" 
+      :class="{ 'max-w-6xl mx-auto': !isMainRoute }"
+    >
+      <suspense :timeout="0">
+        <component :is="Component" />
+  
+        <template #fallback>
+          <Spinner class="w-10" />
+        </template>
+      </suspense>
+    </main>
+  </RouterView>
+
+  <!-- <AppNavigationBar v-if="!isMainRoute" />
   <div class="artwork absolute inset-0 -z-20" />
 
   <AppNotification />
@@ -33,5 +52,5 @@ const isMainRoute = computed(() => route.path === "/");
         </suspense>
       </div>
     </main>
-  </RouterView>
+  </RouterView> -->
 </template>

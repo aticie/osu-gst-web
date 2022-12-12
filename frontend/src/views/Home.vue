@@ -2,16 +2,24 @@
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import AppSuspense from "../components/AppSuspense.vue";
-import Twitch from "../components/icons/Twitch.vue";
-import { Discord, GSTLive } from "../components/icons";
+import { Discord, GSTLive, Twitch } from "../components/icons";
+import { RouteRecordRaw, useRouter } from "vue-router";
 import { useUserStore } from "../store";
 
 const userStore = useUserStore();
+const router = useRouter();
+
+// if not home and (if not admin and user is admin)
+const shouldDisplayRoute = (routeName: RouteRecordRaw) => {
+  return (routeName.name) &&
+         (routeName.name !== "HOME") &&
+         !(routeName.name === "ADMIN" && !userStore.user?.is_admin)
+}
 </script>
 
 <template>
-  <div class="grid h-full 2xl:grid-cols-2 place-items-center">
-    <div class="w-full flex-center flex-col grow p-4 gap-6 2xl:gap-8">
+  <div class="min-h-full grid gap-6 2xl:grid-cols-2 place-items-center">
+    <div class="grid gap-6 2xl:gap-8 justify-items-center">
       <GSTLive />
 
       <div class="flex flex-wrap justify-center 2xl:gap-10">
@@ -29,24 +37,15 @@ const userStore = useUserStore();
       </div>
 
       <div class="flex flex-wrap justify-center gap-4">
-        <RouterLink to="/info" class="route-link">
-          INFO
-        </RouterLink>
-        <RouterLink to="/teams" class="route-link">
-          TEAMS
-        </RouterLink>
-        <RouterLink to="/lobbies" class="route-link">
-          LOBBIES
-        </RouterLink>
-        <RouterLink to="/pool" class="route-link">
-          MAPPOOL
-        </RouterLink>
-        <RouterLink to="/results" class="route-link">
-          RESULTS 
-        </RouterLink>
-        <RouterLink v-if="userStore.user?.is_admin" to="/admin" class="route-link bg-red-500">
-          ADMIN
-        </RouterLink>
+        <template v-for="route in router.options.routes">
+          <RouterLink
+            v-if="shouldDisplayRoute(route)"
+            :to="route.path"
+            class="route-link"
+          >
+            {{ route.name }}
+          </RouterLink>
+        </template>
       </div>
 
       <div class="flex-center font-bold w-full 2xl:max-w-screen-md">

@@ -14,13 +14,8 @@
 
 @layer base {
   html, body, #app {
-    @apply text-white;
+    @apply text-white font-gotham;
     @apply h-full w-full;
-    @apply overflow-hidden;
-  }
-
-  main {
-    @apply font-gotham;
   }
 
   input,
