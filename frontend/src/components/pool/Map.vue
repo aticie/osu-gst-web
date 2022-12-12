@@ -33,6 +33,10 @@ defineProps<{
           <p>{{ map.ar }}</p>
         </div>
         <div>
+          <p class="text-xs -mb-1">LEN</p>
+          <p>{{ map.length.substring(0, 5) }}</p>
+        </div>
+        <div>
           <p class="text-xs -mb-1">BPM</p>
           <p>{{ map.bpm }}</p>
         </div>
