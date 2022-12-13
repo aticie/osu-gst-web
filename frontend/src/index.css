@@ -55,7 +55,7 @@
   .route-link {
     @apply p-1 px-4;
     @apply rounded-full;
-    @apply 2xl:text-xl font-bold;
+    @apply 2xl:text-xl font-bold text-center;
 
     @apply bg-purple-p shadow shadow-black;
     @apply transition-all;
@@ -174,16 +174,8 @@
     @apply flex items-center justify-center;
   }
 
-  .no-feather {
-    mask-image: none;
-  }
-
-  .feather {
-    mask-image: linear-gradient(
-      0deg,
-      black 98%,
-      transparent 100%
-    );
+  .black-feather {
+    background: linear-gradient(to bottom, rgb(16,14,17) 0%, transparent 100%);
   }
 
   .blurred-bg {

@@ -3,18 +3,13 @@ import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import AppSuspense from "../components/AppSuspense.vue";
 import { Discord, GSTLive, Twitch } from "../components/icons";
-import { RouteRecordRaw, useRouter } from "vue-router";
 import { useUserStore } from "../store";
+import { useRouter } from "vue-router";
+import { showRoute } from "../router/showRoute";
 
 const userStore = useUserStore();
 const router = useRouter();
 
-// if not home and (if not admin and user is admin)
-const shouldDisplayRoute = (routeName: RouteRecordRaw) => {
-  return (routeName.name) &&
-         (routeName.name !== "HOME") &&
-         !(routeName.name === "ADMIN" && !userStore.user?.is_admin)
-}
 </script>
 
 <template>
@@ -39,7 +34,7 @@ const shouldDisplayRoute = (routeName: RouteRecordRaw) => {
       <div class="flex flex-wrap justify-center gap-4">
         <template v-for="route in router.options.routes">
           <RouterLink
-            v-if="shouldDisplayRoute(route)"
+            v-if="showRoute(route, userStore.user?.is_admin)"
             :to="route.path"
             class="route-link"
           >
