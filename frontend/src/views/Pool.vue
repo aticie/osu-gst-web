@@ -32,7 +32,7 @@ watch(selectedStage, async () => {
 </script>
 
 <template>
-  <div class="grid grid-rows-2 gap-6 mb-4">
+  <div class="p-2 flex flex-col gap-6 mb-2">
     <div class="selection-buttons">
       <AppButton
       v-for="[key, value] in Object.entries(stages)"

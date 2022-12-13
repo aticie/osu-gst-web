@@ -3,7 +3,7 @@ export const stages: {
 } = {
   "Qualifiers": "QF",
   "Quarterfinals": "QQF",
-  "Semifinals": "SF"
+  "Semifinals/Finals": "SF"
 }
 
 export const getRandomArbitrary = (min: number, max: number) => {

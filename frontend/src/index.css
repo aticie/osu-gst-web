@@ -14,13 +14,8 @@
 
 @layer base {
   html, body, #app {
-    @apply text-white;
+    @apply text-white font-gotham;
     @apply h-full w-full;
-    @apply overflow-hidden;
-  }
-
-  main {
-    @apply font-gotham;
   }
 
   input,
@@ -60,7 +55,7 @@
   .route-link {
     @apply p-1 px-4;
     @apply rounded-full;
-    @apply 2xl:text-xl font-bold;
+    @apply 2xl:text-xl font-bold text-center;
 
     @apply bg-purple-p shadow shadow-black;
     @apply transition-all;
@@ -172,6 +167,11 @@
   .selection-buttons {
     @apply flex flex-wrap gap-2;
   }
+
+  .map-container {
+    @apply flex flex-col justify-between p-2 relative h-36;
+    @apply lg:rounded overflow-hidden font-bold;
+  }
 }
 
 @layer utilities {
@@ -179,31 +179,14 @@
     @apply flex items-center justify-center;
   }
 
-  .no-feather {
-    mask-image: none;
-  }
-
-  .feather {
-    mask-image: linear-gradient(
-      0deg,
-      black 98%,
-      transparent 100%
-    );
+  .black-feather {
+    background: linear-gradient(to bottom, rgb(16,14,17) 0%, transparent 100%);
   }
 
   .blurred-bg {
     @apply bg-dark bg-opacity-80;
     @apply p-2 rounded-lg;
     @apply backdrop-blur-sm;
-  }
-
-  .h-scroll {
-    height: calc(100% - 68px);
-    /* padding-top: 68px; */
-    margin-top: 68px;
-
-    @apply overflow-x-hidden;
-    @apply 2xl:pt-0 2xl:mt-0;
   }
 
   .color-scheme {

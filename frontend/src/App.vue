@@ -2,9 +2,8 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { Spinner } from "./components/icons";
-import AppNavigationBar from "./components/AppNavigationBar.vue";
+import AppNavigation from "./components/AppNavigation.vue";
 import AppNotification from "./components/AppNotification.vue";
-import AppSuspense from "./components/AppSuspense.vue";
 
 const route = useRoute();
 const isMainRoute = computed(() => route.path === "/");
@@ -12,26 +11,23 @@ const isMainRoute = computed(() => route.path === "/");
 </script>
 
 <template>
-  <AppNavigationBar v-if="!isMainRoute" />
-  <div class="artwork absolute inset-0 -z-20" />
+  <AppNavigation v-if="!isMainRoute" />
+  <div class="artwork fixed inset-0" />
 
   <AppNotification />
 
   <RouterView v-slot="{ Component }">
     <main 
-      class="overflow-y-auto h-scroll md:h-full"
+      class="h-full w-full pt-16 2xl:pt-6"
+      :class="{ 'max-w-6xl mx-auto': !isMainRoute }"
     >
-      <div class="h-full" :class="{ 'max-w-6xl mx-auto pt-6': !isMainRoute }">
-        <suspense :timeout="0">
-          <component :is="Component" />
-
-          <template #fallback>
-            <div class="flex-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <Spinner class="w-10" />
-            </div>
-          </template>
-        </suspense>
-      </div>
+      <suspense :timeout="0">
+        <component :is="Component" />
+  
+        <template #fallback>
+          <Spinner class="w-10" />
+        </template>
+      </suspense>
     </main>
   </RouterView>
 </template>
