@@ -167,6 +167,11 @@
   .selection-buttons {
     @apply flex flex-wrap gap-2;
   }
+
+  .map-container {
+    @apply flex flex-col justify-between p-2 relative h-36;
+    @apply lg:rounded overflow-hidden font-bold;
+  }
 }
 
 @layer utilities {
@@ -182,15 +187,6 @@
     @apply bg-dark bg-opacity-80;
     @apply p-2 rounded-lg;
     @apply backdrop-blur-sm;
-  }
-
-  .h-scroll {
-    height: calc(100% - 68px);
-    /* padding-top: 68px; */
-    margin-top: 68px;
-
-    @apply overflow-x-hidden;
-    @apply 2xl:pt-0 2xl:mt-0;
   }
 
   .color-scheme {

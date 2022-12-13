@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { toOsuAuth } from "../auth";
 import { useUserStore } from "../store";
-import TeamInvites from "./teams/TeamInvites.vue";
 
 import axios from "axios";
 import { User } from "../models/User";
@@ -25,8 +24,6 @@ try {
 
       <img :src="userStore.user.osu_avatar_url" alt="user avatar" class="h-10 rounded-full" />
     </div>
-
-    <TeamInvites v-if="!userStore.user.team && userStore.user.discord_id" />
   </div>
 
   <button v-else @click="toOsuAuth" class="h-14 w-full flex-center gap-4 2xl:text-xl bg-dark">

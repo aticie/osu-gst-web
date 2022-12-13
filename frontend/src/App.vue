@@ -18,7 +18,7 @@ const isMainRoute = computed(() => route.path === "/");
 
   <RouterView v-slot="{ Component }">
     <main 
-      class="h-full w-full pt-20 2xl:pt-6"
+      class="h-full w-full pt-16 2xl:pt-6"
       :class="{ 'max-w-6xl mx-auto': !isMainRoute }"
     >
       <suspense :timeout="0">
