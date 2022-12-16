@@ -4,6 +4,7 @@ import { useUserStore } from "../store";
 
 import axios from "axios";
 import { User } from "../models/User";
+import { Right, Left } from "../components/icons";
 
 const userStore = useUserStore();
 
