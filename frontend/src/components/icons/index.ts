@@ -1,4 +1,5 @@
 import Spinner from "./Spinner.vue";
+import DreamCore from "./DreamCore.vue";
 import GSTLive from "./GSTLive.vue";
 import GST from "./GST.vue";
 import Discord from "./Discord.vue";
@@ -10,4 +11,4 @@ import Twitch from "./Twitch.vue";
 
 export { Tick, Close } from "./circle";
 export { Left, Right } from "./arrows";
-export { Spinner, Twitch, GSTLive, GST, Discord, Danger, Upload, Add, Leave };
+export { Spinner, Twitch, GSTLive, GST, Discord, Danger, Upload, Add, Leave, DreamCore };
