@@ -2,7 +2,7 @@
 import AppCard from "../components/AppCard.vue";
 import AppOsuLogin from "../components/AppOsuLogin.vue";
 import AppSuspense from "../components/AppSuspense.vue";
-import { Discord, GSTLive, Twitch } from "../components/icons";
+import { Discord, DreamCore, GSTLive, Twitch } from "../components/icons";
 import { useUserStore } from "../store";
 import { useRouter } from "vue-router";
 import { showRoute } from "../router/showRoute";
@@ -50,9 +50,16 @@ const router = useRouter();
       </div>
     </div>
 
-    <img 
-      src="/artwork.jpg" 
-      class="aspect-video object-cover"
-    />
+    <div>
+      <a href="https://www.dreamcore.com.sg/" class="flex items-center gap-2 p-2">
+        <DreamCore />
+        <p class="font-inter">Powered by Dreamcore</p>
+      </a>
+      
+      <img 
+        src="/artwork.jpg" 
+        class="aspect-video object-cover"
+      />
+    </div>
   </div>
 </template>
