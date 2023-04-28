@@ -13,7 +13,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="min-h-full grid gap-6 xl:grid-cols-2 place-items-center">
+  <div class="min-h-full grid xl:grid-cols-2 place-items-center">
     <div class="grid gap-6 2xl:gap-8 justify-items-center">
       <GSTLive />
 
