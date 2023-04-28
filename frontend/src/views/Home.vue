@@ -13,7 +13,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="min-h-full grid gap-6 2xl:grid-cols-2 place-items-center">
+  <div class="min-h-full grid gap-6 xl:grid-cols-2 place-items-center">
     <div class="grid gap-6 2xl:gap-8 justify-items-center">
       <GSTLive />
 
@@ -50,7 +50,7 @@ const router = useRouter();
       </div>
     </div>
 
-    <div>
+    <div class="max-w-xl xl:max-w-none">
       <a href="https://www.dreamcore.com.sg/" class="flex items-center gap-2 p-2">
         <DreamCore />
         <p class="font-inter">Powered by Dreamcore</p>

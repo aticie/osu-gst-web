@@ -17,7 +17,7 @@ try {
 </script>
 
 <template>
-  <div v-if="userStore.user" class="w-full h-full flex flex-col gap-2 2xl:text-xl">
+  <div v-if="userStore.user" class="w-full h-full flex flex-col items-center gap-2 2xl:text-xl">
     <div class="h-16 py-2 flex-center gap-2 bg-dark">
       <p>WELCOME BACK
         <span class="text-pink-p">{{ userStore.user.osu_username }}</span>
@@ -29,8 +29,8 @@ try {
 
   <button v-else @click="toOsuAuth" class="h-14 w-full flex-center gap-4 2xl:text-xl bg-dark">
     <Right />
-    <p>LOGIN WITH
-      <span class="text-pink-p">OSU!</span>
+    <p class="my-auto">LOGIN WITH
+      <span class="text-pink-p my-none">OSU!</span>
     </p>
     <Left />
   </button>
